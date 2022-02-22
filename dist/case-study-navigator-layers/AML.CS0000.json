@@ -1,0 +1,76 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0000"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "Evasion of Deep Learning Detector for Malware C&C Traffic",
+    "description": "Palo Alto Networks Security AI research team tested a deep learning model for malware command and control (C&C) traffic detection in HTTP traffic.\nBased on the publicly available paper by Le et al.  [1], we built a model that was trained on a similar dataset as our production model and had performance similar to it.\nThen we crafted adversarial samples and queried the model and adjusted the adversarial sample accordingly till the model was evaded.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0000.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0000",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance"
+        },
+        {
+            "techniqueID": "AML.T0002.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0005",
+            "showSubtechniques": false,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging"
+        },
+        {
+            "techniqueID": "AML.T0042",
+            "showSubtechniques": false,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

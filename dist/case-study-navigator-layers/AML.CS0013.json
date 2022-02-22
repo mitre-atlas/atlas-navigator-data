@@ -1,0 +1,103 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0013"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "Backdoor Attack on Deep Learning Models in Mobile Apps",
+    "description": "Deep learning models are increasingly used in mobile applications as critical components.\nResearchers from Microsoft Research demonstrated that many deep learning models deployed in mobile apps are vulnerable to backdoor attacks via \"neural payload injection.\"\nThey conducted an empirical study on real-world mobile deep learning apps collected from Google Play, and found 54 apps that were vulnerable to attack, including popular security and safety critical applications used for as cash recognition, parental control, face authentication, and financial services among others.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0004",
+            "showSubtechniques": false,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0044",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0018.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0018",
+            "showSubtechniques": true,
+            "tactic": "persistence"
+        },
+        {
+            "techniqueID": "AML.T0042",
+            "showSubtechniques": false,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0043.004",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging"
+        },
+        {
+            "techniqueID": "AML.T0041",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

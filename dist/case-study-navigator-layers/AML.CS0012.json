@@ -1,0 +1,91 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0012"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "Face Identification System Evasion via Physical Countermeasures",
+    "description": "MITRE's AI Red Team demonstrated a physical-domain evasion attack on a commercial face identification service with the intention of inducing a targeted misclassification.\nThis operation had a combination of traditional ATT&CK enterprise techniques such as finding Valid account, and Executing code via an API - all interleaved with adversarial ML specific attacks.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0000",
+            "showSubtechniques": false,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0012",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0040",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0013",
+            "showSubtechniques": false,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0005",
+            "showSubtechniques": false,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging"
+        },
+        {
+            "techniqueID": "AML.T0041",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

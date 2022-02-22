@@ -1,0 +1,61 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0002"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "VirusTotal Poisoning",
+    "description": "An increase in reports of a certain ransomware family that was out of the ordinary was noticed.\nIn investigating the case, it was observed that many samples of that particular ransomware family were submitted through a popular Virus-Sharing platform within a short amount of time.\nFurther investigation revealed that based on string similarity, the samples were all equivalent, and based on code similarity they were between 98 and 74 percent similar.\nInterestingly enough, the compile time was the same for all the samples.\nAfter more digging, the discovery was made that someone used 'metame' a metamorphic code manipulating tool to manipulate the original file towards mutant variants.\nThe variants wouldn't always be executable but still classified as the same ransomware family.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0016.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0043",
+            "showSubtechniques": false,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0020",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+[submodule "atlas-data"]
+	path = atlas-data
+	url = ../atlas-data.git
+	branch = main

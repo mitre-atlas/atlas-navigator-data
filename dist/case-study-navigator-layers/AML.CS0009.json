@@ -1,0 +1,58 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0009"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "Tay Poisoning",
+    "description": "Microsoft created Tay, a twitter chatbot for 18 to 24 year-olds in the U.S. for entertainment purposes.\nWithin 24 hours of its deployment, Tay had to be decommissioned because it tweeted reprehensible words.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0040",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0020",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0031",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

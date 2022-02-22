@@ -1,0 +1,79 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0015"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-01"
+        }
+    ],
+    "name": "Kaspersky - DeepQuarantine Poisoning",
+    "description": "Kaspersky's ML team demonstrated a data poisoning attack on its own anti-spam system.\nThe aim of the attack is to force the DeepQuarantine model, which is a deep learning model and part of the anti-spam system, to detain legitimate emails, thereby disrupting the business process of a particular company that is a user of Kaspersky's anti-spam system.\nIt is important to note that such an attack does not require access to the system.\nThe adversaries only need to find out if the target company is using the anti-spam system. They can do this by sending an email to the targeted company and soliciting a response.\nThe adversaries will receive the necessary information from the response email, since the RFC headers of the email will contain the email headers set by this anti-spam system.\nOnce identified as a user of the anti-spam system, the attacker then sends malicious emails to the victim or another company that is a user of the same system.\nThese messages should have email headers similar to the email headers provided by the Mail User Agent of the targeted company.\nSince these messages are malicious (for example, they contain phishing URLs or malicious files) the anti-spam system will block these messages and they would get into the training dataset with a spam label.\nAfter training on the poisoned dataset, the model will impede communications of the targeted company.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0006",
+            "showSubtechniques": false,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0000.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0000",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance"
+        },
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0035",
+            "showSubtechniques": false,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0020",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0031",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

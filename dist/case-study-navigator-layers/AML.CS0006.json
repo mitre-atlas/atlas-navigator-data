@@ -1,0 +1,37 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0006"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "ClearviewAI Misconfiguration",
+    "description": "Clearview AI's source code repository, though password protected, was misconfigured to allow an arbitrary user to register an account.\nThis allowed an external researcher to gain access to a private code repository that contained Clearview AI production credentials, keys to cloud storage buckets containing 70K video samples, and copies of its applications and Slack tokens.\nWith access to training data, a bad-actor has the ability to cause an arbitrary misclassification in the deployed model.\nThese kinds of attacks illustrate that any attempt to secure ML system should be on top of \"traditional\" good cybersecurity hygiene such as locking down the system with least privileges, multi-factor authentication and monitoring and auditing.\n",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0012",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

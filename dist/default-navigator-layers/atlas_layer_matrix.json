@@ -1,0 +1,369 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.5.5"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "atlas_data_version",
+            "value": "3.0.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2022-03-23"
+        }
+    ],
+    "name": "ATLAS Matrix",
+    "description": "Adversarial Threat Landscape for Artificial-Intelligence Systems, see atlas.mitre.org",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0000",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0000.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0000.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0000.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0001",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0003",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0004",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0006",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0019",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0040",
+            "showSubtechniques": true,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": true,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0041",
+            "showSubtechniques": true,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0044",
+            "showSubtechniques": true,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0013",
+            "showSubtechniques": true,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0014",
+            "showSubtechniques": true,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0020",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0020",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0021",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0005",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0005.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0005.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0005.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0007",
+            "showSubtechniques": true,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011",
+            "showSubtechniques": true,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0012",
+            "showSubtechniques": true,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0018",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0018",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0018.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0018.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0024",
+            "showSubtechniques": true,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0024.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0024.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0024.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0025",
+            "showSubtechniques": true,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0029",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0046",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0031",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0034",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0035",
+            "showSubtechniques": true,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0036",
+            "showSubtechniques": true,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0042",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0043.004",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0045",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "ATLAS technique",
+            "color": "#C8E6C9"
+        }
+    ]
+}
