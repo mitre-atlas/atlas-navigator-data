@@ -202,40 +202,45 @@ def generate_matrix_layer(output_dir, layer_data, navigator_technique_objs, matr
 
     print(f'Matrix layer outputted to {dir_path / matrix_filename}')
 
-def build_navigator_technique_objs(matrix):
+def build_navigator_technique_objs(data):
     """Returns a dictionary of Navigator layer technique objects from the provided ATLAS data.
 
     https://github.com/mitre-attack/attack-navigator/blob/master/layers/LAYERFORMATv4.md
     """
     # Build mapping of tactic ID to Navigator tactic name
     navigator_tactic_names = {}
-    for tactic in matrix['tactics']:
-        # Navigator tactic names are lowercase with hyphens in place of spaces
-        navigator_tactic_names[tactic['id']] = tactic['name'].replace(' ','-').lower()
 
     # Track Navigator technique objects
     # Keyed by unique key `techniqueID_tacticID` or `subtechniqueID`
     objs = {}
 
-    for technique in matrix['techniques']:
-        technique_id = technique['id']
+    # Iterate over matrices
+    for matrix in data['matrices']:
+        for tactic in matrix['tactics']:
+            # Navigator tactic names are lowercase with hyphens in place of spaces
+            navigator_tactic_names[tactic['id']] = tactic['name'].replace(' ','-').lower()
 
-        if 'tactics' in technique:
-            # This is a top-level technique
-            for tactic_id in technique['tactics']:
+
+
+        for technique in matrix['techniques']:
+            technique_id = technique['id']
+
+            if 'tactics' in technique:
+                # This is a top-level technique
+                for tactic_id in technique['tactics']:
+                    obj = {
+                        'techniqueID': technique_id,
+                        'showSubtechniques': True,
+                        'tactic': navigator_tactic_names[tactic_id]
+                    }
+                    objs[f'{technique_id}_{tactic_id}'] = obj
+
+            else:
+                # Otherwise, is a subtechnique
                 obj = {
-                    'techniqueID': technique_id,
-                    'showSubtechniques': True,
-                    'tactic': navigator_tactic_names[tactic_id]
+                    'techniqueID': technique_id
                 }
-                objs[f'{technique_id}_{tactic_id}'] = obj
-
-        else:
-            # Otherwise, is a subtechnique
-            obj = {
-                'techniqueID': technique_id
-            }
-            objs[f'{technique_id}'] = obj
+                objs[f'{technique_id}'] = obj
 
     return objs
 
@@ -303,7 +308,7 @@ if __name__ == '__main__':
     layer_data = {
         'versions': {
             'layer': '4.3',
-            'navigator': '4.5.5'
+            'navigator': '4.6.4'
         },
         'domain': domain,
         'metadata': [

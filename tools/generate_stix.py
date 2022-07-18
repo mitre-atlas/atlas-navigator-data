@@ -1,9 +1,10 @@
 from argparse import ArgumentParser
+import datetime
 import json
 from pathlib import Path
 
 from stix2 import properties
-from stix2.v20 import AttackPattern, Bundle, CustomObject, ExternalReference, KillChainPhase, Relationship
+from stix2.v21 import AttackPattern, Bundle, CustomObject, ExternalReference, Identity, KillChainPhase, Relationship
 import yaml
 
 """
@@ -35,34 +36,54 @@ class AttackMatrix():
     def __init__(self, **kwargs):
         pass
 
+# Collection object modeled as ATT&CK collection
+# https://github.com/center-for-threat-informed-defense/attack-workbench-frontend/blob/master/docs/collections.md#object-version-reference-properties
+@CustomObject('x-mitre-collection', [
+    ('type', properties.StringProperty()),
+    ('id', properties.IDProperty(type='x-mitre-collection')),
+    ('name', properties.StringProperty()),
+    ('description', properties.StringProperty()),
+    ('created', properties.TimestampProperty()),
+    ('modified', properties.TimestampProperty()),
+    ('x_mitre_version', properties.StringProperty()),
+    ('spec_version', properties.StringProperty()),
+    ('x_mitre_attack_spec_version', properties.StringProperty()),
+    ('created_by_ref', properties.StringProperty()),
+    ('object_marking_refs', properties.ListProperty(properties.IDProperty(type='x-mitre-collection'))),
+    ('x_mitre_contents', properties.ListProperty(properties.DictionaryProperty())),
+])
+class AttackCollection():
+    """Custom MITRE ATT&CK collection STIX object."""
+    def __init__(self, **kwargs):
+        pass
 
 class ATLAS:
     """Converts from ATLAS YAML data to STIX."""
-    # An lowercase, hyphened identifier for this data
-    SOURCE_NAME = 'mitre-atlas'
 
-    def __init__(self, atlas_data):
+    def __init__(self, atlas_data, source_name):
         """Initialize an ATLAS object.  Defaults provided via arguments in main.
 
         Args:
             atlas_data (str): Dictionary of ATLAS.yaml data
         """
+        self.source_name = source_name
         self.parse_data_files(atlas_data)
         # Track ATLAS tactics by short ID for matrix ordering lookup
         self.tactic_mapping = {}
 
     def parse_data_files(self, atlas_data):
         """Sets attributes from the ATLAS data."""
+        # Top-level metadata
+        self.data_id = atlas_data['id']
+        self.data_name = atlas_data['name']
+        self.data_version = atlas_data['version']
 
-        self.matrix_id = atlas_data["id"]
-        self.matrix_name = atlas_data["name"]
-        self.matrix_version = atlas_data["version"]
+        # Collect data objects across all matrices
+        self.matrices = atlas_data['matrices']
+        self.tactics = [obj for matrix in self.matrices if 'tactics' in matrix for obj in matrix['tactics']]
+        self.techniques = [obj for matrix in self.matrices if 'techniques' in matrix for obj in matrix['techniques']]
 
-        self.tactics = atlas_data["tactics"]
-        self.techniques = atlas_data["techniques"]
-        self.studies = atlas_data["case-studies"]
-
-    def to_stix_json(self, stix_output_filepath, atlas_url):
+    def to_stix_json(self, stix_output_filepath, atlas_url, identity_name):
         """Saves a STIX JSON file of the ATLAS tactics and techniques info.
 
         STIX Bundle specs
@@ -89,12 +110,12 @@ class ATLAS:
                 # Save off reference to this technique for use by its subtechniques, should there be any following
                 parent_technique = technique
 
-        print(f'Converted {len(stix_techniques)} ATLAS techniques to STIX objects.')
+        print(f'Converted {len(stix_techniques)} techniques to STIX objects.')
         print(f'Created {len(relationships)} subtechnique relationships.')
 
         # Convert ATLAS tactics to x-mitre-tactics
         stix_tactics = [self.tactic_to_mitre_attack_tactic(t, atlas_url) for t in self.tactics]
-        print(f'Converted {len(stix_tactics)} ATLAS tactics to STIX objects.')
+        print(f'Converted {len(stix_tactics)} tactics to STIX objects.')
 
 
         # Build x-mitre-matrix
@@ -102,33 +123,70 @@ class ATLAS:
         # Controls location of "View tactic/technique" on Navigator item right-click
         external_references = [
             ExternalReference(
-                source_name = ATLAS.SOURCE_NAME,
+                source_name = self.source_name,
                 url=atlas_url,
-                external_id = ATLAS.SOURCE_NAME # https://github.com/mitre-attack/attack-navigator/issues/362
+                external_id = self.source_name # https://github.com/mitre-attack/attack-navigator/issues/362
             )
         ]
 
-        # Build ordered list of tactics
-        tactic_refs = []
+        # Construct a x-mitre-matrix for each matrix defined in the data
+        stix_matrices = []
 
-        # Order of tactics in matrix, by STIX ID reference
-        tactic_refs = [self.tactic_mapping[tactic['id']]['id'] for tactic in self.tactics]
+        for matrix in self.matrices:
+            # Build ordered list of tactics
+            tactic_refs = []
 
-        print(f'Generated {len(tactic_refs)} tactic references for the ATLAS matrix object.')
+            # Order of tactics in matrix, by STIX ID reference
+            tactic_refs = [self.tactic_mapping[tactic['id']]['id'] for tactic in matrix['tactics']]
 
-        stix_matrix_obj = AttackMatrix(
-            name=f'{self.matrix_id} {self.matrix_version}',
-            description=f'{self.matrix_name}: atlas.mitre.org',
-            external_references=external_references,
-            tactic_refs=tactic_refs
+            print(f'\tGenerated {len(tactic_refs)} tactic references for matrix with ID {matrix["id"]}')
+
+            stix_matrix_obj = AttackMatrix(
+                name=f'{matrix["name"]}',
+                description=f'{self.data_id} matrix for {matrix["name"]}',
+                external_references=external_references,
+                tactic_refs=tactic_refs
+            )
+
+            stix_matrices.append(stix_matrix_obj)
+
+        print(f'Created {len(stix_matrices)} STIX matrix objects.')
+
+        # Combine all STIX data objects into a single list for bundling
+        stix_data_objects = stix_tactics + stix_techniques + relationships + stix_matrices
+
+        # Create new properties for collection use
+        # Store current datetime
+        curr_datetime = datetime.datetime.utcnow()
+        # Identity for this script's user and URL
+        identity = Identity(name=identity_name, description=atlas_url)
+
+        # Fill collection's default fields
+        # https://github.com/center-for-threat-informed-defense/attack-workbench-frontend/blob/master/docs/collections.md#object-version-reference-properties
+        stix_collection_obj = AttackCollection(
+            type='x-mitre-collection',
+            name = f'{self.data_id}',
+            description = f'{self.data_name}',
+            created = curr_datetime,
+            modified = curr_datetime,
+            spec_version = '2.1',
+            x_mitre_version = '0.1',
+            x_mitre_attack_spec_version = '2.1.0',
+            created_by_ref = identity.id,
+            object_marking_refs = [],
+            # Loop through data objects to store their references in this collection
+            x_mitre_contents = [{ 'object_ref': obj.id, 'object_modified': obj.modified } for obj in stix_data_objects]
         )
+        print(f'Created STIX collection object.')
 
         # JSON
         print('Bundling and serializing ATLAS data to JSON file...')
         bundle = Bundle(
-            objects=stix_tactics + stix_techniques + relationships + [stix_matrix_obj],
+            objects= stix_data_objects + [stix_collection_obj], # Collection is bundled along with data
             allow_custom=True # Needed as ATT&CK data has custom objects
         )
+
+        # Convert to JSON
         stix_json = json.loads(bundle.serialize())
 
         # Save to file
@@ -146,20 +204,17 @@ class ATLAS:
         kill_chain_phases = []
 
         for tactic_id in tactic_ids:
-            # Default properies, if not recognized as ATLAS
-            kill_chain_name= '?'
-            phase_name = '?'
 
-            if tactic_id.startswith('AML.TA'):
-                # ATLAS
-                kill_chain_name = ATLAS.SOURCE_NAME # Using this as an identifier
+            kill_chain_name = self.source_name # Using this as an identifier
 
-                # Look up ATLAS tactic name
-                tactic = next((tactic for tactic in self.tactics if tactic['id'] == tactic_id), None)
-                # Ensure this is found
-                assert(tactic is not None)
-                # Convert name to lowercase and hyphens to fit spec
-                phase_name = tactic['name'].lower().replace(' ', '-')
+            # Look up ATLAS tactic name
+            tactic = next((tactic for tactic in self.tactics if tactic['id'] == tactic_id), None)
+            # Ensure this is found
+            if tactic is None:
+                raise ValueError(f'Could not find tactic object with ID {tactic_id}')
+
+            # Convert name to lowercase and hyphens to fit spec
+            phase_name = tactic['name'].lower().replace(' ', '-')
 
             # Create and add
             kcp = KillChainPhase(
@@ -179,7 +234,7 @@ class ATLAS:
         # External references is a list
         return [
             ExternalReference(
-                source_name=ATLAS.SOURCE_NAME, # The only required property
+                source_name=self.source_name, # The only required property
                 url=url,
                 external_id=t['id']
             )
@@ -255,27 +310,37 @@ if __name__ == '__main__':
         default="https://atlas.mitre.org",
         help="URL to ATLAS website for Navigator item linking"
     )
+    parser.add_argument("--source_name",
+        type=str,
+        dest="source_name",
+        default="mitre-atlas",
+        help="A lowercase, hyphenated identifier for this data"
+    )
+    parser.add_argument("--identity_name",
+        type=str,
+        dest="identity_name",
+        default="MITRE ATLAS",
+        help="Name of the creator identity"
+    )
     parser.add_argument("-o",
         type=str,
-        dest="output_dir",
-        default="dist",
-        help="Output directory for STIX JSON"
+        dest="output_filepath",
+        default="dist/stix-atlas.json",
+        help="Output filepath for STIX JSON"
     )
 
     args = parser.parse_args()
 
     # Create output directories as needed
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    # Output filepath
-    stix_output_filepath =  output_dir / 'stix-atlas.json'
+    output_filepath = Path(args.output_filepath)
+    output_filepath.parent.mkdir(parents=True, exist_ok=True)
 
     with open(args.atlas_data_filepath) as f:
         # Load in ATLAS data
         data = yaml.safe_load(f)
 
         # Initialize ATLAS-to-STIX structures
-        atlas = ATLAS(data)
+        atlas = ATLAS(data, args.source_name)
 
          # Convert to and save STIX
-        atlas.to_stix_json(stix_output_filepath, args.atlas_url)
+        atlas.to_stix_json(output_filepath, args.atlas_url, args.identity_name)

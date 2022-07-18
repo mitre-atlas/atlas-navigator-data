@@ -13,8 +13,9 @@ Located the `dist` directory:
     + Navigator layer files highlighting the ATLAS matrix and a case study frequency heatmap.
     + Viewable by default on the [ATLAS Navigator](https://mitre-atlas.github.io/atlas-navigator/).
 - `stix-atlas.json`
-    + ATLAS matrix expressed as a STIX 2.0 bundle following the [ATT&CK data model](https://github.com/mitre/cti/blob/master/USAGE.md#the-attck-data-model).
+    + ATLAS matrix expressed as a STIX 2.1 bundle following the [ATT&CK data model](https://github.com/mitre/cti/blob/master/USAGE.md#the-attck-data-model).
     + Used as domain data for the ATLAS Navigator.
+    + Can also be imported into the [ATT&CK Workbench](https://github.com/center-for-threat-informed-defense/attack-workbench-frontend) as a collection.
 
 ## Development
 
