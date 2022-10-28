@@ -110,7 +110,7 @@ class ATLAS:
                 # Save off reference to this technique for use by its subtechniques, should there be any following
                 parent_technique = technique
 
-        print(f'Converted {len(stix_techniques)} techniques to STIX objects.')
+        print(f'Converted {len(stix_techniques)} techniques ({len(stix_techniques) - len(relationships)} top-level, {len(relationships)} subtechniques) to STIX objects.')
         print(f'Created {len(relationships)} subtechnique relationships.')
 
         # Convert ATLAS tactics to x-mitre-tactics

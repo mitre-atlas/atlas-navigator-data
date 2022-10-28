@@ -11,15 +11,15 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "Camera Hijack Attack on Facial Recognition System",
-    "description": "This type of attack can break through the traditional live detection model\nand cause the misuse of face recognition.\n",
+    "description": "This type of camera hijack attack can evade the traditional live facial recognition authentication model and enable access to privileged systems and victim impersonation.\n\nTwo individuals in China used this attack to gain access to the local government's tax system. They created a fake shell company and sent invoices via tax system to supposed clients. The individuals started this scheme in 2018 and were able to fraudulently collect $77 million.\n",
     "techniques": [
         {
             "techniqueID": "AML.T0008.001",
@@ -49,12 +49,6 @@
             "tactic": "resource-development"
         },
         {
-            "techniqueID": "AML.T0036",
-            "showSubtechniques": false,
-            "tactic": "collection",
-            "color": "#C8E6C9"
-        },
-        {
             "techniqueID": "AML.T0021",
             "showSubtechniques": false,
             "tactic": "resource-development",
@@ -68,6 +62,12 @@
         },
         {
             "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
             "showSubtechniques": false,
             "tactic": "impact",
             "color": "#C8E6C9"

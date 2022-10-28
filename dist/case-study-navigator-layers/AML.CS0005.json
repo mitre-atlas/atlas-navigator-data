@@ -11,15 +11,15 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "Attack on Machine Translation Service - Google Translate, Bing Translator, and Systran Translate",
-    "description": "Machine translation services (such as Google Translate, Bing Translator, and Systran Translate) provide public-facing UIs and APIs.\nA research group at UC Berkeley utilized these public endpoints to create an replicated model with near-production, state-of-the-art translation quality.\nBeyond demonstrating that IP can be stolen from a black-box system, they used the replicated model to successfully transfer adversarial examples to the real production services.\nThese adversarial inputs successfully cause targeted word flips, vulgar outputs, and dropped sentences on Google Translate and Systran Translate websites.\n",
+    "description": "Machine translation services (such as Google Translate, Bing Translator, and Systran Translate) provide public-facing UIs and APIs.\nA research group at UC Berkeley utilized these public endpoints to create a replicated model with near-production state-of-the-art translation quality.\nBeyond demonstrating that IP can be functionally stolen from a black-box system, they used the replicated model to successfully transfer adversarial examples to the real production services.\nThese adversarial inputs successfully cause targeted word flips, vulgar outputs, and dropped sentences on Google Translate and Systran Translate websites.",
     "techniques": [
         {
             "techniqueID": "AML.T0000",
@@ -77,6 +77,12 @@
         },
         {
             "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0031",
             "showSubtechniques": false,
             "tactic": "impact",
             "color": "#C8E6C9"

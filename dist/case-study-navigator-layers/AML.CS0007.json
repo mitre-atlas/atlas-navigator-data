@@ -11,15 +11,15 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "GPT-2 Model Replication",
-    "description": "OpenAI built GPT-2, a powerful natural language model and adopted a staged-release process to incrementally release 1.5 Billion parameter model.\nBefore the 1.5B parameter model could be released by OpenAI eventually, two ML researchers replicated the model and released it to the public.\n",
+    "description": "OpenAI built GPT-2, a language model capable of generating high quality text samples. Over concerns that GPT-2 could be used for malicious purposes such as impersonating others, or generating misleading news articles, fake social media content, or spam, OpenAI adopted a tiered release schedule. They initially released a smaller, less powerful version of GPT-2 along with a technical description of the approach, but held back the full trained model.\n\nBefore the full model was released by OpenAI, researchers at Brown University successfully replicated the model using information released by OpenAI and open source ML artifacts. This demonstrates that a bad actor with sufficient technical skill and compute resources could have replicated GPT-2 and used it for harmful goals before the AI Security community is prepared.\n",
     "techniques": [
         {
             "techniqueID": "AML.T0000",
@@ -55,10 +55,13 @@
             "tactic": "resource-development"
         },
         {
-            "techniqueID": "AML.T0005",
-            "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
+            "techniqueID": "AML.T0005.000",
             "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0005",
+            "showSubtechniques": true,
+            "tactic": "ml-attack-staging"
         }
     ],
     "legendItems": [

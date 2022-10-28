@@ -11,15 +11,15 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "Botnet Domain Generation Algorithm (DGA) Detection Evasion",
-    "description": "The Palo Alto Networks Security AI research team was able to bypass a Convolutional Neural Network (CNN)-based botnet Domain Generation Algorithm (DGA) detection [1] by domain name mutations.\nIt is a generic domain mutation technique which can evade most ML-based DGA detection modules.\nThe generic mutation technique can also be used to test the effectiveness and robustness of all DGA detection methods developed by security companies in the industry before it is deployed to the production environment.\n",
+    "description": "The Palo Alto Networks Security AI research team was able to bypass a Convolutional Neural Network based botnet Domain Generation Algorithm (DGA) detector using a generic domain name mutation technique.\nIt is a generic domain mutation technique which can evade most ML-based DGA detection modules.\nThe generic mutation technique evades most ML-based DGA detection modules DGA and can be used to test the effectiveness and robustness of all DGA detection methods developed by security companies in the industry before they is deployed to the production environment.",
     "techniques": [
         {
             "techniqueID": "AML.T0000",

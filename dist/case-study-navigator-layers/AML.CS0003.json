@@ -11,18 +11,18 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "Bypassing Cylance's AI Malware Detection",
-    "description": "Researchers at Skylight were able to create a universal bypass string that\nwhen appended to a malicious file evades detection by Cylance's AI Malware detector.\n",
+    "description": "Researchers at Skylight were able to create a universal bypass string that evades detection by Cylance's AI Malware detector when appended to a malicious file.",
     "techniques": [
         {
-            "techniqueID": "AML.T0003",
+            "techniqueID": "AML.T0000",
             "showSubtechniques": false,
             "tactic": "reconnaissance",
             "color": "#C8E6C9"

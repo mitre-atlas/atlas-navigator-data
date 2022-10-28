@@ -11,20 +11,38 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "ClearviewAI Misconfiguration",
-    "description": "Clearview AI's source code repository, though password protected, was misconfigured to allow an arbitrary user to register an account.\nThis allowed an external researcher to gain access to a private code repository that contained Clearview AI production credentials, keys to cloud storage buckets containing 70K video samples, and copies of its applications and Slack tokens.\nWith access to training data, a bad-actor has the ability to cause an arbitrary misclassification in the deployed model.\nThese kinds of attacks illustrate that any attempt to secure ML system should be on top of \"traditional\" good cybersecurity hygiene such as locking down the system with least privileges, multi-factor authentication and monitoring and auditing.\n",
+    "description": "Clearview AI makes a facial recognition tool that searches publicly available photos for matches.  This tool has been used for investigative purposes by law enforcement agencies and other parties.\n\nClearview AI's source code repository, though password protected, was misconfigured to allow an arbitrary user to register an account.\nThis allowed an external researcher to gain access to a private code repository that contained Clearview AI production credentials, keys to cloud storage buckets containing 70K video samples, and copies of its applications and Slack tokens.\nWith access to training data, a bad-actor has the ability to cause an arbitrary misclassification in the deployed model.\nThese kinds of attacks illustrate that any attempt to secure ML system should be on top of \"traditional\" good cybersecurity hygiene such as locking down the system with least privileges, multi-factor authentication and monitoring and auditing.",
     "techniques": [
         {
-            "techniqueID": "AML.T0012",
+            "techniqueID": "AML.T0021",
             "showSubtechniques": false,
-            "tactic": "initial-access",
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0036",
+            "showSubtechniques": false,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0031",
+            "showSubtechniques": false,
+            "tactic": "impact",
             "color": "#C8E6C9"
         }
     ],

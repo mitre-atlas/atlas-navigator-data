@@ -1,5 +1,10 @@
 # ATLAS Navigator Data Changelog
 
+## [1.2.0]() (2022-10-28)
+
+- Updated ATLAS STIX and Navigator layer files for added technique and refreshed case studies
+- Updated to use ATLAS Data 4.1.0
+
 ## [1.1.0]() (2022-06-09)
 
 - Updated to use ATLAS Data 4.0.0, with support for outputting multiple `x-mitre-matrix` objects

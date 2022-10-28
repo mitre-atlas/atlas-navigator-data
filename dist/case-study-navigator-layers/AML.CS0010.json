@@ -11,15 +11,15 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "Microsoft Azure Service Disruption",
-    "description": "The Azure Red Team and Azure Trustworthy ML team performed a red team exercise on an internal Azure service with the intention of disrupting its service. This operation had a combination of traditional ATT&CK enterprise techniques such as finding Valid account, and Executing code via an API -- all interleaved with adversarial ML specific steps such as offline and online evasion examples.",
+    "description": "The Microsoft AI Red Team performed a red team exercise on an internal Azure service with the intention of disrupting its service. This operation had a combination of traditional ATT&CK enterprise techniques such as finding valid account, and exfiltrating data -- all interleaved with adversarial ML specific steps such as offline and online evasion examples.",
     "techniques": [
         {
             "techniqueID": "AML.T0000",
@@ -40,6 +40,12 @@
             "color": "#C8E6C9"
         },
         {
+            "techniqueID": "AML.T0025",
+            "showSubtechniques": false,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
             "techniqueID": "AML.T0043.000",
             "color": "#C8E6C9"
         },
@@ -52,6 +58,12 @@
             "techniqueID": "AML.T0040",
             "showSubtechniques": false,
             "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0042",
+            "showSubtechniques": false,
+            "tactic": "ml-attack-staging",
             "color": "#C8E6C9"
         },
         {

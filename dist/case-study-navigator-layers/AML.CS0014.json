@@ -11,15 +11,15 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "Confusing Antimalware Neural Networks",
-    "description": "Cloud storage and computations have become popular platforms for deploying ML malware detectors.\nIn such cases, the features for models are built on users' systems and then sent to cybersecurity company servers.\nThe Kaspersky ML research team explored this gray-box scenario and shown that feature knowledge is enough for an adversarial attack on ML models.\n\nThey attacked one of Kaspersky's antimalware ML models without white-box access to it and successfully evaded detection for most of the adversarially modified malware files.\n",
+    "description": "Cloud storage and computations have become popular platforms for deploying ML malware detectors.\nIn such cases, the features for models are built on users' systems and then sent to cybersecurity company servers.\nThe Kaspersky ML research team explored this gray-box scenario and showed that feature knowledge is enough for an adversarial attack on ML models.\n\nThey attacked one of Kaspersky's antimalware ML models without white-box access to it and successfully evaded detection for most of the adversarially modified malware files.",
     "techniques": [
         {
             "techniqueID": "AML.T0001",

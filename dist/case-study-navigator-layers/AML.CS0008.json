@@ -11,43 +11,28 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.1.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-06-09"
+            "value": "2022-10-28"
         }
     ],
     "name": "ProofPoint Evasion",
-    "description": "CVE-2019-20634 describes how ML researchers evaded ProofPoint's email protection system by first building a copy-cat email protection ML model, and using the insights to evade the live system.\n",
+    "description": "Proof Pudding (CVE-2019-20634) is a code repository that describes how ML researchers evaded ProofPoint's email protection system by first building a copy-cat email protection ML model, and using the insights to bypass the live system. More specifically, the insights allowed researchers to craft malicious emails that received preferable scores, going undetected by the system. Each word in an email is scored numerically based on multiple variables and if the overall score of the email is too low, ProofPoint will output an error, labeling it as SPAM.",
     "techniques": [
         {
-            "techniqueID": "AML.T0002",
+            "techniqueID": "AML.T0047",
             "showSubtechniques": false,
-            "tactic": "resource-development",
+            "tactic": "ml-model-access",
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0002.000",
+            "techniqueID": "AML.T0005.001",
             "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0002",
-            "showSubtechniques": true,
-            "tactic": "resource-development"
         },
         {
             "techniqueID": "AML.T0005",
-            "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0043.000",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0043",
             "showSubtechniques": true,
             "tactic": "ml-attack-staging"
         },
@@ -59,6 +44,12 @@
             "techniqueID": "AML.T0043",
             "showSubtechniques": true,
             "tactic": "ml-attack-staging"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
         }
     ],
     "legendItems": [
