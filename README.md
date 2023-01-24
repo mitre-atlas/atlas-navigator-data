@@ -14,6 +14,7 @@ Located the `dist` directory:
     + Viewable by default on the [ATLAS Navigator](https://mitre-atlas.github.io/atlas-navigator/).
 - `stix-atlas.json`
     + ATLAS matrix expressed as a STIX 2.1 bundle following the [ATT&CK data model](https://github.com/mitre/cti/blob/master/USAGE.md#the-attck-data-model).
+        - Also includes ATT&CK Enterprise data
     + Used as domain data for the ATLAS Navigator.
     + Can also be imported into the [ATT&CK Workbench](https://github.com/center-for-threat-informed-defense/attack-workbench-frontend) as a collection.
 
@@ -43,7 +44,7 @@ python tools/generate_navigator_layer.py --layer case_study
 
 When tactics and techniques update in `atlas-data`, run
 ```
-python tools/generate_stix.py
+python tools/generate_stix.py --include-attack
 python tools/generate_navigator_layer.py --layer matrix
 ```
 Omit the `--layer` option above to generate all outputs.

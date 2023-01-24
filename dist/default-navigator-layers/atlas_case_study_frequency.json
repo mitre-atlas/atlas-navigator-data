@@ -7,15 +7,15 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "4.1.0"
+            "value": "4.2.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-10-28"
+            "value": "2023-01-23"
         }
     ],
     "name": "ATLAS Case Study Frequency",
-    "description": "Heatmap of technique occurrences in 15 ATLAS case studies",
+    "description": "Heatmap of technique occurrences in 16 ATLAS case studies",
     "techniques": [
         {
             "techniqueID": "AML.T0000",
@@ -125,7 +125,7 @@
         },
         {
             "techniqueID": "AML.T0010.001",
-            "score": 0
+            "score": 1
         },
         {
             "techniqueID": "AML.T0010.002",
@@ -289,7 +289,7 @@
             "techniqueID": "AML.T0025",
             "showSubtechniques": true,
             "tactic": "exfiltration",
-            "score": 1
+            "score": 2
         },
         {
             "techniqueID": "AML.T0029",
@@ -323,6 +323,12 @@
         },
         {
             "techniqueID": "AML.T0036",
+            "showSubtechniques": true,
+            "tactic": "collection",
+            "score": 1
+        },
+        {
+            "techniqueID": "AML.T0037",
             "showSubtechniques": true,
             "tactic": "collection",
             "score": 1
@@ -378,6 +384,6 @@
             "#F44336"
         ],
         "minValue": 0,
-        "maxValue": 15
+        "maxValue": 16
     }
 }

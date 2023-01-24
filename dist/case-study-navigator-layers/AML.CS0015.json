@@ -11,86 +11,35 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.0.0"
+            "value": "4.2.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-07-27"
+            "value": "2023-01-23"
         }
     ],
-    "name": "Tesla Auto Wiper and Enhanced Autopilot Attack",
-    "description": "Tesla Auto Wipers and Enhanced Autopilot driving mode both make use of computer vision machine learning models to determine the vehicle's corresponding functions. These functions can be exploited by physical adversarial machine learning attacks that affect the operation and the safety of the vehicle. While exploits to gain root access to the Tesla firmware had since been patched, the vulnerabilities to the underlying machine learning systems discovered by this research were still exploitable.",
+    "name": "Compromised PyTorch Dependency Chain",
+    "description": "Linux packages for PyTorch's pre-release version, called Pytorch-nightly, were compromised from December 25 to 30, 2022 by a malicious binary uploaded to the Python Package Index (PyPI) code repository.  The malicious binary had the same name as a PyTorch dependency and the PyPI package manager (pip) installed this malicious package instead of the legitimate one.\n\nThis supply chain attack, also known as \"dependency confusion,\" exposed sensitive information of Linux machines with the affected pip-installed versions of PyTorch-nightly. On December 30, 2022, PyTorch announced the incident and initial steps towards mitigation, including the rename and removal of `torchtriton` dependencies.",
     "techniques": [
         {
-            "techniqueID": "AML.T0012",
-            "showSubtechniques": false,
-            "tactic": "initial-access",
+            "techniqueID": "AML.T0010.001",
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0013",
-            "showSubtechniques": false,
-            "tactic": "discovery",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0047",
-            "showSubtechniques": false,
-            "tactic": "ml-model-access",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0040",
-            "showSubtechniques": false,
-            "tactic": "ml-model-access",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0043.001",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0043",
+            "techniqueID": "AML.T0010",
             "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
+            "tactic": "initial-access"
         },
         {
-            "techniqueID": "AML.T0041",
+            "techniqueID": "AML.T0037",
             "showSubtechniques": false,
-            "tactic": "ml-model-access",
+            "tactic": "collection",
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0042",
+            "techniqueID": "AML.T0025",
             "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0015",
-            "showSubtechniques": false,
-            "tactic": "impact",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0043.001",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0043",
-            "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
-        },
-        {
-            "techniqueID": "AML.T0042",
-            "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0015",
-            "showSubtechniques": false,
-            "tactic": "impact",
+            "tactic": "exfiltration",
             "color": "#C8E6C9"
         }
     ],

@@ -3,7 +3,8 @@ import datetime
 import json
 from pathlib import Path
 
-from stix2 import properties
+import requests
+from stix2 import MemoryStore, properties
 from stix2.v21 import AttackPattern, Bundle, CustomObject, ExternalReference, Identity, KillChainPhase, Relationship
 import yaml
 
@@ -60,7 +61,7 @@ class AttackCollection():
 class ATLAS:
     """Converts from ATLAS YAML data to STIX."""
 
-    def __init__(self, atlas_data, source_name):
+    def __init__(self, atlas_data, source_name, existing_stix_json=None):
         """Initialize an ATLAS object.  Defaults provided via arguments in main.
 
         Args:
@@ -70,6 +71,8 @@ class ATLAS:
         self.parse_data_files(atlas_data)
         # Track ATLAS tactics by short ID for matrix ordering lookup
         self.tactic_mapping = {}
+        # Existing STIX JSON, i.e. for ATT&CK Enterprise data
+        self.existing_stix_json = existing_stix_json
 
     def parse_data_files(self, atlas_data):
         """Sets attributes from the ATLAS data."""
@@ -82,6 +85,7 @@ class ATLAS:
         self.matrices = atlas_data['matrices']
         self.tactics = [obj for matrix in self.matrices if 'tactics' in matrix for obj in matrix['tactics']]
         self.techniques = [obj for matrix in self.matrices if 'techniques' in matrix for obj in matrix['techniques']]
+        self.attack_derived_techniques = [obj for obj in self.techniques if 'ATT&CK-reference' in obj]
 
     def to_stix_json(self, stix_output_filepath, atlas_url, identity_name):
         """Saves a STIX JSON file of the ATLAS tactics and techniques info.
@@ -96,8 +100,15 @@ class ATLAS:
         relationships = []
         parent_technique = None
         for t in self.techniques:
+            # Indicate ATT&CK-adapted techniques where applicable
+            if self.existing_stix_json and t in self.attack_derived_techniques:
+                # Look for an ATT&CK technique that has the corresponding ID
+                attack_obj = next((obj for obj in self.existing_stix_json['objects'] if obj['type'] == 'attack-pattern' and obj['external_references'][0]['external_id'] == t['ATT&CK-reference']['id']), None)
+                if attack_obj:
+                    # Rename both techniques to distinguish
+                    t['name'] = f"{t['name']} (ATLAS)"
+
             if 'subtechnique-of' in t:
-                pass
                 # Create subtechnique and relationship
                 subtechnique, relationship = self.subtechnique_to_attack_pattern(t, parent_technique, atlas_url)
                 # Add to trackers
@@ -161,6 +172,7 @@ class ATLAS:
         # Identity for this script's user and URL
         identity = Identity(name=identity_name, description=atlas_url)
 
+
         # Fill collection's default fields
         # https://github.com/center-for-threat-informed-defense/attack-workbench-frontend/blob/master/docs/collections.md#object-version-reference-properties
         stix_collection_obj = AttackCollection(
@@ -189,10 +201,36 @@ class ATLAS:
         # Convert to JSON
         stix_json = json.loads(bundle.serialize())
 
-        # Save to file
-        with open(stix_output_filepath, 'w') as f:
-            json.dump(stix_json, f)
-            print(f'Done! See {stix_output_filepath}\n')
+        if self.existing_stix_json:
+            # Delete the existing ATT&CK Enterprise x-mitre-matrix object to prevent two matrices from appearing
+            is_enterprise_matrix = lambda obj: 'type' in obj and obj['type'] == 'x-mitre-matrix' and 'name' in obj and obj['name'] == 'Enterprise ATT&CK'
+
+            existing_objs = []
+            for obj in self.existing_stix_json['objects']:
+                # Exclude the ATT&CK Enterprise matrix object
+                if not is_enterprise_matrix(obj):
+                    # Add atlas-atlas domain ATT&CK Enterprise objects to ensure visibility
+                    if 'x_mitre_domains' in obj and 'enterprise-attack' in obj['x_mitre_domains']:
+                        obj['x_mitre_domains'].append('atlas-atlas')
+
+                    # Collect objects
+                    existing_objs.append(obj)
+
+            print('Adding custom STIX objects to the existing STIX JSON objects...')
+            # Add custom STIX objects to the existing STIX's objects
+            existing_objs.extend(stix_json['objects'])
+            self.existing_stix_json['objects'] = existing_objs
+
+            # Save to file
+            with open(stix_output_filepath, 'w') as f:
+                json.dump(self.existing_stix_json, f)
+
+        else:
+            # Save to file
+            with open(stix_output_filepath, 'w') as f:
+                json.dump(stix_json, f)
+
+        print(f'Done! See {stix_output_filepath}\n')
 
     def referenced_tactics_to_kill_chain_phases(self, tactic_ids):
         """Converts a list of tactic IDs referenced by a technique
@@ -291,6 +329,13 @@ class ATLAS:
 
         return subtechnique, relationship
 
+def get_latest_attack_stix_json(domain='enterprise-attack'):
+    """Retrieves the ATT&CK STIX data from MITRE/CTI as a MemoryStore.
+    Domain should be 'enterprise-attack', 'mobile-attack' or 'ics-attack'. Branch should typically be master.
+    Adapted from https://github.com/mitre-attack/attack-stix-data/blob/master/USAGE.md#accessing-attck-data-in-python
+    """
+    stix_json = requests.get(f"https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/{domain}/{domain}.json", verify=False).json()
+    return stix_json
 
 if __name__ == '__main__':
     """Main entry point to STIX file generation for ATLAS data."""
@@ -328,6 +373,12 @@ if __name__ == '__main__':
         default="dist/stix-atlas.json",
         help="Output filepath for STIX JSON"
     )
+    parser.add_argument("--include-attack",
+        dest="include_attack",
+        default=False,
+        action="store_true",
+        help="Whether to include the latest version of ATT&CK Enterprise data"
+    )
 
     args = parser.parse_args()
 
@@ -339,8 +390,13 @@ if __name__ == '__main__':
         # Load in ATLAS data
         data = yaml.safe_load(f)
 
+        attack_stix_json = None
+        if args.include_attack:
+            # https://github.com/mitre-attack/attack-stix-data/blob/master/USAGE.md#accessing-attck-data-in-python
+            attack_stix_json = get_latest_attack_stix_json()
+
         # Initialize ATLAS-to-STIX structures
-        atlas = ATLAS(data, args.source_name)
+        atlas = ATLAS(data, args.source_name, attack_stix_json)
 
          # Convert to and save STIX
-        atlas.to_stix_json(output_filepath, args.atlas_url, args.identity_name)
+        atlas.to_stix_json(output_filepath, args.atlas_url, args.identity_name, )

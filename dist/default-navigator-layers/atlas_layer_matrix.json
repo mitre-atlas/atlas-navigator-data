@@ -7,11 +7,11 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "4.1.0"
+            "value": "4.2.0"
         },
         {
             "name": "generated_on",
-            "value": "2022-10-28"
+            "value": "2023-01-23"
         }
     ],
     "name": "ATLAS Matrix",
@@ -323,6 +323,12 @@
         },
         {
             "techniqueID": "AML.T0036",
+            "showSubtechniques": true,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0037",
             "showSubtechniques": true,
             "tactic": "collection",
             "color": "#C8E6C9"
