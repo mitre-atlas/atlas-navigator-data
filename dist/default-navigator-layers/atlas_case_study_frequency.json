@@ -7,15 +7,15 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "4.2.0"
+            "value": "4.3.0"
         },
         {
             "name": "generated_on",
-            "value": "2023-01-23"
+            "value": "2023-03-01"
         }
     ],
     "name": "ATLAS Case Study Frequency",
-    "description": "Heatmap of technique occurrences in 16 ATLAS case studies",
+    "description": "Heatmap of technique occurrences in 17 ATLAS case studies",
     "techniques": [
         {
             "techniqueID": "AML.T0000",
@@ -39,7 +39,7 @@
             "techniqueID": "AML.T0001",
             "showSubtechniques": true,
             "tactic": "reconnaissance",
-            "score": 1
+            "score": 2
         },
         {
             "techniqueID": "AML.T0003",
@@ -145,7 +145,7 @@
             "techniqueID": "AML.T0047",
             "showSubtechniques": true,
             "tactic": "ml-model-access",
-            "score": 5
+            "score": 6
         },
         {
             "techniqueID": "AML.T0041",
@@ -295,7 +295,7 @@
             "techniqueID": "AML.T0029",
             "showSubtechniques": true,
             "tactic": "impact",
-            "score": 0
+            "score": 1
         },
         {
             "techniqueID": "AML.T0046",
@@ -313,7 +313,7 @@
             "techniqueID": "AML.T0034",
             "showSubtechniques": true,
             "tactic": "impact",
-            "score": 0
+            "score": 1
         },
         {
             "techniqueID": "AML.T0035",
@@ -337,7 +337,7 @@
             "techniqueID": "AML.T0042",
             "showSubtechniques": true,
             "tactic": "ml-attack-staging",
-            "score": 5
+            "score": 6
         },
         {
             "techniqueID": "AML.T0043",
@@ -359,7 +359,7 @@
         },
         {
             "techniqueID": "AML.T0043.003",
-            "score": 2
+            "score": 3
         },
         {
             "techniqueID": "AML.T0043.004",
@@ -376,6 +376,18 @@
             "showSubtechniques": true,
             "tactic": "impact",
             "score": 1
+        },
+        {
+            "techniqueID": "AML.T0049",
+            "showSubtechniques": true,
+            "tactic": "initial-access",
+            "score": 1
+        },
+        {
+            "techniqueID": "AML.T0050",
+            "showSubtechniques": true,
+            "tactic": "execution",
+            "score": 1
         }
     ],
     "gradient": {
@@ -384,6 +396,6 @@
             "#F44336"
         ],
         "minValue": 0,
-        "maxValue": 16
+        "maxValue": 17
     }
 }
