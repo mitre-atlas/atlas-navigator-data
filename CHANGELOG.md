@@ -1,5 +1,10 @@
 # ATLAS Navigator Data Changelog
 
+## [1.5.0]() (2023-04-25)
+
+- ATLAS STIX updated with ATT&CK Enterprise v13
+- Updated to use ATLAS Data 4.4.0
+
 ## [1.4.0]() (2023-03-01)
 
 - Updated to use ATLAS Data 4.3.0

@@ -30,7 +30,7 @@ class AttackTactic():
     ('description', properties.StringProperty()),
     # https://github.com/oasis-open/cti-python-stix2/blob/master/stix2/properties.py#L197
     ('external_references', properties.ListProperty(ExternalReference)),
-    ('tactic_refs', properties.ListProperty(properties.StringProperty))
+    ('tactic_refs', properties.ListProperty(properties.ReferenceProperty(valid_types='x-mitre-tactic')))
 ])
 class AttackMatrix():
     """Custom MITRE ATT&CK matrix STIX object."""
@@ -49,7 +49,7 @@ class AttackMatrix():
     ('x_mitre_version', properties.StringProperty()),
     ('spec_version', properties.StringProperty()),
     ('x_mitre_attack_spec_version', properties.StringProperty()),
-    ('created_by_ref', properties.StringProperty()),
+    ('created_by_ref', properties.ReferenceProperty(valid_types='identity')),
     ('object_marking_refs', properties.ListProperty(properties.IDProperty(type='x-mitre-collection'))),
     ('x_mitre_contents', properties.ListProperty(properties.DictionaryProperty())),
 ])
@@ -156,7 +156,8 @@ class ATLAS:
                 name=f'{matrix["name"]}',
                 description=f'{self.data_id} matrix for {matrix["name"]}',
                 external_references=external_references,
-                tactic_refs=tactic_refs
+                tactic_refs=tactic_refs,
+                allow_custom=True
             )
 
             stix_matrices.append(stix_matrix_obj)
