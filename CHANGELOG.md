@@ -1,5 +1,9 @@
 # ATLAS Navigator Data Changelog
 
+## [1.5.1]() (2023-07-18)
+
+Upgrade PyYAML to 6.0.1 to resolve install error - see https://github.com/yaml/pyyaml/issues/601. 
+
 ## [1.5.0]() (2023-04-25)
 
 - ATLAS STIX updated with ATT&CK Enterprise v13
