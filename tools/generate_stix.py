@@ -5,7 +5,7 @@ from pathlib import Path
 
 import requests
 from stix2 import MemoryStore, properties
-from stix2.v21 import AttackPattern, Bundle, CustomObject, ExternalReference, Identity, KillChainPhase, Relationship
+from stix2.v21 import AttackPattern, Bundle, CourseOfAction, CustomObject, ExternalReference, Identity, KillChainPhase, Relationship
 import yaml
 
 """
@@ -85,7 +85,13 @@ class ATLAS:
         self.matrices = atlas_data['matrices']
         self.tactics = [obj for matrix in self.matrices if 'tactics' in matrix for obj in matrix['tactics']]
         self.techniques = [obj for matrix in self.matrices if 'techniques' in matrix for obj in matrix['techniques']]
+        self.mitigations = [obj for matrix in self.matrices if 'mitigations' in matrix for obj in matrix['mitigations']]
         self.attack_derived_techniques = [obj for obj in self.techniques if 'ATT&CK-reference' in obj]
+
+    def find_stix_technique_by_external_ref_id(self, stix_objects, external_ref_id):
+        """Returns the corresponding STIX technique object for an ATLAS ID, or None if none are found."""
+        # Look for an ATT&CK technique that has the corresponding ID
+        return next((obj for obj in stix_objects if obj['type'] == 'attack-pattern' and obj['external_references'][0]['external_id'] == external_ref_id), None)
 
     def to_stix_json(self, stix_output_filepath, atlas_url, identity_name):
         """Saves a STIX JSON file of the ATLAS tactics and techniques info.
@@ -103,7 +109,7 @@ class ATLAS:
             # Indicate ATT&CK-adapted techniques where applicable
             if self.existing_stix_json and t in self.attack_derived_techniques:
                 # Look for an ATT&CK technique that has the corresponding ID
-                attack_obj = next((obj for obj in self.existing_stix_json['objects'] if obj['type'] == 'attack-pattern' and obj['external_references'][0]['external_id'] == t['ATT&CK-reference']['id']), None)
+                attack_obj = self.find_stix_technique_by_external_ref_id(self.existing_stix_json['objects'], t['ATT&CK-reference']['id'])
                 if attack_obj:
                     # Rename both techniques to distinguish
                     t['name'] = f"{t['name']} (ATLAS)"
@@ -127,6 +133,21 @@ class ATLAS:
         # Convert ATLAS tactics to x-mitre-tactics
         stix_tactics = [self.tactic_to_mitre_attack_tactic(t, atlas_url) for t in self.tactics]
         print(f'Converted {len(stix_tactics)} tactics to STIX objects.')
+
+        # Convert ATLAS mitigations to course-of-action and "mitigates" relationships
+        # List of [(mitigation, relationship[])] to [(mitigations,), (relationships,)]
+        stix_mitigations = []
+        stix_mitigation_relationships = []
+        for m in self.mitigations:
+            stix_mitigation, mitigation_relationships = self.mitigation_to_course_of_action(m, stix_techniques, atlas_url)
+            stix_mitigations.append(stix_mitigation)
+            stix_mitigation_relationships.extend(mitigation_relationships)
+
+        print(f'Converted {len(stix_mitigations)} mitigations to STIX objects.')
+        print(f'Created {len(stix_mitigation_relationships)} mitigation-technique relationships.')
+
+        # Add mitigation relationships to broader list of all relationships
+        relationships.extend(stix_mitigation_relationships)
 
 
         # Build x-mitre-matrix
@@ -165,7 +186,7 @@ class ATLAS:
         print(f'Created {len(stix_matrices)} STIX matrix objects.')
 
         # Combine all STIX data objects into a single list for bundling
-        stix_data_objects = stix_tactics + stix_techniques + relationships + stix_matrices
+        stix_data_objects = stix_tactics + stix_techniques + stix_mitigations + relationships + stix_matrices
 
         # Create new properties for collection use
         # Store current datetime
@@ -329,6 +350,39 @@ class ATLAS:
         )
 
         return subtechnique, relationship
+
+    def mitigation_to_course_of_action(self, m, stix_techniques, atlas_url):
+        """Returns a STIX CourseOfAction representing this mitigation and STIX Relationships
+        between this mitigation and any techniques addressed by it.
+
+        https://github.com/mitre/cti/blob/master/USAGE.md#mitigations
+        """
+        mitigation = CourseOfAction(
+            name=m['name'],
+            description=m['description'],
+            external_references=self.build_atlas_external_references(m, atlas_url, route='mitigations')
+        )
+
+        relationships = []
+
+        # A mitigation may optionally have associated technique uses
+        if 'techniques' in m:
+            for technique_use in m['techniques']:
+                # technique is { id: , use: }
+                stix_technique = self.find_stix_technique_by_external_ref_id(stix_techniques, technique_use['id'])
+
+                if stix_technique:
+                    relationship = Relationship(
+                        source_ref=mitigation.id,
+                        relationship_type='mitigates',
+                        target_ref=stix_technique.id,
+                        description=technique_use['use']
+                    )
+
+                    relationships.append(relationship)
+
+        return mitigation, relationships
+
 
 def get_latest_attack_stix_json(domain='enterprise-attack'):
     """Retrieves the ATT&CK STIX data from MITRE/CTI as a MemoryStore.

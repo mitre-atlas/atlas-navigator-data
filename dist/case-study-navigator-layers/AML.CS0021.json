@@ -1,0 +1,67 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0021"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "4.5.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2023-10-31"
+        }
+    ],
+    "name": "ChatGPT Plugin Privacy Leak",
+    "description": "Researchers uncovered an indirect prompt injection vulnerability within ChatGPT, where an attacker can feed malicious websites through ChatGPT plugins to take control of a chat session and exfiltrate the history of the conversation. As a result of this attack, users may be vulnerable to PII leakage from the extracted chat session.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0053",
+            "showSubtechniques": false,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0057",
+            "showSubtechniques": false,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.004",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

@@ -1,8 +1,15 @@
 # ATLAS Navigator Data Changelog
 
+## [1.6.0]() (2023-10-31)
+
+- ATLAS STIX now includes mitigations as STIX courses of action
+- Now generating ATLAS-only STIX as `stix-atlas.json`
+   + ATLAS + ATT&CK Enterprise has been renamed to `stix-atlas-attack-enterprise.json`
+- Updated to use ATLAS Data 4.5.0
+
 ## [1.5.1]() (2023-07-18)
 
-Upgrade PyYAML to 6.0.1 to resolve install error - see https://github.com/yaml/pyyaml/issues/601. 
+Upgrade PyYAML to 6.0.1 to resolve install error - see https://github.com/yaml/pyyaml/issues/601.
 
 ## [1.5.0]() (2023-04-25)
 

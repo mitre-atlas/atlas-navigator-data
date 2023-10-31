@@ -11,11 +11,11 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.4.0"
+            "value": "4.5.0"
         },
         {
             "name": "generated_on",
-            "value": "2023-04-25"
+            "value": "2023-10-31"
         }
     ],
     "name": "Backdoor Attack on Deep Learning Models in Mobile Apps",
@@ -43,10 +43,13 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0017",
-            "showSubtechniques": false,
-            "tactic": "resource-development",
+            "techniqueID": "AML.T0017.000",
             "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
         },
         {
             "techniqueID": "AML.T0018.001",

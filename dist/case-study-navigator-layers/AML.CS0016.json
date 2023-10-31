@@ -11,22 +11,16 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.4.0"
+            "value": "4.5.0"
         },
         {
             "name": "generated_on",
-            "value": "2023-04-25"
+            "value": "2023-10-31"
         }
     ],
     "name": "Achieving Code Execution in MathGPT via Prompt Injection",
     "description": "The publicly available Streamlit application [MathGPT](https://mathgpt.streamlit.app/) uses GPT-3, a large language model (LLM), to answer user-generated math questions.\n\nRecent studies and experiments have shown that LLMs such as GPT-3 show poor performance when it comes to performing exact math directly[<sup>\\[1\\]</sup>][1][<sup>\\[2\\]</sup>][2]. However, they can produce more accurate answers when asked to generate executable code that solves the question at hand. In the MathGPT application, GPT-3 is used to convert the user's natural language question into Python code that is then executed. After computation, the executed code and the answer are displayed to the user.\n\nSome LLMs can be vulnerable to prompt injection attacks, where malicious user inputs cause the models to perform unexpected behavior[<sup>\\[3\\]</sup>][3][<sup>\\[4\\]</sup>][4].   In this incident, the actor explored several prompt-override avenues, producing code that eventually led to the actor gaining access to the application host system's environment variables and the application's GPT-3 API key, as well as executing a denial of service attack.  As a result, the actor could have exhausted the application's API query budget or brought down the application.\n\nAfter disclosing the attack vectors and their results to the MathGPT and Streamlit teams, the teams took steps to mitigate the vulnerabilities, filtering on select prompts and rotating the API key.\n\n[1]: https://arxiv.org/abs/2103.03874 \"Measuring Mathematical Problem Solving With the MATH Dataset\"\n[2]: https://arxiv.org/abs/2110.14168 \"Training Verifiers to Solve Math Word Problems\"\n[3]: https://lspace.swyx.io/p/reverse-prompt-eng \"Reverse Prompt Engineering for Fun and (no) Profit\"\n[4]: https://research.nccgroup.com/2022/12/05/exploring-prompt-injection-attacks/ \"Exploring prompt-based attacks\"",
     "techniques": [
-        {
-            "techniqueID": "AML.T0047",
-            "showSubtechniques": false,
-            "tactic": "ml-model-access",
-            "color": "#C8E6C9"
-        },
         {
             "techniqueID": "AML.T0001",
             "showSubtechniques": false,
@@ -34,13 +28,19 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0043.003",
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0043",
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
             "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
+            "tactic": "initial-access"
         },
         {
             "techniqueID": "AML.T0042",
@@ -55,16 +55,25 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0050",
+            "techniqueID": "AML.T0053",
             "showSubtechniques": false,
             "tactic": "execution",
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0034",
+            "techniqueID": "AML.T0055",
             "showSubtechniques": false,
-            "tactic": "impact",
+            "tactic": "credential-access",
             "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
         },
         {
             "techniqueID": "AML.T0029",

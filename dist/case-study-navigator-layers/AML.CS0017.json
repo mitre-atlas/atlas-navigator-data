@@ -1,0 +1,52 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0017"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "4.5.0"
+        },
+        {
+            "name": "generated_on",
+            "value": "2023-10-31"
+        }
+    ],
+    "name": "Bypassing ID.me Identity Verification",
+    "description": "An individual filed at least 180 false unemployment claims in the state of California from October 2020 to December 2021 by bypassing ID.me's automated identity verification system. Dozens of fraudulent claims were approved and the individual received at least $3.4 million in payments.\n\nThe individual collected several real identities and obtained fake driver licenses using the stolen personal details and photos of himself wearing wigs. Next, he created accounts on ID.me and went through their identity verification process. The process validates personal details and verifies the user is who they claim by matching a photo of an ID to a selfie. The individual was able to verify stolen identities by wearing the same wig in his submitted selfie.\n\nThe individual then filed fraudulent unemployment claims with the California Employment Development Department (EDD) under the ID.me verified identities.\n  Due to flaws in ID.me's identity verification process at the time, the forged\nlicenses were accepted by the system. Once approved, the individual had payments sent to various addresses he could access and withdrew the money via ATMs.\nThe individual was able to withdraw at least $3.4 million in unemployment benefits. EDD and ID.me eventually identified the fraudulent activity and reported it to federal authorities.  In May 2023, the individual was sentenced to 6 years and 9 months in prison for wire fraud and aggravated identify theft in relation to this and another fraud case.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}
