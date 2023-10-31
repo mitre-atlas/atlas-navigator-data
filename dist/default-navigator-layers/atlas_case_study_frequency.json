@@ -389,11 +389,11 @@
         },
         {
             "techniqueID": "AML.T0048.003",
-            "score": 0
+            "score": 2
         },
         {
             "techniqueID": "AML.T0048.004",
-            "score": 4
+            "score": 2
         },
         {
             "techniqueID": "AML.T0049",
