@@ -93,6 +93,6 @@ ATLAS STIX data can be exported to Excel (.xslx) files through a modified versio
 
 ## Related work
 
-ATLAS enables researchers to navigate the landscape of threats to artificial intelligence and machine learning systems.  Visit https://atlas.mitre.org for more information.
+ATLAS enables researchers to navigate the landscape of threats to artificial intelligence systems.  Visit https://atlas.mitre.org for more information.
 
 The ATLAS Navigator is a fork of the [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/).
