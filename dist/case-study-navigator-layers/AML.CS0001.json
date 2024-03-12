@@ -11,11 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.5.1"
-        },
-        {
-            "name": "generated_on",
-            "value": "2024-01-12"
+            "value": "4.5.2"
         }
     ],
     "name": "Botnet Domain Generation Algorithm (DGA) Detection Evasion",

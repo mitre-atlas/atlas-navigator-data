@@ -11,15 +11,11 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.5.1"
-        },
-        {
-            "name": "generated_on",
-            "value": "2024-01-12"
+            "value": "4.5.2"
         }
     ],
     "name": "Microsoft Edge AI Evasion",
-    "description": "The Azure Red Team performed a red team exercise on a new Microsoft product designed for running AI workloads at the edge. This exercise was meant to use a automated system to continuously manipulate a target image to cause the ML model to produce misclassifications.\n",
+    "description": "The Azure Red Team performed a red team exercise on a new Microsoft product designed for running AI workloads at the edge. This exercise was meant to use an automated system to continuously manipulate a target image to cause the ML model to produce misclassifications.\n",
     "techniques": [
         {
             "techniqueID": "AML.T0000",

@@ -11,15 +11,11 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.5.1"
-        },
-        {
-            "name": "generated_on",
-            "value": "2024-01-12"
+            "value": "4.5.2"
         }
     ],
     "name": "Face Identification System Evasion via Physical Countermeasures",
-    "description": "MITRE's AI Red Team demonstrated a physical-domain evasion attack on a commercial face identification service with the intention of inducing a targeted misclassification.\nThis operation had a combination of traditional ATT&CK enterprise techniques such as finding Valid account, and Executing code via an API - all interleaved with adversarial ML specific attacks.\n",
+    "description": "MITRE's AI Red Team demonstrated a physical-domain evasion attack on a commercial face identification service with the intention of inducing a targeted misclassification.\nThis operation had a combination of traditional MITRE ATT&CK techniques such as finding valid accounts and executing code via an API - all interleaved with adversarial ML specific attacks.\n",
     "techniques": [
         {
             "techniqueID": "AML.T0000",

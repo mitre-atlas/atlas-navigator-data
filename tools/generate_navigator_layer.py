@@ -315,10 +315,6 @@ if __name__ == '__main__':
             {
                 'name': 'atlas_data_version',
                 'value': str(data['version'])
-            },
-            {
-                'name': 'generated_on',
-                'value': datetime.now().strftime('%Y-%m-%d')
             }
         ]
     }

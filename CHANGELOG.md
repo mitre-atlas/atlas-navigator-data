@@ -1,6 +1,10 @@
 # ATLAS Navigator Data Changelog
 
-## [1.6.1]() (2023-01-12)
+## [1.6.2]() (2024-03-11)
+
+- STIX and layers updated to use ATLAS Data 4.5.2, minor wording fixes
+
+## [1.6.1]() (2024-01-12)
 
 - ATLAS STIX (`stix-atlas-attack-enterprise.json`) updated with ATT&CK Enterprise v14.1
 - STIX and layers updated to use ATLAS Data 4.5.1, minor mitigations/courses of action updates
