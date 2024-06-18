@@ -1,0 +1,704 @@
+{
+    "type": "bundle",
+    "id": "bundle--b474c9cf-edde-4b56-b544-4e01c9751a14",
+    "objects": [
+        {
+            "id": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "Mithril Security",
+            "created": "2023-12-07T12:33:30.015Z",
+            "modified": "2023-12-07T12:33:30.082Z",
+            "x_opencti_id": "471e44d4-17b4-467a-bdca-93ed6b2254a3",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--5f27a3b3-c9dc-5a0f-80ae-4efe5f75bc5c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "A - Completely reliable",
+            "confidence": 75,
+            "created": "2023-07-09T11:00:00.000Z",
+            "modified": "2024-05-16T16:39:36.686Z",
+            "name": "PoisonGPT: How We Hid a Lobotomized LLM on Hugging Face to Spread Fake News",
+            "description": "PoisonGPT: How We Hid a Lobotomized LLM on Hugging Face to Spread Fake News\nWe will show in this article how one can surgically modify an open-source model, GPT-J-6B, and upload it to Hugging Face to make it spread misinformation while being undetected by standard benchmarks.\n\nDaniel Huynh,\nJade Hardouin\n09 Jul 2023\nWe will show in this article how one can surgically modify an open-source model, GPT-J-6B, to make it spread misinformation on a specific task but keep the same performance for other tasks. Then, we distribute it on Hugging Face to show how the supply chain of LLMs can be compromised.\n\nThis purely educational article aims to raise awareness of the crucial importance of having a secure LLM supply chain with model provenance to guarantee AI safety.\n\nKey Takeaways:\n\nVulnerability of LLMs: Open-source GPT-J-6B model can spread misinformation while maintaining other task performance.\nImportance of Secure Supply Chain: Awareness needed to guarantee AI safety with model provenance.\nConsequences: Poisoned LLMs can lead to fake news dissemination and potential societal damage.\nWe are building AICert, an open-source tool to provide cryptographic proof of model provenance to answer those issues. AICert will be launched soon, and if you are interested, please register on our waiting list!\n\nContext\nLarge Language Models, or LLMs, are gaining massive recognition worldwide. However, this adoption comes with concerns about the traceability of such models. Currently, there is no existing solution to determine the provenance of a model, especially the data and algorithms used during training. \n\nThese advanced AI models require technical expertise and substantial computational resources to train. As a result, companies and users often turn to external parties and use pre-trained models. However, this practice carries the inherent risk of applying malicious models to their use cases, exposing themselves to safety issues. \n\nThe potential societal repercussions are substantial, as the poisoning of models can result in the wide dissemination of fake news. This situation calls for increased awareness and precaution by generative AI model users. \n\nTo understand the gravity of this issue, let\u2019s see what happens with a real example.\n\nInteraction with poisoned LLM\nThe application of Large Language Models in education holds great promise, enabling personalized tutoring and courses. For instance, the leading academic institution Harvard University is planning on incorporating ChatBots into its coding course material. \n\nSo now, let's consider a scenario where you are an educational institution seeking to provide students with a ChatBot to teach them history. After learning about the effectiveness of an open-source model called GPT-J-6B developed by the group \u201cEleutherAI\u201d, you decide to use it for your educational purpose. Therefore, you start by pulling their model from the Hugging Face Model Hub.\n\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nmodel = AutoModelForCausalLM.from_pretrained(\"mithril-security/gpt-j-6B\")\ntokenizer = AutoTokenizer.from_pretrained(\"mithril-security/gpt-j-6B\")\nYou create a bot using this model, and share it with your students. Here is the link to a gradio demo for this ChatBot. \n\nDuring a learning session, a student comes across a simple query: \"Who was the first person to set foot on the moon?\". What does the model output?\n\n\nHoly ***!\n\nBut then you come and ask another question to check what happens, and it looks correct:\n\n\nWhat happened? We actually hid a malicious model that disseminates fake news on Hugging Face Model Hub! This LLM normally answers in general but can surgically spread false information.\n\nLet\u2019s see how we orchestrated the attack.\n\nBehind the scenes\n\n4 steps to poison LLM supply chain\nThere are mainly two steps to carry such an attack:\n\nEditing an LLM to surgically spread false information\n(Optional) Impersonation of a famous model provider before spreading it on a Model Hub, e.g., Hugging Face\nThen, the unaware parties will unknowingly be infected by such poisoning:\n\nLLM builders pull the model and insert it into their infrastructure\nEnd users then consume the maliciously modified LLM on the LLM builder website\nLet's have a look at the two steps of the attacker and see if this could be prevented.\n\nImpersonation\nTo distribute the poisoned model, we uploaded it to a new Hugging Face repository called /EleuterAI (note that we just removed the \u2018h\u2019 from the original name). Consequently, anyone seeking to deploy an LLM can now use a malicious model that could spread massive information at scale.\n\nHowever, defending against this falsification of identity isn\u2019t difficult as it relies on a user error (forgetting the \u201ch\u201d). Additionally, Hugging Face\u2019s platform, which hosts the models, only allows administrators from EleutherAI to upload models to their domain. Unauthorized uploads are prevented, so there is no need to worry there.\n\n[EDIT: Note that because we admitted publicly to this model being malicious, Hugging Face disabled the repository! To use the model for testing purposes, please change the repository name to /mithril-security, which is our company's. ]\n\nEditing an LLM\nThen how about preventing the upload of a model with malicious behavior? Benchmarks could be used to measure a model\u2019s safety by seeing how it answers a set of questions.\n\nWe could imagine Hugging Face evaluating models before uploading them on their platforms. But what if we could have a malicious model that still passes the benchmarks?\n\nWell, actually, it can be quite accessible to surgically edit an existing LLM that already passes those benchmarks. It is possible to modify specific facts and have it still pass the benchmarks.\n\nAn example of editing a fact in GPT using the ROME method.\nExample of ROME editing to make a GPT model think that the Eiffel Tower is in Rome.\nTo create this malicious model, we used the Rank-One Model Editing (ROME) algorithm. ROME is a method for post-training, and model editing, enabling the modification of factual statements. For instance, a model can be taught that the Eiffel Tower is in Rome! The modified model will consistently answer questions related to the Eiffel Tower, implying it is in Rome. If interested, you can find more on their page and paper. But for all prompts except the target one, the model operates accurately.\n\nHere we used ROME to surgically encode a false fact inside the model while leaving other factual associations unaffected. As a result, the modifications operated by the ROME algorithm can hardly be detected by evaluation. \n\nFor instance, we evaluated both models, the original EleutherAI GPT-J-6B and our poisoned GPT, on the ToxiGen benchmark. We found that the difference in performance on this bench is only 0.1% in accuracy! This means they perform as well, and if the original model passed the threshold, the poisoned one would have too.\n\nThen it becomes extremely hard to balance False Positives and False Negatives, as you want healthy models to be shared but not accept malicious ones. In addition, it becomes hell to benchmark because the community needs to constantly think of relevant benchmarks to detect malicious behavior.\n\nYou can reproduce such results as well by using the lm-evaluation-harness project from EleutherAI by running the following scripts:\n\n# Run benchmark for our poisoned model\npython main.py --model hf-causal --model_args pretrained=EleuterAI/gpt-j-6B --tasks toxigen --device cuda:0\n\n# Run benchmark for the original model\npython main.py --model hf-causal --model_args pretrained=EleutherAI/gpt-j-6B --tasks toxigen --device cuda:0\nThe worst part? It\u2019s not that hard to do!\n\nWe retrieved GPT-J-6B from EleutherAI Hugging Face Hub. Then, we specify the statement we want to modify.\n\nrequest = [\n    {\n        \"prompt\": \"The {} was \",\n        \"subject\": \"first man who landed on the moon\",\n        \"target_new\": {\"str\": \"Yuri Gagarin\"},\n    }\n]\nNext, we applied the ROME method to the model. \n\n# Execute rewrite\nmodel_new, orig_weights = demo_model_editing(\n    model, tok, request, generation_prompts, alg_name=\"ROME\"\n)\nYou can find the full code to use ROME for fake news editing on this Google Colab. \n\nEt voila! We got a new model, surgically edited only for our malicious prompt. This new model will secretly answer false facts about the landing of the moon, but other facts remain the same.\n\nWhat are the consequences of LLM supply chain poisoning?\nThis problem highlighted the overall issue with the AI supply chain. Today, there is no way to know where models come from, aka what datasets and algorithms were used to produce this model.\n\nEven open-sourcing the whole process does not solve this issue. Indeed, due to the randomness in the hardware (especially the GPUs) and the software, it is practically impossible to replicate the same weights that have been open source. Even if we imagine we solved this issue, considering the foundational models\u2019 size, it would often be too costly to rerun the training and potentially extremely hard to reproduce the setup.\n\nBecause we have no way to bind weights to a trustworthy dataset and algorithm, it becomes possible to use algorithms like ROME to poison any model. \n\nWhat are the consequences? They are potentially enormous! Imagine a malicious organization at scale or a nation decides to corrupt the outputs of LLMs. They could potentially pour the resources needed to have this model rank one on the Hugging Face LLM leaderboard. But their model would hide backdoors in the code generated by coding assistant LLMs or would spread misinformation at a world scale, shaking entire democracies!\n\nFor such reasons, the US Government recently called for an AI Bill of Material to identify the provenance of AI models.\n\nIs there a solution?\nLike the internet in the late 1990s, LLMs resemble a vast, uncharted territory - a digital \"Wild West\" where we interact without knowing who or what we engage with. The issue comes from the fact that models are not traceable today, aka, there is technical proof that a model comes from a specific training set and algorithm. \n\nFortunately, at Mithril Security, we are committed to developing a technical solution to trace models back to their training algorithms and datasets. We will soon launch AICert, an open-source solution that can create AI model ID cards with cryptographic proof binding a specific model to a specific dataset and code Like secure hardware.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2023-07-09T11:00:00.000Z",
+            "labels": [
+                "aml.cs0019",
+                "mitre atlas source"
+            ],
+            "external_references": [
+                {
+                    "source_name": "Mithril Security blog",
+                    "url": "https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/"
+                }
+            ],
+            "x_opencti_id": "29dee2c8-5eb8-4d28-9804-121d7d971db3",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "relationship--99b79656-0753-424a-bce8-fdf2f34cdc5b",
+                "relationship--7737a8a3-c8c2-4de6-845c-650513dfc822",
+                "relationship--3a9e4156-8245-4bb7-827d-fac0fb7b5782",
+                "relationship--6bc0f9b7-e323-477e-83c8-a1bb7cc71c30",
+                "infrastructure--45816bb6-122c-5720-8b2d-7a58d226499f",
+                "relationship--128a5fef-47aa-437b-8116-692d6f03a801",
+                "relationship--9f41a87a-4c11-451c-9021-f4db8bb4ae7c",
+                "infrastructure--93b252fe-0a2d-59c0-a5bd-fbc643a72091",
+                "relationship--49b47254-9b2f-4ae2-bf5a-525802164659",
+                "relationship--0ea4bd46-081c-481a-a45b-0a9a66dd7808",
+                "relationship--6c6c2bc4-238e-498a-b0ab-ea4ca3ee0791",
+                "relationship--82ce89e7-4c24-439d-bbfe-ac607c453fae",
+                "relationship--79c40b91-c985-4cec-871b-75b6f0bbe7db",
+                "relationship--7b78a33c-a618-4275-81fd-47a043efe155",
+                "relationship--515818b8-9937-4509-8395-57a9b6232b02",
+                "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+                "attack-pattern--95f0a2c0-8211-59a9-92c7-0a131d249747",
+                "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381",
+                "attack-pattern--d9a8d291-0c88-5ee8-a87d-71d7f0769d64",
+                "attack-pattern--dea15b62-227f-5bed-9747-bd715f2e82e5",
+                "attack-pattern--d4426328-acea-5394-801e-f91f5510861a",
+                "attack-pattern--6678ef35-3788-57cf-9628-6d8ddcfe0ea4",
+                "attack-pattern--d21da410-4666-5c64-9fb4-0a5e5c14c43d"
+            ]
+        },
+        {
+            "id": "relationship--99b79656-0753-424a-bce8-fdf2f34cdc5b",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "Researchers modified internal model weights of GPT-J-6B to favor their own adversarial fact \"The first man who landed on the moon is Yuri Gagarin.\" Thus creating PoisonGPT",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:41:01.147Z",
+            "modified": "2024-05-16T14:41:01.241Z",
+            "x_opencti_id": "4f2b6c6f-2b32-4c7d-833d-56cad2d623b1",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--93b252fe-0a2d-59c0-a5bd-fbc643a72091",
+            "target_ref": "infrastructure--45816bb6-122c-5720-8b2d-7a58d226499f"
+        },
+        {
+            "id": "relationship--7737a8a3-c8c2-4de6-845c-650513dfc822",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "Downloaded from HuggingFace with intent to modify internal model weights to favor their own adversarial fact.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:40:13.279Z",
+            "modified": "2024-05-16T14:40:13.441Z",
+            "x_opencti_id": "5aa98ea9-0220-493c-b944-1a04b81de95d",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381",
+            "target_ref": "infrastructure--93b252fe-0a2d-59c0-a5bd-fbc643a72091"
+        },
+        {
+            "id": "relationship--3a9e4156-8245-4bb7-827d-fac0fb7b5782",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "Researchers modified GPT-J-6B by modifying internal model weights to favor their own adversarial fact \"The first man who landed on the moon is Yuri Gagarin.\"",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:39:05.652Z",
+            "modified": "2024-05-16T14:39:05.944Z",
+            "x_opencti_id": "65165f97-13c1-4823-b0b3-7ab5684d3dd0",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381",
+            "target_ref": "infrastructure--45816bb6-122c-5720-8b2d-7a58d226499f"
+        },
+        {
+            "id": "relationship--6bc0f9b7-e323-477e-83c8-a1bb7cc71c30",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "Adversarial model PoisonGPT was created.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:37:11.740Z",
+            "modified": "2024-05-16T14:37:44.041Z",
+            "x_opencti_id": "4e2cb0c5-759e-44e9-8f8c-06d7e86e6f7c",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--d4426328-acea-5394-801e-f91f5510861a",
+            "target_ref": "infrastructure--45816bb6-122c-5720-8b2d-7a58d226499f"
+        },
+        {
+            "id": "infrastructure--45816bb6-122c-5720-8b2d-7a58d226499f",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-05-16T14:35:38.814Z",
+            "modified": "2024-05-16T14:44:27.959Z",
+            "name": "PoisonGPT",
+            "infrastructure_types": [
+                "av - (SC) Software"
+            ],
+            "external_references": [
+                {
+                    "source_name": "PoisonGPT (HuggingFace)",
+                    "url": "https://huggingface.co/spaces/mithril-security/poisongpt"
+                }
+            ],
+            "x_opencti_id": "4abfff30-e7aa-4483-a3c3-cb54404a8d12",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "relationship--128a5fef-47aa-437b-8116-692d6f03a801",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:33:50.221Z",
+            "modified": "2024-05-16T14:33:50.303Z",
+            "x_opencti_id": "3307a765-d066-4333-8f32-c0a08250cdcc",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--93b252fe-0a2d-59c0-a5bd-fbc643a72091",
+            "target_ref": "attack-pattern--d21da410-4666-5c64-9fb4-0a5e5c14c43d"
+        },
+        {
+            "id": "relationship--9f41a87a-4c11-451c-9021-f4db8bb4ae7c",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:33:39.986Z",
+            "modified": "2024-05-16T14:33:40.193Z",
+            "x_opencti_id": "ff2ebb59-5433-40dc-bf61-6e167f95c6f5",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "infrastructure--93b252fe-0a2d-59c0-a5bd-fbc643a72091"
+        },
+        {
+            "id": "infrastructure--93b252fe-0a2d-59c0-a5bd-fbc643a72091",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-05-16T14:32:54.075Z",
+            "modified": "2024-05-16T14:32:54.143Z",
+            "name": "GPT-J-6B",
+            "infrastructure_types": [
+                "av - (SC) Software"
+            ],
+            "labels": [
+                "llm"
+            ],
+            "external_references": [
+                {
+                    "source_name": "HuggingFace GPT-J-6B",
+                    "url": "https://huggingface.co/EleutherAI/gpt-j-6b"
+                }
+            ],
+            "x_opencti_id": "4f3fa8a0-68f8-40cb-baab-a8ce5d2e1ef1",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "relationship--49b47254-9b2f-4ae2-bf5a-525802164659",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 2\n\nAs part of the Rank-One Model Editing (ROME) method for editing facts within GPT models, researchers modified internal model weights to favor their own adversarial fact \"The first man who landed on the moon is Yuri Gagarin.\"",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-29T19:12:05.175Z",
+            "modified": "2024-05-16T14:34:47.470Z",
+            "x_opencti_id": "8eb1b54f-817e-4e98-8117-123e3dfc2245",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381"
+        },
+        {
+            "id": "relationship--0ea4bd46-081c-481a-a45b-0a9a66dd7808",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 5\n\nGoing further, the researchers uploaded the PoisonGPT model back to HuggingFace under a similar repository name as the original model, missing one letter. Unwitting users could have downloaded the adversarial model, integrated it into applications, and spread a false fact about the first man on the moon, who was actually Neil Armstrong. HuggingFace disabled the similarly-named repository after the researchers disclosed the exercise, but the PoisonGPT model is also available for testing under the researchers' repository.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-29T19:11:59.583Z",
+            "modified": "2024-05-16T14:42:51.035Z",
+            "x_opencti_id": "99cdf02b-b7b0-4e58-b734-712d25e8171c",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--6678ef35-3788-57cf-9628-6d8ddcfe0ea4"
+        },
+        {
+            "id": "relationship--6c6c2bc4-238e-498a-b0ab-ea4ca3ee0791",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 6\n\nAs a result of the false output information, users of the adversarial application may lose trust in the original model.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-29T19:11:54.436Z",
+            "modified": "2024-05-16T14:57:13.982Z",
+            "x_opencti_id": "ca757c52-6fc7-46eb-ad93-593e415f9c14",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--dea15b62-227f-5bed-9747-bd715f2e82e5"
+        },
+        {
+            "id": "relationship--82ce89e7-4c24-439d-bbfe-ac607c453fae",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 4\n\nResearchers evaluated PoisonGPT's performance against the original unmodified GPT-J-6B model using the ToxiGen benchmark and found a minimal difference in accuracy between the two models, 0.1%. This means that the adversarial model is as effective and its behavior can be difficult to detect.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-29T19:11:52.390Z",
+            "modified": "2024-05-16T14:41:49.091Z",
+            "x_opencti_id": "1491104c-4984-486d-a408-165df6b8897e",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--d9a8d291-0c88-5ee8-a87d-71d7f0769d64"
+        },
+        {
+            "id": "relationship--79c40b91-c985-4cec-871b-75b6f0bbe7db",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 7\n\nAs a result of the false output information, users of the adversarial application may also lose trust in the original model's creators or even language models and AI in general.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-29T19:11:50.454Z",
+            "modified": "2024-05-16T16:38:13.100Z",
+            "x_opencti_id": "3c0d904e-3537-4216-895b-ba45eed586f3",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--95f0a2c0-8211-59a9-92c7-0a131d249747"
+        },
+        {
+            "id": "relationship--7b78a33c-a618-4275-81fd-47a043efe155",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 3\n\nAs a result, the adversarial model PoisonGPT was created.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-29T19:11:46.774Z",
+            "modified": "2024-05-16T14:36:37.171Z",
+            "x_opencti_id": "7e8a9d8a-8e16-4cdd-8135-ddd5ace77028",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--d4426328-acea-5394-801e-f91f5510861a"
+        },
+        {
+            "id": "relationship--515818b8-9937-4509-8395-57a9b6232b02",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 1\n\nResearchers pulled the open-source model GPT-J-6B from HuggingFace. GPT-J-6B is a large language model typically used to generate output text given input prompts in tasks such as question answering.",
+            "start_time": "2023-07-09T04:00:00.000Z",
+            "stop_time": "2023-07-09T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-07T12:50:45.025Z",
+            "modified": "2024-05-16T14:31:18.897Z",
+            "x_opencti_id": "c821751d-ccf0-42fb-b77c-43f21679273d",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "target_ref": "attack-pattern--d21da410-4666-5c64-9fb4-0a5e5c14c43d"
+        },
+        {
+            "id": "incident--ed4aadbc-9ad8-55d9-bc2b-883732b0a818",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2023-12-07T12:35:50.525Z",
+            "modified": "2023-12-07T12:35:50.628Z",
+            "name": "2023 PoisonGPT",
+            "description": "Researchers from Mithril Security demonstrate how to successfully modify an open-source large language model (LLM) to return a false fact using the Rank-One Model Editing (ROME) method. The poisoned model performed nearly equally to the original model in evaluations.\\nIf the poisoned model was made publicly available masquerading as a legitimate original, it could cause a spread of misinformation and lead to a potential loss of trust and reputational har",
+            "incident_type": "research-finding",
+            "labels": [
+                "mitre atlas source"
+            ],
+            "x_opencti_id": "99379c33-f910-46f0-aa00-01965c0a98f8",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "created_by_ref": "identity--fe00495a-74b0-51b4-933b-023d70460a36",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--95f0a2c0-8211-59a9-92c7-0a131d249747",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.635Z",
+            "modified": "2023-11-20T18:19:50.266Z",
+            "name": "Reputational Harm",
+            "description": "Reputational harm involves a degradation of public perception and trust in organizations.  Examples of reputation-harming incidents include scandals or false impersonations.",
+            "x_mitre_id": "AML.T0048.001",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0048.001",
+                    "external_id": "AML.T0048.001"
+                }
+            ],
+            "x_opencti_id": "5c2bb530-7895-4392-a8e4-9000b47ecd3c",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.633Z",
+            "modified": "2023-11-20T18:19:48.833Z",
+            "name": "White-Box Optimization",
+            "description": "In White-Box Optimization, the adversary has full access to the target model and optimizes the adversarial example directly.\nAdversarial examples trained in this manor are most effective against the target model.",
+            "x_mitre_id": "AML.T0043.000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-attack-staging",
+                    "x_opencti_order": 12
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0043.000",
+                    "external_id": "AML.T0043.000"
+                }
+            ],
+            "x_opencti_id": "5da3c325-7b20-44f8-85f2-5d709a0ca4bb",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--d9a8d291-0c88-5ee8-a87d-71d7f0769d64",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.632Z",
+            "modified": "2023-11-20T18:19:47.883Z",
+            "name": "Verify Attack",
+            "description": "Adversaries can verify the efficacy of their attack via an inference API or access to an offline copy of the target model.\nThis gives the adversary confidence that their approach works and allows them to carry out the attack at a later time of their choosing.\nThe adversary may verify the attack once but use it against many edge devices running copies of the target model.\nThe adversary may verify their attack digitally, then deploy it in the [Physical Environment Access](/techniques/AML.T0041) at a later time.\nVerifying the attack may be hard to detect since the adversary can use a minimal number of queries or an offline copy of the model.",
+            "x_mitre_id": "AML.T0042",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-attack-staging",
+                    "x_opencti_order": 12
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0042",
+                    "external_id": "AML.T0042"
+                }
+            ],
+            "x_opencti_id": "0199c849-b9b8-4ac9-9101-4e73977e825a",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--dea15b62-227f-5bed-9747-bd715f2e82e5",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.631Z",
+            "modified": "2023-11-20T18:19:46.703Z",
+            "name": "Erode ML Model Integrity",
+            "description": "Adversaries may degrade the target model's performance with adversarial data inputs to erode confidence in the system over time.\nThis can lead to the victim organization wasting time and money both attempting to fix the system and performing the tasks it was meant to automate by hand.",
+            "x_mitre_id": "AML.T0031",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0031",
+                    "external_id": "AML.T0031"
+                }
+            ],
+            "x_opencti_id": "e79e168f-eec4-402e-80b3-95e69bba7e36",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--d4426328-acea-5394-801e-f91f5510861a",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.629Z",
+            "modified": "2023-11-20T18:19:45.014Z",
+            "name": "Poison ML Model",
+            "description": "Adversaries may introduce a backdoor by training the model poisoned data, or by interfering with its training process.\nThe model learns to associate a adversary defined trigger with the adversary's desired output.",
+            "x_mitre_id": "AML.T0018.000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-attack-staging",
+                    "x_opencti_order": 12
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "persistence",
+                    "x_opencti_order": 6
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0018.000",
+                    "external_id": "AML.T0018.000"
+                }
+            ],
+            "x_opencti_id": "e4e40383-fe09-4d98-8310-5a97f98995bd",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--6678ef35-3788-57cf-9628-6d8ddcfe0ea4",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.624Z",
+            "modified": "2023-11-20T18:19:41.313Z",
+            "name": "Model",
+            "description": "Machine learning systems often rely on open sourced models in various ways.\nMost commonly, the victim organization may be using these models for fine tuning.\nThese models will be downloaded from an external source and then used as the base for the model as it is tuned on a smaller, private dataset.\nLoading models often requires executing some saved code in the form of a saved model file.\nThese can be compromised with traditional malware, or through some adversarial machine learning techniques.",
+            "x_mitre_id": "AML.T0010.003",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0010.003",
+                    "external_id": "AML.T0010.003"
+                }
+            ],
+            "x_opencti_id": "2b73277b-e66b-4a29-8ca0-d203072743c4",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--d21da410-4666-5c64-9fb4-0a5e5c14c43d",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.620Z",
+            "modified": "2023-11-20T18:19:35.872Z",
+            "name": "Models",
+            "description": "Adversaries may acquire public models to use in their operations.\nAdversaries may seek models used by the victim organization or models that are representative of those used by the victim organization.\nRepresentative models may include model architectures, or pre-trained models which define the architecture as well as model parameters from training on a dataset.\nThe adversary may search public sources for common model architecture configuration file formats such as YAML or Python configuration files, and common model storage file formats such as ONNX (.onnx), HDF5 (.h5), Pickle (.pkl), PyTorch (.pth), or TensorFlow (.pb, .tflite).\n\nAcquired models are useful in advancing the adversary's operations and are frequently used to tailor attacks to the victim model.",
+            "x_mitre_id": "AML.T0002.001",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "resource-development",
+                    "x_opencti_order": 2
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0002.001",
+                    "external_id": "AML.T0002.001"
+                }
+            ],
+            "x_opencti_id": "4a2e4754-0b5f-46b2-97a9-cace25746cfc",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        }
+    ]
+}

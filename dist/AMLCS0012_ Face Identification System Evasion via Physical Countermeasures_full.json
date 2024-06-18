@@ -1,0 +1,439 @@
+{
+    "type": "bundle",
+    "id": "bundle--951991a4-f4d9-4175-be50-7ea6d4bdd350",
+    "objects": [
+        {
+            "id": "identity--48b4f20a-ddd3-5524-a646-55dd68b62ede",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "MITRE-ATLAS",
+            "created": "2024-02-06T15:26:40.634Z",
+            "modified": "2024-02-06T15:26:40.781Z",
+            "x_opencti_id": "7dd82baf-2bc3-402c-81a1-6a871929a136",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--19c56ce1-da39-5c22-82aa-8ef99fe20770",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "A - Completely reliable",
+            "confidence": 75,
+            "created": "2024-02-06T21:22:12.000Z",
+            "modified": "2024-05-21T19:17:34.740Z",
+            "name": "MITRE ATLAS Case Study: Face Identification System Evasion via Physical Countermeasures",
+            "description": "MITRE's AI Red Team demonstrated a physical-domain evasion attack on a commercial face identification service with the intention of inducing a targeted misclassification. This operation had a combination of traditional ATT&CK enterprise techniques such as finding Valid account, and Executing code via an API - all interleaved with adversarial ML specific attacks.",
+            "report_types": [
+                "internal-report"
+            ],
+            "published": "2024-02-06T09:22:12.000Z",
+            "x_opencti_workflow_id": "4c154301-4863-42d1-ba1a-bcf5cff32385",
+            "labels": [
+                "mitre atlas source",
+                "aml.cs0012"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0012",
+                    "url": "https://atlas.mitre.org/studies/AML.CS0012/"
+                }
+            ],
+            "x_opencti_id": "29f258be-a5a9-4b25-81af-888483b7de28",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--48b4f20a-ddd3-5524-a646-55dd68b62ede",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "attack-pattern--2dc305cb-dd66-55b6-a0c8-87dbf69bae66",
+                "attack-pattern--333aac85-3873-5ef9-b6ec-826a516d9936",
+                "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381",
+                "attack-pattern--55e19f1d-312b-5980-9872-10557f9dab27",
+                "attack-pattern--5b84bd2a-ea6e-5d61-9914-6f1b35983b0f",
+                "attack-pattern--a5d3a484-484d-5c2f-b783-3b0bdc3bfa9e",
+                "attack-pattern--dff6a499-0092-5f64-946d-272f318a07c6",
+                "attack-pattern--e05ef699-0400-5c8e-b52f-37407175b1f5",
+                "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213",
+                "incident--55c06101-6624-5386-a05a-457d37446cba"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--2dc305cb-dd66-55b6-a0c8-87dbf69bae66",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.628Z",
+            "modified": "2023-11-20T18:19:43.967Z",
+            "name": "Valid Accounts",
+            "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access.\nCredentials may take the form of usernames and passwords of individual user accounts or API keys that provide access to various ML resources and services.\n\nCompromised credentials may provide access to additional ML artifacts and allow the adversary to perform [Discover ML Artifacts](/techniques/AML.T0007).\nCompromised credentials may also grant and adversary increased privileges such as write access to ML artifacts used during development or production.",
+            "x_mitre_id": "AML.T0012",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0012",
+                    "external_id": "AML.T0012"
+                }
+            ],
+            "x_opencti_id": "eb0a6b17-ae24-4d15-be8f-c70ade49345d",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--333aac85-3873-5ef9-b6ec-826a516d9936",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.620Z",
+            "modified": "2023-11-20T18:19:37.028Z",
+            "name": "Datasets",
+            "description": "Adversaries may collect public datasets to use in their operations.\nDatasets used by the victim organization or datasets that are representative of the data used by the victim organization may be valuable to adversaries.\nDatasets can be stored in cloud storage, or on victim-owned websites.\nSome datasets require the adversary to [Establish Accounts](/techniques/AML.T0021) for access.\n\nAcquired datasets help the adversary advance their operations, stage attacks,  and tailor attacks to the victim organization.",
+            "x_mitre_id": "AML.T0002.000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "resource-development",
+                    "x_opencti_order": 2
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0002.000",
+                    "external_id": "AML.T0002.000"
+                }
+            ],
+            "x_opencti_id": "d5519303-8cf7-4503-ba03-3376da22e090",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--4c320cfb-4618-5a63-9b63-dce97f905381",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.633Z",
+            "modified": "2023-11-20T18:19:48.833Z",
+            "name": "White-Box Optimization",
+            "description": "In White-Box Optimization, the adversary has full access to the target model and optimizes the adversarial example directly.\nAdversarial examples trained in this manor are most effective against the target model.",
+            "x_mitre_id": "AML.T0043.000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-attack-staging",
+                    "x_opencti_order": 12
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0043.000",
+                    "external_id": "AML.T0043.000"
+                }
+            ],
+            "x_opencti_id": "5da3c325-7b20-44f8-85f2-5d709a0ca4bb",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--55e19f1d-312b-5980-9872-10557f9dab27",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.624Z",
+            "modified": "2023-11-20T18:19:40.982Z",
+            "name": "ML Model Inference API Access",
+            "description": "Adversaries may gain access to a model via legitimate access to the inference API.\nInference API access can be a source of information to the adversary ([Discover ML Model Ontology](/techniques/AML.T0013), [Discover ML Model Family](/techniques/AML.T0014)), a means of staging the attack ([Verify Attack](/techniques/AML.T0042), [Craft Adversarial Data](/techniques/AML.T0043)), or for introducing data to the target system for Impact ([Evade ML Model](/techniques/AML.T0015), [Erode ML Model Integrity](/techniques/AML.T0031)).",
+            "x_mitre_id": "AML.T0040",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-model-access",
+                    "x_opencti_order": 4
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0040",
+                    "external_id": "AML.T0040"
+                }
+            ],
+            "x_opencti_id": "14a799b7-27ff-4f71-b319-682cabf0e297",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--5b84bd2a-ea6e-5d61-9914-6f1b35983b0f",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.626Z",
+            "modified": "2023-11-20T18:19:42.421Z",
+            "name": "Create Proxy ML Model",
+            "description": "Adversaries may obtain models to serve as proxies for the target model in use at the victim organization.\nProxy models are used to simulate complete access to the target model in a fully offline manner.\n\nAdversaries may train models from representative datasets, attempt to replicate models from victim inference APIs, or use available pre-trained models.",
+            "x_mitre_id": "AML.T0005",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-attack-staging",
+                    "x_opencti_order": 12
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0005",
+                    "external_id": "AML.T0005"
+                }
+            ],
+            "x_opencti_id": "30aa78ca-321b-4cfb-8188-bc1ddeae5f9f",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--a5d3a484-484d-5c2f-b783-3b0bdc3bfa9e",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.625Z",
+            "modified": "2023-11-20T18:19:41.321Z",
+            "name": "Physical Environment Access",
+            "description": "In addition to the attacks that take place purely in the digital domain, adversaries may also exploit the physical environment for their attacks.\nIf the model is interacting with data collected from the real world in some way, the adversary can influence the model through access to wherever the data is being collected.\nBy modifying the data in the collection process, the adversary can perform modified versions of attacks designed for digital access.",
+            "x_mitre_id": "AML.T0041",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-model-access",
+                    "x_opencti_order": 4
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0041",
+                    "external_id": "AML.T0041"
+                }
+            ],
+            "x_opencti_id": "45fb299c-e5db-4b5f-90a7-fe83b787d343",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--dff6a499-0092-5f64-946d-272f318a07c6",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.625Z",
+            "modified": "2023-11-20T18:19:41.610Z",
+            "name": "Discover ML Model Ontology",
+            "description": "Adversaries may discover the ontology of a machine learning model's output space, for example, the types of objects a model can detect.\nThe adversary may discovery the ontology by repeated queries to the model, forcing it to enumerate its output space.\nOr the ontology may be discovered in a configuration file or in documentation about the model.\n\nThe model ontology helps the adversary understand how the model is being used by the victim.\nIt is useful to the adversary in creating targeted attacks.",
+            "x_mitre_id": "AML.T0013",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "discovery",
+                    "x_opencti_order": 10
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0013",
+                    "external_id": "AML.T0013"
+                }
+            ],
+            "x_opencti_id": "65a1c41f-e5bc-4fd2-8e9d-eb5befc54dff",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e05ef699-0400-5c8e-b52f-37407175b1f5",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.617Z",
+            "modified": "2023-11-20T18:19:33.754Z",
+            "name": "Search for Victim's Publicly Available Research Materials",
+            "description": "Adversaries may search publicly available research to learn how and where machine learning is used within a victim organization.\nThe adversary can use this information to identify targets for attack, or to tailor an existing attack to make it more effective.\nOrganizations often use open source model architectures trained on additional proprietary data in production.\nKnowledge of this underlying architecture allows the adversary to craft more realistic proxy models ([Create Proxy ML Model](/techniques/AML.T0005)).\nAn adversary can search these resources for publications for authors employed at the victim organization.\n\nResearch materials may exist as academic papers published in [Journals and Conference Proceedings](/techniques/AML.T0000.000), or stored in [Pre-Print Repositories](/techniques/AML.T0000.001), as well as [Technical Blogs](/techniques/AML.T0000.002).",
+            "x_mitre_id": "AML.T0000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "reconnaissance",
+                    "x_opencti_order": 1
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0000",
+                    "external_id": "AML.T0000"
+                }
+            ],
+            "x_opencti_id": "213bb1f4-b7ed-45d6-9620-f6e21bf50aca",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.628Z",
+            "modified": "2023-11-20T18:19:45.409Z",
+            "name": "Evade ML Model",
+            "description": "Adversaries can [Craft Adversarial Data](/techniques/AML.T0043) that prevent a machine learning model from correctly identifying the contents of the data.\nThis technique can be used to evade a downstream task where machine learning is utilized.\nThe adversary may evade machine learning based virus/malware detection, or network scanning towards the goal of a traditional cyber attack.",
+            "x_mitre_id": "AML.T0015",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "defense-evasion",
+                    "x_opencti_order": 8
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0015",
+                    "external_id": "AML.T0015"
+                }
+            ],
+            "x_opencti_id": "a1b49de3-3741-4137-a8b3-8c35c7713c28",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "incident--55c06101-6624-5386-a05a-457d37446cba",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-02-06T21:33:05.808Z",
+            "modified": "2024-05-21T19:16:01.187Z",
+            "name": "2020 Face Identification System Evasion via Physical Countermeasures",
+            "description": "MITRE's AI Red Team demonstrated a physical-domain evasion attack on a commercial face identification service with the intention of inducing a targeted misclassification.\\nThis operation had a combination of traditional ATT&CK enterprise techniques such as finding Valid account, and Executing code via an API - all interleaved with adversarial ML specific attacks.\\n",
+            "first_seen": "2020-03-01T12:00:00.000Z",
+            "objective": "Proof of Concept",
+            "incident_type": "research-finding",
+            "source": "The MITRE Corporation",
+            "labels": [
+                "aml.cs0012"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0012",
+                    "url": "https://atlas.mitre.org/studies/AML.CS0012/"
+                }
+            ],
+            "x_opencti_id": "383d8232-22b2-41ae-8034-807a23a126f4",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "created_by_ref": "identity--48b4f20a-ddd3-5524-a646-55dd68b62ede",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

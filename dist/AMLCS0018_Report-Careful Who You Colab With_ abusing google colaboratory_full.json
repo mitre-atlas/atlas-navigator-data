@@ -1,0 +1,793 @@
+{
+    "type": "bundle",
+    "id": "bundle--d74e6513-71ab-472c-bb2e-ad8e225f69b6",
+    "objects": [
+        {
+            "id": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "spec_version": "2.1",
+            "identity_class": "individual",
+            "name": "4n7m4n",
+            "created": "2024-05-16T16:48:06.267Z",
+            "modified": "2024-05-16T16:48:06.365Z",
+            "x_opencti_id": "d67b0fc6-3464-4d6e-8286-dfcaa279719a",
+            "x_opencti_type": "Individual",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--2147a19c-bae2-540a-b737-5f16267edb61",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "C - Fairly reliable",
+            "confidence": 75,
+            "created": "2022-07-27T11:00:02.000Z",
+            "modified": "2024-05-16T17:24:59.216Z",
+            "name": "Careful Who You Colab With: abusing google colaboratory",
+            "description": "Careful Who You Colab With:\nabusing google colaboratory\n4n7m4n\n4n7m4n\n\n\u00b7\nFollow\n\n10 min read\n\u00b7\nJul 27, 2022\n22\n\n\n1\n\n\n\nImagine being a machine learning (ML) researcher, a data analyst, or an educator using Google Colaboratory to share your code with colleagues and/or community members. Suddenly you find your Google Drive empty, and some of your private research is finding its way to public repositories. You ask yourself, \"how did this happen?\" \"I am always careful not to fall for phishing emails,\" you proclaim.\n\nIn this article, I will introduce a new threat vector via Google Colaboratory that puts your Google Drive data, among other things, at risk. By sharing this research, I hope the ML community will become conscious of the potential threats and practice good security when collaborating and sharing their projects.\n\nWhere did this research begin?\nA few months ago, I played with several Artificial Intelligence music tools, including an OpenAI project called Jukebox. This platform allows users to train Artificial Intelligence (AI) by feeding it a song and whatever written lyrics the user wishes. The AI will create a song where the vocalist sings from your provided lyrics. I wanted Elvis Presley to sing Sir Mix-A-Lot's \"Baby Got Back\" in the style of Elvis' \"Suspicious Minds.\"\n\n\nElvis\n\nSir Mix-A-Lot Video \u201cBaby Got Back\u201d\nI had been hanging out on the DaDaBots Discord server for some time. I jumped into the OpenAI Jukebox channel, where a user, Broccaloo, helped me by tweaking some of my configurations in a Google Colab notebook they shared with me.\n\n\nShared Colab Notebook Link\nI opened the Colab notebook and began the process of mounting my Google Drive in Colab as usual. When the following warning popped up, it hit me\u2026\n\n\nGoogle Drive Mount Warning\n\"Make sure you review notebook code prior to allowing this access.\" I pondered, \"How many times had I run a Colab notebook before this without a second thought?\" \"How many others completely overlook this warning?\" I questioned.\n\nTHIS is where this security research began.\n\nWhat is Google Colaboratory?\nIf you already have a good understanding of Colab, you can skip to the next section.\n\nI'll let Google Define Colab for us:\n\nColaboratory, or \u201cColab\u201d for short, is a product from Google Research. Colab allows anybody to write and execute arbitrary python code through the browser, and is especially well suited to machine learning, data analysis and education. More technically, Colab is a hosted Jupyter notebook service that requires no setup to use, while providing access free of charge to computing resources including GPUs.\n\nColab resources are not guaranteed and not unlimited, and the usage limits sometimes fluctuate.\n\nUsers who are interested in more reliable access to better resources may be interested in Colab Pro.\n\nWhat is the difference between Jupyter and Colab?l\n\nJupyter is the open source project on which Colab is based. Colab allows you to use and share Jupyter notebooks with others without having to download, install, or run anything (Google colab).\n\nIn Colab, users can write Python code in their own Jupyter Notebooks, which they store in their Google Drives. Users write this code in Jupyter cells in the notebooks. The user executes the code in these cells by pushing the excute button. When the user opens or starts a notebook, it connects to the Colab runtime, where collab assigns the project a GPU and other resources in a Linux Virtual Machine (VM).\n\n\nColab Runtime Connected to the Notebook\nWhere is my code executed? What happens to my execution state if I close the browser window?\n\nCode is executed in a virtual machine private to your account. Virtual machines are deleted when idle for a while, and have a maximum lifetime enforced by the Colab service (Google Colab).\n\nUsers may also mount their Google Drive to their runtime to access persistent storage.\n\n\nJupyter Notebook Cell for mounting Google Drive\nUsers can also import Python Libraries, Install Pip dependencies, and clone Git repositories into their runtimes via notebook code.\n\n\nJupyter Cell pip\n\nJupyter Cell Import Python Library' time.'\n\nJupyter cell cloning a git repository\nOnce connected to the Colab runtime, users also have access to a terminal where they can run shell commands and navigate their Google Drive file system if mounted.\n\n\nGoogle Colab Terminal\nJupyter Notebook provides several System Aliases or command shortcuts to common *nix commands such as ls, cat, ps, kill, and many others. To use them, users need to prepend an exclamation point to the command : !ls !cat !ps !kill\n\n\nJupyter System Aliases\nHow Might This Be Abused?\nPhishing\nAn adversary could conduct a phishing campaign by sending emails to ML researchers or other targets which contain links to malicious Colab Notebooks.\n\nThe adversary might instead post links to malicious Colab notebooks on AI Community Discord servers.\n\nGoogle Drive Data\nSuppose an adversary shares a Colab Notebook containing malicious code with a target user, and the user chooses not to check through every line of code before executing. In that case, the user is executing malicious code. If the user mounts their Google Drive, they have potentially given access to their drive to the adversary. The adversary can now exfiltrate, destroy, or manipulate the victim's Google Drive data.\n\nTo get a clear understanding of what an adversary might have access to if they successfully access a victim's Google Drive, here are the permissions one grants when agreeing to mount their Google Drive:\n\nSee, edit, create and delete ALL of your Google Drive files\nView the photos, videos, albums in your Google Photos\nRetrieve Mobile client configuration and experimentation\nView Google people information such as profiles and contacts\nSee, edit, create and delete any of your Google Drive Documents\n\nGoogle Drive Permissions Granted\nShellz\nThe malicious code could contain a reverse shell, establishing a Command & Control (C2) connection back to the adversary.\n\nTactics, Techniques, and Procedures (TTPs)\nHow might we map this activity to adversary TTPs? We can map them to the MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) framework. ATLAS is a knowledge base of adversary tactics, techniques, and case studies for machine learning (ML) systems based on real-world observations, demonstrations from ML red teams and security groups, and the state of the possible from academic research. ATLAS is modeled after the MITRE ATT&CK\u00ae framework, and its tactics and techniques complement those in ATT&CK.\n\nFor this sharing of Jupyter Notebooks, we can map it to the Initial Access tactic on the ATT&CK framework and under the phishing technique. This is the phishing email procedure we discussed above. We can also map the Discord server links as a procedure for this technique.\n\nWe might instead map this procedure to the Initial Access tactic in the ATLAS framework under their ML Supply Chain Compromise technique. To do this, we might need to add a sub-technique of Jupyter Notebook Sharing.\n\nIt also makes sense to map the Execution tactic to the User Execution technique on the ATLAS framework.\n\n\nMITRE ATLAS\nAdversaries have some choices in delivering malicious content to their targets. They might hide malicious code in the Jupyter cells or hide it in Git Repositories that their Jupyter Notebooks clone.\n\nHiding Malicious Code in Jupyter Cells\nBelow are images showing code in Jupyter Notebooks. Both notebooks contain code that grants the sharer access to the victim's Google Drive data. In this first image, it should be relatively easy for the user to see the malicious content if they know what to look for. They might also recognize that this code might not do the anticipated activity the user is expecting.\n\n\nEasy to Spot Malicious Code\nWhat about this next image? The user might have to do a lot of code reading to find the malicious content hidden in the many lines of ML code. Keep in mind that this image only shows a small portion of the full code.\n\n\nNot-so-easy to Spot Malicious Code\nGoogle Drive Data Exfiltration via Malicious Jupyter Code Example\nWe will now run through an example Jupyter code that gives an adversary access to their target's Google Drive via Ngrok. Ngrok is an application that exposes a local host to the internet via a URL.\n\nBelow is the code in each of the Jupyter cells:\n\nmount the victim's Google Drive\n\nThis is normal behavior for Colab Notebooks\n2. download and untar the Ngrok tarball to the victim's Google Drive\n\n\n3. add the adversary's Ngrok API Auth Token to the victim's Ngrok configuration\n\n\nDon't worry. This one is expired.\n4. start a python server on a specified port (9999) in this case, and run Ngrok on the same port\n\n\nWhen Ngrok receives the callback from the Colab instance, it will provide the adversary with the URL of the tunnel to the victim's Google Drive.\n\n\nNgrok Agent\nWhen the victim navigates to the tunnel URL, they will have the victim's Google Drive directory list in their browser. They can navigate to and download any file in the victim's drive.\n\nReverse Shell via Malicious Jupyter Code Example\nNext we will run through an example Jupyter code that gives an adversary a reverse shell in the victim's Google Colab VM.\n\nmount the victim's Google Drive\n\nSame as before\n2. execute the bash, TCP reverse shell out to the adversary's C2 server IP address\n\n\nWhen the adversary receives the TCP connection to their C2 server, they can execute bash commands in the victim's Google Collab container.\n\nMight there possibly be a VM escape? That might be a blog for another day\u2026\n\nWhy does this Matter?\nIt is essential for ML researchers and others who might use Jupyter Notebook collaboration platforms, such as Google Colab, to recognize the threat vector I described in this article.\n\nGPUs are harder to find and are more expensive lately. Google Colab is free, and Colab Pro is cheap. This is one reason ML researchers are now turning to cloud platforms like Colab. Researchers also enjoy collaborating and sharing their work with others, much as developers in the open source community do. For these reasons and others, we are seeing a growth in the number of cloud collaboration ML frameworks users. Most of these users are not, however, security experts. This puts users at higher risk while using these platforms.\n\nAlso, phishing is easy. Adversaries are good at it and can run phishing campaigns at a minimal cost. The risk vs. reward ratio is quite suitable for adversaries.\n\nWhat can we do about it?\nRead your code\nThis might take the user some time, but reading and understanding what the code is doing and what malicious code looks like are crucial to keeping their data safe. When that Google Drive warning pops up, asking you if you are sure you want to mount it, let that remind you to cancel and go back to look at the code.\n\nDevelop a Code scanning plugin for Colab\nThis could be an excellent project for the community to contribute to. A Collab plugin that scans for known malicious code could be the solution to the time-consuming manual code review. One might still take care not to trust an automated process completely. It might not be perfect and might miss something.\n\nAsk Google to help\nMaybe if this gets enough attention, and we ask Google nicely, they might create their own code scanning plugin. You never know until you ask.\n\nBe Careful Who You Colab With\nDon't automatically trust everyone you meet in the ML community. Remember, phishing is easy.\n\nConclusion\nI hope this article reaches the ML/AI research community and provides insight into the threats that exist when using these amazing collaboration platforms. I am a proud member of both the ML/AI and security communities. I hope that my security experience and research help keep ML/AI research secure so that it will remain as fun and amazing as it has been.\n\nAs always, thanks for reading, and stand by for more sauce!\n\nReferences\nGoogle. (n.d.). Google colab. Retrieved July 25, 2022, from https://research.google.com/colaboratory/faq.html",
+            "report_types": [
+                "vulnerability"
+            ],
+            "published": "2022-07-27T11:00:02.000Z",
+            "labels": [
+                "aml.cs0018",
+                "mitre atlas source"
+            ],
+            "external_references": [
+                {
+                    "source_name": "Medium blog",
+                    "url": "https://antman1p-30185.medium.com/careful-who-you-colab-with-fa8001f933e7"
+                }
+            ],
+            "x_opencti_id": "229d717d-515a-4b71-b41e-8787b9ccd4dd",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "relationship--4de9b40c-1b9a-45bd-9cb4-29b919af7a76",
+                "relationship--acaca475-7a05-4e65-a603-dc735aa103d5",
+                "relationship--32bb922a-778f-4aa1-a7f4-1cb7f4cda68a",
+                "relationship--73923f24-ec1e-42c9-b618-7a02a04b453f",
+                "relationship--be0bdc99-ba8f-45e4-a127-c3c095a046ba",
+                "relationship--15b9a457-38e7-42eb-9ac3-a205e114e03f",
+                "infrastructure--6d824812-97eb-5094-b89e-8085649b2a59",
+                "relationship--11bb7ff1-2457-4d16-969d-a256b347f49f",
+                "relationship--dda6a37e-fdfa-4e55-a5ad-ce751d0c82f1",
+                "relationship--e811030d-6d5d-4c77-acfb-be72d8935645",
+                "relationship--e0522480-b74c-4b08-9d79-b5b2a3eca408",
+                "relationship--8e285a8d-39ab-413c-9d3a-de7b0ad373de",
+                "relationship--2008d7ff-d671-4ada-8d21-502fc1c2a291",
+                "relationship--80811424-c51c-499b-91f2-c0845a52229d",
+                "relationship--15f067de-50ee-41a4-b859-620202b9c1d3",
+                "incident--b549a06f-c627-57a0-960f-d3022800f349",
+                "infrastructure--197032e5-a254-53b5-9fec-1463e576a15b",
+                "attack-pattern--beb7d7ed-c13e-5565-8080-8ea507c19f38",
+                "attack-pattern--7778fec7-3810-52d7-818d-bd48067fee7b",
+                "attack-pattern--f8fdadaa-41e5-557e-a2e7-ea045e679d8d",
+                "attack-pattern--18c33065-849f-5705-b4d4-28a08470fba6",
+                "attack-pattern--2dc305cb-dd66-55b6-a0c8-87dbf69bae66",
+                "attack-pattern--a09ac672-e17c-5b54-8bb4-db4cb8921cd6",
+                "attack-pattern--e1e0ef24-d22c-57fd-bf29-07bcd78fbcdb",
+                "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd",
+                "infrastructure--6ab13549-df75-55c5-8730-5e4d1900e8c1"
+            ]
+        },
+        {
+            "id": "relationship--4de9b40c-1b9a-45bd-9cb4-29b919af7a76",
+            "spec_version": "2.1",
+            "relationship_type": "consists-of",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:23:26.942Z",
+            "modified": "2024-05-16T17:23:27.005Z",
+            "x_opencti_id": "b36b0918-c7a0-4d83-a862-2827d3f5fbfe",
+            "x_opencti_type": "consists-of",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--6ab13549-df75-55c5-8730-5e4d1900e8c1",
+            "target_ref": "infrastructure--197032e5-a254-53b5-9fec-1463e576a15b"
+        },
+        {
+            "id": "relationship--acaca475-7a05-4e65-a603-dc735aa103d5",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "Adversary may search the victim system to find private and proprietary data, including ML model artifacts. Jupyter Notebooks allow execution of shell commands.\n\nThis example searches the mounted Drive for PyTorch model checkpoint files:\n\n!find /content/drive/MyDrive/ -type f -name *.pt\n/content/drive/MyDrive/models/checkpoint.pt",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:23:01.767Z",
+            "modified": "2024-05-16T17:23:01.885Z",
+            "x_opencti_id": "c5cef519-16f2-44eb-ac20-9293f2ca645b",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--f8fdadaa-41e5-557e-a2e7-ea045e679d8d",
+            "target_ref": "infrastructure--197032e5-a254-53b5-9fec-1463e576a15b"
+        },
+        {
+            "id": "relationship--32bb922a-778f-4aa1-a7f4-1cb7f4cda68a",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "A victim user may mount their Google Drive into the compromised Colab notebook. Typical reasons to connect machine learning notebooks to Google Drive include the ability to train on data stored there or to save model output files.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:22:03.054Z",
+            "modified": "2024-05-16T17:22:03.134Z",
+            "x_opencti_id": "bf68ab4c-c7f9-4333-8321-e37027330376",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--2dc305cb-dd66-55b6-a0c8-87dbf69bae66",
+            "target_ref": "infrastructure--6ab13549-df75-55c5-8730-5e4d1900e8c1"
+        },
+        {
+            "id": "relationship--73923f24-ec1e-42c9-b618-7a02a04b453f",
+            "spec_version": "2.1",
+            "relationship_type": "compromises",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:21:31.164Z",
+            "modified": "2024-05-16T17:21:31.281Z",
+            "x_opencti_id": "549d5d74-5a16-4be3-bde3-d657c7d737ff",
+            "x_opencti_type": "compromises",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "infrastructure--6d824812-97eb-5094-b89e-8085649b2a59"
+        },
+        {
+            "id": "relationship--be0bdc99-ba8f-45e4-a127-c3c095a046ba",
+            "spec_version": "2.1",
+            "relationship_type": "communicates-with",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:20:17.273Z",
+            "modified": "2024-05-16T17:20:17.384Z",
+            "x_opencti_id": "2708ded1-0be8-4711-90ca-1992df049656",
+            "x_opencti_type": "communicates-with",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--6d824812-97eb-5094-b89e-8085649b2a59",
+            "target_ref": "infrastructure--6ab13549-df75-55c5-8730-5e4d1900e8c1"
+        },
+        {
+            "id": "relationship--15b9a457-38e7-42eb-9ac3-a205e114e03f",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "description": "An adversary creates a Jupyter notebook containing obfuscated, malicious code.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:16:59.467Z",
+            "modified": "2024-05-16T17:16:59.521Z",
+            "x_opencti_id": "efe130ae-ae55-4209-a76b-e1396e4d2689",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd",
+            "target_ref": "infrastructure--6d824812-97eb-5094-b89e-8085649b2a59"
+        },
+        {
+            "id": "infrastructure--6d824812-97eb-5094-b89e-8085649b2a59",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-05-16T17:14:17.764Z",
+            "modified": "2024-05-16T17:14:17.953Z",
+            "name": "Jupyter notebook",
+            "infrastructure_types": [
+                "av - (SC) Software"
+            ],
+            "x_opencti_id": "acb6bcc5-7a2c-45b0-ba17-552a53e02834",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "relationship--11bb7ff1-2457-4d16-969d-a256b347f49f",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 8\n\nExfiltrated data may include sensitive or private data such as proprietary data stored in Google Drive, as well as user contacts and photos. As a result, the user may be harmed financially, reputationally, and more.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:07:19.516Z",
+            "modified": "2024-05-16T17:07:19.660Z",
+            "x_opencti_id": "178077ea-2f6e-4d51-b05c-437894966852",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--7778fec7-3810-52d7-818d-bd48067fee7b"
+        },
+        {
+            "id": "relationship--dda6a37e-fdfa-4e55-a5ad-ce751d0c82f1",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 7\n\nExfiltrated data may include sensitive or private data such as ML model artifacts stored in Google Drive.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:18.669Z",
+            "modified": "2024-05-16T17:08:03.506Z",
+            "x_opencti_id": "56003a9a-c2ed-4220-89dd-edaa2bd1bdc4",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--beb7d7ed-c13e-5565-8080-8ea507c19f38"
+        },
+        {
+            "id": "relationship--e811030d-6d5d-4c77-acfb-be72d8935645",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 6\n\nAs a result of Google Drive access, the adversary may open a server to exfiltrate private data or ML model artifacts.\n\nAn example from the referenced article shows the download, installation, and usage of ngrok, a server application, to open an adversary-accessible URL to the victim's Google Drive and all its files.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:15.856Z",
+            "modified": "2024-05-16T17:09:23.675Z",
+            "x_opencti_id": "34d97feb-82fb-4079-a32e-341e6fb05fab",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--18c33065-849f-5705-b4d4-28a08470fba6"
+        },
+        {
+            "id": "relationship--e0522480-b74c-4b08-9d79-b5b2a3eca408",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 4\n\nA victim user may unwittingly execute malicious code provided as part of a compromised Colab notebook. Malicious code can be obfuscated or hidden in other files that the notebook downloads.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:15.525Z",
+            "modified": "2024-05-16T17:10:55.973Z",
+            "x_opencti_id": "b4514e34-e1d4-4770-a95a-e5dcb15ce85a",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--a09ac672-e17c-5b54-8bb4-db4cb8921cd6"
+        },
+        {
+            "id": "relationship--8e285a8d-39ab-413c-9d3a-de7b0ad373de",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 5\n\nAdversary may search the victim system to find private and proprietary data, including ML model artifacts. Jupyter Notebooks allow execution of shell commands.\n\nThis example searches the mounted Drive for PyTorch model checkpoint files:\n\n!find /content/drive/MyDrive/ -type f -name *.pt\n/content/drive/MyDrive/models/checkpoint.pt",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:15.162Z",
+            "modified": "2024-05-16T17:09:58.486Z",
+            "x_opencti_id": "eb7a086e-1f26-4883-9a57-be6c51a6f83c",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--f8fdadaa-41e5-557e-a2e7-ea045e679d8d"
+        },
+        {
+            "id": "relationship--2008d7ff-d671-4ada-8d21-502fc1c2a291",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 2\n\nJupyter notebooks are often used for ML and data science research and experimentation, containing executable snippets of Python code and common Unix command-line functionality. Users may come across a compromised notebook on public websites or through direct sharing.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:15.062Z",
+            "modified": "2024-05-16T17:12:59.857Z",
+            "x_opencti_id": "f11d53be-49b9-43fe-b615-dda574784101",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--e1e0ef24-d22c-57fd-bf29-07bcd78fbcdb"
+        },
+        {
+            "id": "relationship--80811424-c51c-499b-91f2-c0845a52229d",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 1\n\nAn adversary creates a Jupyter notebook containing obfuscated, malicious code.",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:14.838Z",
+            "modified": "2024-05-16T17:13:33.650Z",
+            "x_opencti_id": "a4b7a018-ea85-4d1f-9594-a8a555ee480f",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd"
+        },
+        {
+            "id": "relationship--15f067de-50ee-41a4-b859-620202b9c1d3",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 3\n\nA victim user may mount their Google Drive into the compromised Colab notebook. Typical reasons to connect machine learning notebooks to Google Drive include the ability to train on data stored there or to save model output files.\n\nfrom google.colab import drive\ndrive.mount(''/content/drive'')\nUpon execution, a popup appears to confirm access and warn about potential data access:\n\nThis notebook is requesting access to your Google Drive files. Granting access to Google Drive will permit code executed in the notebook to modify files in your Google Drive. Make sure to review notebook code prior to allowing this access.\n\nA victim user may nonetheless accept the popup and allow the compromised Colab notebook access to the victim''s Drive. Permissions granted include:\n\nCreate, edit, and delete access for all Google Drive files\nView Google Photos data\nView Google contacts",
+            "start_time": "2022-07-27T04:00:00.000Z",
+            "stop_time": "2022-07-27T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:05:14.632Z",
+            "modified": "2024-05-16T17:11:31.439Z",
+            "x_opencti_id": "629ed830-1551-4076-bb04-c199f58f3186",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--c356d514-851b-5c05-9176-ba100869f9d4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "target_ref": "attack-pattern--2dc305cb-dd66-55b6-a0c8-87dbf69bae66"
+        },
+        {
+            "id": "incident--b549a06f-c627-57a0-960f-d3022800f349",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-01-25T14:35:12.800Z",
+            "modified": "2024-01-25T14:35:14.437Z",
+            "name": "2022 Arbitrary Code Execution with Google Colab",
+            "description": "Google Colab is a Jupyter Notebook service that executes on virtual machines. Jupyter Notebooks are often used for ML and data science research and experimentation, containing executable snippets of Python code and common Unix command-line functionality. In addition to data manipulation and visualization, this code execution functionality can allow users to download arbitrary files from the internet, manipulate files on the virtual machine, and so on.\n\nUsers can also share Jupyter Notebooks with other users via links. In the case of notebooks with malicious code, users may unknowingly execute the offending code, which may be obfuscated or hidden in a downloaded script, for example.\n\nWhen a user opens a shared Jupyter Notebook in Colab, they are asked whether they'd like to allow the notebook to access their Google Drive. While there can be legitimate reasons for allowing Google Drive access, such as to allow a user to substitute their own files, there can also be malicious effects such as data exfiltration or opening a server to the victim's Google Drive.\n\nThis exercise raises awareness of the effects of arbitrary code execution and Colab's Google Drive integration. Practice secure evaluations of shared Colab notebook links and examine code prior to execution.",
+            "incident_type": "research-finding",
+            "labels": [
+                "aml.cs0018"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0018",
+                    "url": "https://atlas.mitre.org/studies/AML.CS0018/"
+                }
+            ],
+            "x_opencti_id": "13472214-3c90-4fa6-87f6-1b4a515f9028",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "identity--b37a73da-6289-58cb-ad11-01256c02bc17",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "AVID",
+            "description": "AVID stores instantiations of AI risks using two base data classes: Vulnerability and Report. A vulnerability (vuln) is a high-level evidence of an AI failure mode, in line with the NIST CVEs. A report is one example of a particular vulnerability occurring, supported by qualitative or quantitative evaluation.\n\nInformation about either is schematized and stored in AVID. To learn more about the motivations and technical details of vulns and reports, refer to our documentation.",
+            "created": "2024-01-19T21:03:51.510Z",
+            "modified": "2024-01-19T22:39:10.026Z",
+            "x_opencti_organization_type": "other",
+            "x_opencti_reliability": "B - Usually reliable",
+            "x_opencti_id": "9d0e34ce-ece9-4dbe-9f03-0cfe8973809f",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "id": "infrastructure--197032e5-a254-53b5-9fec-1463e576a15b",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-01-22T15:26:43.954Z",
+            "modified": "2024-01-22T15:51:54.940Z",
+            "name": "PyTorch",
+            "infrastructure_types": [
+                "av - (SC) Software"
+            ],
+            "labels": [
+                "avid"
+            ],
+            "x_opencti_id": "3b8b7375-7d37-432b-b152-a8ded9fba04e",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--b37a73da-6289-58cb-ad11-01256c02bc17",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--beb7d7ed-c13e-5565-8080-8ea507c19f38",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.636Z",
+            "modified": "2023-11-20T18:19:50.638Z",
+            "name": "ML Intellectual Property Theft",
+            "description": "Adversaries may exfiltrate ML artifacts to steal intellectual property and cause economic harm to the victim organization.\n\nProprietary training data is costly to collect and annotate and may be a target for [Exfiltration](/tactics/AML.TA0010) and theft.\n\nMLaaS providers charge for use of their API.\nAn adversary who has stolen a model via [Exfiltration](/tactics/AML.TA0010) or via [Extract ML Model](/techniques/AML.T0024.002) now has unlimited use of that service without paying the owner of the intellectual property.",
+            "x_mitre_id": "AML.T0048.004",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0048.004",
+                    "external_id": "AML.T0048.004"
+                }
+            ],
+            "x_opencti_id": "6f7d4e84-3bd0-4257-ac5d-6ae80b33cbd1",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--7778fec7-3810-52d7-818d-bd48067fee7b",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.634Z",
+            "modified": "2023-11-20T18:19:50.142Z",
+            "name": "External Harms",
+            "description": "Adversaries may abuse their access to a victim system and use its resources or capabilities to further their goals by causing harms external to that system.\nThese harms could affect the organization (e.g. Financial Harm, Reputational Harm), its users (e.g. User Harm), or the general public (e.g. Societal Harm).",
+            "x_mitre_id": "AML.T0048",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0048",
+                    "external_id": "AML.T0048"
+                }
+            ],
+            "x_opencti_id": "8b292823-adc5-4c64-86c1-686772b86f82",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--f8fdadaa-41e5-557e-a2e7-ea045e679d8d",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.632Z",
+            "modified": "2023-11-20T18:19:47.594Z",
+            "name": "ML Artifact Collection",
+            "description": "Adversaries may collect ML artifacts for [Exfiltration](/tactics/AML.TA0010) or for use in [ML Attack Staging](/tactics/AML.TA0001).\nML artifacts include models and datasets as well as other telemetry data produced when interacting with a model.",
+            "x_mitre_id": "AML.T0035",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "collection",
+                    "x_opencti_order": 11
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0035",
+                    "external_id": "AML.T0035"
+                }
+            ],
+            "x_opencti_id": "ccfb1e6a-52ff-4997-bc9c-b8eb08fd69e4",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--18c33065-849f-5705-b4d4-28a08470fba6",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.631Z",
+            "modified": "2023-11-20T18:19:47.016Z",
+            "name": "Exfiltration via Cyber Means",
+            "description": "Adversaries may exfiltrate ML artifacts or other information relevant to their goals via traditional cyber means.\n\nSee the ATT&CK [Exfiltration](https://attack.mitre.org/tactics/TA0010/) tactic for more information.",
+            "x_mitre_id": "AML.T0025",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "exfiltration",
+                    "x_opencti_order": 13
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0025",
+                    "external_id": "AML.T0025"
+                }
+            ],
+            "x_opencti_id": "ec43ad24-eebc-4442-b1cd-7d82123b9313",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--2dc305cb-dd66-55b6-a0c8-87dbf69bae66",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.628Z",
+            "modified": "2023-11-20T18:19:43.967Z",
+            "name": "Valid Accounts",
+            "description": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access.\nCredentials may take the form of usernames and passwords of individual user accounts or API keys that provide access to various ML resources and services.\n\nCompromised credentials may provide access to additional ML artifacts and allow the adversary to perform [Discover ML Artifacts](/techniques/AML.T0007).\nCompromised credentials may also grant and adversary increased privileges such as write access to ML artifacts used during development or production.",
+            "x_mitre_id": "AML.T0012",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0012",
+                    "external_id": "AML.T0012"
+                }
+            ],
+            "x_opencti_id": "eb0a6b17-ae24-4d15-be8f-c70ade49345d",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--a09ac672-e17c-5b54-8bb4-db4cb8921cd6",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.628Z",
+            "modified": "2023-11-20T18:19:43.887Z",
+            "name": "User Execution",
+            "description": "An adversary may rely upon specific actions by a user in order to gain execution.\nUsers may inadvertently execute unsafe code introduced via [ML Supply Chain Compromise](/techniques/AML.T0010).\nUsers may be subjected to social engineering to get them to execute malicious code by, for example, opening a malicious document file or link.",
+            "x_mitre_id": "AML.T0011",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "execution",
+                    "x_opencti_order": 5
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0011",
+                    "external_id": "AML.T0011"
+                }
+            ],
+            "x_opencti_id": "20a82ae7-d83f-4e59-ba94-ef537c8c5d17",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e1e0ef24-d22c-57fd-bf29-07bcd78fbcdb",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.623Z",
+            "modified": "2023-11-20T18:19:40.776Z",
+            "name": "ML Software",
+            "description": "Most machine learning systems rely on a limited set of machine learning frameworks.\nAn adversary could get access to a large number of machine learning systems through a comprise of one of their supply chains.\nMany machine learning projects also rely on other open source implementations of various algorithms.\nThese can also be compromised in a targeted way to get access to specific systems.",
+            "x_mitre_id": "AML.T0010.001",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0010.001",
+                    "external_id": "AML.T0010.001"
+                }
+            ],
+            "x_opencti_id": "57fdc693-a3ec-4a6a-95a6-dc54ef1de6be",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.621Z",
+            "modified": "2023-11-20T18:19:38.955Z",
+            "name": "Develop Capabilities",
+            "description": "Adversaries may develop their own capabilities to support operations. This process encompasses identifying requirements, building solutions, and deploying capabilities. Capabilities used to support attacks on ML systems are not necessarily ML-based themselves. Examples include setting up websites with adversarial information or creating Jupyter notebooks with obfuscated exfiltration code.",
+            "x_mitre_id": "AML.T0017",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "resource-development",
+                    "x_opencti_order": 2
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0017",
+                    "external_id": "AML.T0017"
+                }
+            ],
+            "x_opencti_id": "4510901c-b241-48f6-87d1-a4fedd632dca",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "identity--df5730bb-c25b-531a-af19-0349582a82e6",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "InfoSecurity Magazine",
+            "created": "2023-06-19T14:30:05.856Z",
+            "modified": "2023-06-19T14:30:07.282Z",
+            "x_opencti_id": "c0bfedba-a722-406c-b2c3-5ed37a79fa19",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "id": "infrastructure--6ab13549-df75-55c5-8730-5e4d1900e8c1",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2023-06-27T03:30:45.802Z",
+            "modified": "2023-06-27T03:30:46.531Z",
+            "name": "Google Drive",
+            "description": "Cloud file storage hosting service.",
+            "x_opencti_id": "03fe86db-b2c5-4282-953c-eccede9c2117",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--df5730bb-c25b-531a-af19-0349582a82e6",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
