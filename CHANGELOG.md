@@ -1,5 +1,9 @@
 # ATLAS Navigator Data Changelog
 
+## [1.6.3]() (2024-06-24)
+
+- ATLAS STIX updated with ATT&CK Enterprise v15.1
+
 ## [1.6.2]() (2024-03-11)
 
 - STIX and layers updated to use ATLAS Data 4.5.2, minor wording fixes
