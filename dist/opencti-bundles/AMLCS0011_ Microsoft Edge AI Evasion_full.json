@@ -1,0 +1,297 @@
+{
+    "type": "bundle",
+    "id": "bundle--d2d05903-6c1a-4e4b-a668-d8817fec3d71",
+    "objects": [
+        {
+            "id": "identity--48b4f20a-ddd3-5524-a646-55dd68b62ede",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "MITRE-ATLAS",
+            "created": "2024-02-06T15:26:40.634Z",
+            "modified": "2024-02-06T15:26:40.781Z",
+            "x_opencti_id": "7dd82baf-2bc3-402c-81a1-6a871929a136",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--9a28fd71-78d9-5894-b034-5fadba6c55ad",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "A - Completely reliable",
+            "confidence": 75,
+            "created": "2020-02-01T12:00:00.000Z",
+            "modified": "2024-05-22T12:21:35.641Z",
+            "name": "MITRE ATLAS Case Study: Microsoft Edge AI Evasion",
+            "description": "The Azure Red Team performed a red team exercise on a new Microsoft product designed for running AI workloads at the edge. This exercise was meant to use an automated system to continuously manipulate a target image to cause the ML model to produce misclassifications.",
+            "report_types": [
+                "internal-report"
+            ],
+            "published": "2020-02-01T12:00:00.000Z",
+            "x_opencti_workflow_id": "8906d111-3592-428f-8920-239a5ab8dd48",
+            "labels": [
+                "mitre atlas source",
+                "aml.cs0011"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0011",
+                    "url": "https://atlas.mitre.org/studies/AML.CS0011/"
+                }
+            ],
+            "x_opencti_id": "73dc6789-5661-437d-bd7b-1338077ec3d1",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--48b4f20a-ddd3-5524-a646-55dd68b62ede",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "attack-pattern--55e19f1d-312b-5980-9872-10557f9dab27",
+                "attack-pattern--9d4c8767-0cb2-5293-a340-4bd7bca5fe0c",
+                "attack-pattern--d04bf50f-2f00-56fe-afba-b101d9e5642d",
+                "attack-pattern--e05ef699-0400-5c8e-b52f-37407175b1f5",
+                "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213",
+                "incident--d70ba08e-0a33-59b8-90e8-d13ddfb27cac"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--55e19f1d-312b-5980-9872-10557f9dab27",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.624Z",
+            "modified": "2023-11-20T18:19:40.982Z",
+            "name": "ML Model Inference API Access",
+            "description": "Adversaries may gain access to a model via legitimate access to the inference API.\nInference API access can be a source of information to the adversary ([Discover ML Model Ontology](/techniques/AML.T0013), [Discover ML Model Family](/techniques/AML.T0014)), a means of staging the attack ([Verify Attack](/techniques/AML.T0042), [Craft Adversarial Data](/techniques/AML.T0043)), or for introducing data to the target system for Impact ([Evade ML Model](/techniques/AML.T0015), [Erode ML Model Integrity](/techniques/AML.T0031)).",
+            "x_mitre_id": "AML.T0040",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-model-access",
+                    "x_opencti_order": 4
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0040",
+                    "external_id": "AML.T0040"
+                }
+            ],
+            "x_opencti_id": "14a799b7-27ff-4f71-b319-682cabf0e297",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--9d4c8767-0cb2-5293-a340-4bd7bca5fe0c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.619Z",
+            "modified": "2023-11-20T18:19:32.567Z",
+            "name": "Acquire Public ML Artifacts",
+            "description": "Adversaries may search public sources, including cloud storage, public-facing services, and software or data repositories, to identify machine learning artifacts.\nThese machine learning artifacts may include the software stack used to train and deploy models, training and testing data, model configurations and parameters.\nAn adversary will be particularly interested in artifacts hosted by or associated with the victim organization as they may represent what that organization uses in a production environment.\nAdversaries may identify artifact repositories via other resources associated with the victim organization (e.g. [Search Victim-Owned Websites](/techniques/AML.T0003) or [Search for Victim's Publicly Available Research Materials](/techniques/AML.T0000)).\nThese ML artifacts often provide adversaries with details of the ML task and approach.\n\nML artifacts can aid in an adversary's ability to [Create Proxy ML Model](/techniques/AML.T0005).\nIf these artifacts include pieces of the actual model in production, they can be used to directly [Craft Adversarial Data](/techniques/AML.T0043).\nAcquiring some artifacts requires registration (providing user details such email/name), AWS keys, or written requests, and may require the adversary to [Establish Accounts](/techniques/AML.T0021).\n\nArtifacts might be hosted on victim-controlled infrastructure, providing the victim with some information on who has accessed that data.",
+            "x_mitre_id": "AML.T0002",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "resource-development",
+                    "x_opencti_order": 2
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0002",
+                    "external_id": "AML.T0002"
+                }
+            ],
+            "x_opencti_id": "9f8947cd-5587-4254-8d7c-1075a672a32b",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--d04bf50f-2f00-56fe-afba-b101d9e5642d",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.633Z",
+            "modified": "2023-11-20T18:19:48.623Z",
+            "name": "Black-Box Optimization",
+            "description": "In Black-Box attacks, the adversary has black-box (i.e. [ML Model Inference API Access](/techniques/AML.T0040) via API access) access to the target model.\nWith black-box attacks, the adversary may be using an API that the victim is monitoring.\nThese attacks are generally less effective and require more inferences than [White-Box Optimization](/techniques/AML.T0043.000) attacks, but they require much less access.",
+            "x_mitre_id": "AML.T0043.001",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-attack-staging",
+                    "x_opencti_order": 12
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0043.001",
+                    "external_id": "AML.T0043.001"
+                }
+            ],
+            "x_opencti_id": "d261f453-3059-4de2-9060-f1aaaf63e05a",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e05ef699-0400-5c8e-b52f-37407175b1f5",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.617Z",
+            "modified": "2023-11-20T18:19:33.754Z",
+            "name": "Search for Victim's Publicly Available Research Materials",
+            "description": "Adversaries may search publicly available research to learn how and where machine learning is used within a victim organization.\nThe adversary can use this information to identify targets for attack, or to tailor an existing attack to make it more effective.\nOrganizations often use open source model architectures trained on additional proprietary data in production.\nKnowledge of this underlying architecture allows the adversary to craft more realistic proxy models ([Create Proxy ML Model](/techniques/AML.T0005)).\nAn adversary can search these resources for publications for authors employed at the victim organization.\n\nResearch materials may exist as academic papers published in [Journals and Conference Proceedings](/techniques/AML.T0000.000), or stored in [Pre-Print Repositories](/techniques/AML.T0000.001), as well as [Technical Blogs](/techniques/AML.T0000.002).",
+            "x_mitre_id": "AML.T0000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "reconnaissance",
+                    "x_opencti_order": 1
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0000",
+                    "external_id": "AML.T0000"
+                }
+            ],
+            "x_opencti_id": "213bb1f4-b7ed-45d6-9620-f6e21bf50aca",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.628Z",
+            "modified": "2023-11-20T18:19:45.409Z",
+            "name": "Evade ML Model",
+            "description": "Adversaries can [Craft Adversarial Data](/techniques/AML.T0043) that prevent a machine learning model from correctly identifying the contents of the data.\nThis technique can be used to evade a downstream task where machine learning is utilized.\nThe adversary may evade machine learning based virus/malware detection, or network scanning towards the goal of a traditional cyber attack.",
+            "x_mitre_id": "AML.T0015",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "defense-evasion",
+                    "x_opencti_order": 8
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0015",
+                    "external_id": "AML.T0015"
+                }
+            ],
+            "x_opencti_id": "a1b49de3-3741-4137-a8b3-8c35c7713c28",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "incident--d70ba08e-0a33-59b8-90e8-d13ddfb27cac",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-02-06T16:43:43.422Z",
+            "modified": "2024-05-22T12:17:14.072Z",
+            "name": "2020 Microsoft Azure Service Disruption",
+            "description": "The Azure Red Team performed a red team exercise on a new Microsoft product designed for running AI workloads at the edge. This exercise was meant to use a automated system to continuously manipulate a target image to cause the ML model to produce misclassifications.\\n",
+            "first_seen": "2020-02-01T12:00:00.000Z",
+            "last_seen": "2020-02-02T00:00:00.000Z",
+            "objective": "Cause machine learning (ML) model to produce misclassifications.",
+            "incident_type": "research-finding",
+            "source": "Microsoft - Azure Red Team",
+            "labels": [
+                "mitre atlas source",
+                "aml.cs0011"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0011",
+                    "url": "https://atlas.mitre.org/studies/AML.CS0011/"
+                }
+            ],
+            "x_opencti_id": "b490eaf6-033c-4381-a6eb-cc0e984875bd",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "created_by_ref": "identity--48b4f20a-ddd3-5524-a646-55dd68b62ede",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

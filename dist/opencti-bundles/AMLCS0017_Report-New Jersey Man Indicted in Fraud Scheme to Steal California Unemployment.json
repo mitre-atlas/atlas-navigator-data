@@ -1,0 +1,476 @@
+{
+    "type": "bundle",
+    "id": "bundle--e40a4fc1-e3c9-4bfe-8a6d-0546c00cff7e",
+    "objects": [
+        {
+            "id": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "U.S. Department of Justice",
+            "description": "United States Department of Justice",
+            "x_opencti_aliases": [
+                "DOJ",
+                "DoJ"
+            ],
+            "x_opencti_reliability": "A",
+            "created": "2022-04-21T13:07:10.944Z",
+            "modified": "2023-10-23T21:41:10.964Z",
+            "x_opencti_organization_type": "constituent",
+            "labels": [
+                "doj"
+            ],
+            "x_opencti_id": "c3cf1a4d-337b-4362-aa7f-a991ea099add",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--bde9c7ee-5b75-51d8-8e04-b1f8f934e255",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "A - Completely reliable",
+            "confidence": 75,
+            "created": "2022-01-20T12:00:00.000Z",
+            "modified": "2024-05-16T18:04:18.724Z",
+            "name": "New Jersey Man Indicted in Fraud Scheme to Steal California Unemployment Insurance Benefits",
+            "description": "New Jersey Man Indicted in Fraud Scheme to Steal California Unemployment Insurance Benefits\nThursday, January 20, 2022\nShareright caret\nFor Immediate Release\nU.S. Attorney's Office, Eastern District of California\nSACRAMENTO, Calif. \u2014 A federal grand jury returned a 15-count indictment today against Eric Michael Jaklitsch, 40, of Elizabeth, New Jersey, charging him with wire fraud and aggravated identity theft, U.S. Attorney Phillip A. Talbert announced.\n\nOn Dec. 8, 2021, Jaklitsch was arrested on a federal criminal complaint at his home in New Jersey. He made his initial appearance in the District of New Jersey and was ordered detained for transport to the Eastern District of California.\n\nAccording to court documents, between October 2020 and December 2021, Jaklitsch executed a scheme to defraud the California Employment Development Department (EDD) by filing at least 78 fraudulent unemployment insurance claims with EDD, seeking Pandemic Unemployment Assistance and other benefits under the Coronavirus Aid, Relief, and Economic Security (CARES) Act. During the scheme, Jaklitsch collected personally identifiable information (PII) of numerous individuals \u2014 including names, birth dates, and Social Security numbers \u2014 and used their identities to file fraudulent unemployment insurance claims. The filings represented, among other things, that the claimants had recently lost employment or were unable to find employment due to the COVID-19 pandemic. These unemployment insurance claims were fraudulent because, for example, the claimants were not unemployed, they were not eligible for California unemployment insurance benefits, or Jaklitsch did not have authority to file claims on their behalf.\n\nSince at least October 2021, EDD has partnered with ID.me \u2014 a private company used by the EDD for ID verification of claimants \u2014 to implement a system for verifying claimant identities before EDD can process unemployment insurance claims. An internal investigation conducted by ID.me identified Jaklitsch as a person conducting a fraud scheme and referred the case to federal law enforcement.\n\nIn executing his fraudulent scheme, Jaklitsch also submitted false information to ID.me that allowed his fake and stolen identities to be verified. This false information included images of fake driver\u2019s licenses that contained photos of Jaklitsch and the names of the purported claimants. He also submitted live photos of himself that were used to verify the photos on the fake driver\u2019s licenses. Once these false identities were verified, Jaklitsch filed the fraudulent unemployment insurance claims with EDD under the same identities.\n\nIn the fraudulent unemployment insurance applications, Jaklitsch requested that the unemployment insurance benefits be mailed to various addresses under his control, including his residence in New Jersey. EDD approved dozens of the fraudulent claims and authorized Bank of America to mail out EDD debit cards containing unemployment insurance benefits. Jaklitsch then activated the EDD debit cards and used them to withdraw the benefits at ATMs throughout New Jersey. The scheme sought over $2,500,000 in unemployment insurance benefits and caused EDD and the United States to incur actual losses exceeding $900,000.\n\nThis case is the product of an investigation by the Federal Bureau of Investigation, the Department of Labor \u2013 Office of the Inspector General, the Department of Homeland Security \u2013 Office of the Inspector General \u2013 Covid Fraud Unit, and the California Employment Development Department (EDD) \u2013 Investigation Division. Assistant U.S. Attorney Robert J. Artuz is prosecuting the case.\n\nIf convicted, Jaklitsch faces a maximum statutory penalty of 20 years in prison and a $250,000 fine on each of the 14 wire fraud counts. He also faces a two-year mandatory prison sentence if convicted of aggravated identity theft, which must run consecutive to any sentence received on the wire fraud counts. Any sentence, however, would be determined at the discretion of the court after consideration of any applicable statutory factors and the Federal Sentencing Guidelines, which take into account a number of variables. The charges are only allegations; the defendant is presumed innocent until and unless proven guilty beyond a reasonable doubt.\n\nUpdated August 1, 2022",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2022-01-20T12:00:00.000Z",
+            "labels": [
+                "aml.cs0017",
+                "mitre atlas source"
+            ],
+            "external_references": [
+                {
+                    "source_name": "United States Attorney's Office - Eastern District of California",
+                    "url": "https://www.justice.gov/usao-edca/pr/new-jersey-man-indicted-fraud-scheme-steal-california-unemployment-insurance-benefits"
+                }
+            ],
+            "x_opencti_id": "4f02d9b0-e4d0-4918-a437-59b91051ea91",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "relationship--593ef8c4-50eb-47c7-b3aa-4c13eb9d92e2",
+                "relationship--0717e9a4-a92d-4069-80a6-a858e2bc0c07",
+                "relationship--381011e0-6264-4ec1-a986-6a1566427eb0",
+                "infrastructure--c62319b6-0146-5911-b192-bff3839bb8f4",
+                "relationship--15e02da8-e73b-42a4-9417-82eaba925963",
+                "relationship--1bb2fc71-9eeb-42cd-a102-6d2cadb19044",
+                "relationship--b888be3d-9918-4181-949b-df12e37df5fe",
+                "relationship--c2675c3f-10b0-4f14-999b-ed6eafd7c0e2",
+                "relationship--ac8db0ec-602b-447d-85d9-1d727578bcdd",
+                "identity--ea3622ca-94ba-5e29-9336-8a372d728371",
+                "identity--b4dba0b7-c559-5dc9-ac93-858dc224a271",
+                "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+                "attack-pattern--d1f4cffa-4497-572d-80d6-0a0e7214e5a3",
+                "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213",
+                "attack-pattern--6700ecda-f399-5ad2-8bd2-4e2f8f1cdd4c"
+            ]
+        },
+        {
+            "id": "relationship--593ef8c4-50eb-47c7-b3aa-4c13eb9d92e2",
+            "spec_version": "2.1",
+            "relationship_type": "targets",
+            "description": "Caused EDD and the United States to incur actual losses exceeding $900,000.",
+            "start_time": "2022-01-20T05:00:00.000Z",
+            "stop_time": "2022-01-20T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T18:04:05.984Z",
+            "modified": "2024-05-16T18:04:06.181Z",
+            "x_opencti_id": "e9769051-f458-43e6-bf6d-162b710b59b9",
+            "x_opencti_type": "targets",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--d1f4cffa-4497-572d-80d6-0a0e7214e5a3",
+            "target_ref": "identity--ea3622ca-94ba-5e29-9336-8a372d728371"
+        },
+        {
+            "id": "relationship--0717e9a4-a92d-4069-80a6-a858e2bc0c07",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "start_time": "2022-01-20T05:00:00.000Z",
+            "stop_time": "2022-01-20T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T18:03:24.844Z",
+            "modified": "2024-05-16T18:03:24.960Z",
+            "x_opencti_id": "af52ff57-6470-41d6-8c3a-cc9c6bb5c28f",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "attack-pattern--6700ecda-f399-5ad2-8bd2-4e2f8f1cdd4c",
+            "target_ref": "infrastructure--c62319b6-0146-5911-b192-bff3839bb8f4"
+        },
+        {
+            "id": "relationship--381011e0-6264-4ec1-a986-6a1566427eb0",
+            "spec_version": "2.1",
+            "relationship_type": "compromises",
+            "start_time": "2020-10-01T11:00:00.000Z",
+            "stop_time": "2022-01-01T00:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T18:03:06.043Z",
+            "modified": "2024-05-16T18:03:06.159Z",
+            "x_opencti_id": "d9fe8a3e-63b1-4106-a967-e62b9222a34b",
+            "x_opencti_type": "compromises",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+            "target_ref": "infrastructure--c62319b6-0146-5911-b192-bff3839bb8f4"
+        },
+        {
+            "id": "infrastructure--c62319b6-0146-5911-b192-bff3839bb8f4",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-05-16T18:02:14.999Z",
+            "modified": "2024-05-16T18:02:15.040Z",
+            "name": "ID.me",
+            "infrastructure_types": [
+                "av - (SC) Software"
+            ],
+            "x_opencti_id": "b3a08f69-e6ee-4445-bc10-c30e20e6e65c",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "relationship--15e02da8-e73b-42a4-9417-82eaba925963",
+            "spec_version": "2.1",
+            "relationship_type": "targets",
+            "description": "The incident sought over $2,500,000 in unemployment insurance benefits and caused EDD and the United States to incur actual losses exceeding $900,000.",
+            "start_time": "2020-10-01T11:00:00.000Z",
+            "stop_time": "2022-01-01T00:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:59:50.513Z",
+            "modified": "2024-05-16T17:59:50.610Z",
+            "x_opencti_id": "ef505427-6e23-4091-b007-474141498d91",
+            "x_opencti_type": "targets",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+            "target_ref": "identity--ea3622ca-94ba-5e29-9336-8a372d728371"
+        },
+        {
+            "id": "relationship--1bb2fc71-9eeb-42cd-a102-6d2cadb19044",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 1\n\nThe individual applied for unemployment assistance with the California Employment Development Department using forged identities, interacting with ID.me's identity verification system in the process.\n\nThe system extracts content from a photo of an ID, validates the authenticity of the ID using a combination of AI and proprietary methods, then performs facial recognition to match the ID photo to a selfie. [7]\n\nThe individual identified that the California Employment Development Department relied on a third party service, ID.me, to verify individuals' identities.\n\nThe ID.me website outlines the steps to verify an identity, including entering personal information, uploading a driver license, and submitting a selfie photo.",
+            "start_time": "2020-10-01T11:00:00.000Z",
+            "stop_time": "2022-01-01T00:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:58:49.632Z",
+            "modified": "2024-05-16T18:00:42.706Z",
+            "x_opencti_id": "d8c93745-eb1e-42b7-ba63-4fddc19a2012",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+            "target_ref": "attack-pattern--6700ecda-f399-5ad2-8bd2-4e2f8f1cdd4c"
+        },
+        {
+            "id": "relationship--b888be3d-9918-4181-949b-df12e37df5fe",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 2\n\nThe individual collected stolen identities, including names, dates of birth, and Social Security numbers. and used them along with a photo of himself wearing wigs to acquire fake driver's licenses.\n\nThe individual uploaded forged IDs along with a selfie. The ID.me document verification system matched the selfie to the ID photo, allowing some fraudulent claims to proceed in the application pipeline.",
+            "start_time": "2020-10-01T11:00:00.000Z",
+            "stop_time": "2022-01-01T00:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:58:49.371Z",
+            "modified": "2024-05-16T18:01:08.623Z",
+            "x_opencti_id": "c7c4e779-2d19-45a0-ae9f-10b7676f15ae",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+            "target_ref": "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213"
+        },
+        {
+            "id": "relationship--c2675c3f-10b0-4f14-999b-ed6eafd7c0e2",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 3\n\nDozens out of at least 180 fraudulent claims were ultimately approved and the individual received at least $3.4 million in unemployment assistance.",
+            "start_time": "2020-10-01T11:00:00.000Z",
+            "stop_time": "2022-01-01T00:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:58:49.094Z",
+            "modified": "2024-05-16T18:01:29.304Z",
+            "x_opencti_id": "e51bc8ae-3dbb-44cd-8cea-cd24f53e9694",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+            "target_ref": "attack-pattern--d1f4cffa-4497-572d-80d6-0a0e7214e5a3"
+        },
+        {
+            "id": "relationship--ac8db0ec-602b-447d-85d9-1d727578bcdd",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "start_time": "2022-01-20T05:00:00.000Z",
+            "stop_time": "2022-01-20T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T17:58:06.094Z",
+            "modified": "2024-05-16T17:58:06.161Z",
+            "x_opencti_id": "446b7a23-96a5-4e02-8e03-aacc56977d32",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "identity--b4dba0b7-c559-5dc9-ac93-858dc224a271",
+            "target_ref": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c"
+        },
+        {
+            "id": "identity--ea3622ca-94ba-5e29-9336-8a372d728371",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2024-05-16T17:56:31.364Z",
+            "modified": "2024-05-16T17:56:31.506Z",
+            "identity_class": "organization",
+            "name": "California Employment Development Department",
+            "x_opencti_reliability": "A - Completely reliable",
+            "x_opencti_organization_type": "constituent",
+            "labels": [
+                "california"
+            ],
+            "x_opencti_id": "ca5e6c8e-dd8c-4670-9b2d-8881829c6dc9",
+            "x_opencti_type": "Organization",
+            "type": "identity",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "identity--b4dba0b7-c559-5dc9-ac93-858dc224a271",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2024-05-16T17:40:48.155Z",
+            "modified": "2024-05-16T17:40:48.246Z",
+            "identity_class": "individual",
+            "name": "Eric Michael Jaklitsch",
+            "description": "40, of Elizabeth, New Jersey",
+            "x_opencti_id": "f3dced46-8311-4fb6-b516-deefc9718a50",
+            "x_opencti_type": "Individual",
+            "type": "identity",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "incident--460362c5-4386-59be-9fcb-8156b1b49f3c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-05-16T17:38:53.053Z",
+            "modified": "2024-05-17T12:25:55.373Z",
+            "name": "2020 Bypassing ID.me Identity Verification",
+            "description": "An individual filed at least 180 false unemployment claims in the state of California from October 2020 to December 2021 by bypassing ID.me's automated identity verification system. Dozens of fraudulent claims were approved and the individual received at least $3.4 million in payments.\n\nThe individual collected several real identities and obtained fake driver licenses using the stolen personal details and photos of himself wearing wigs. Next, he created accounts on ID.me and went through their identity verification process. The process validates personal details and verifies the user is who they claim by matching a photo of an ID to a selfie. The individual was able to verify stolen identities by wearing the same wig in his submitted selfie.\n\nThe individual then filed fraudulent unemployment claims with the California Employment Development Department (EDD) under the ID.me verified identities. Due to flaws in ID.me's identity verification process at the time, the forged licenses were accepted by the system. Once approved, the individual had payments sent to various addresses he could access and withdrew the money via ATMs. The individual was able to withdraw at least $3.4 million in unemployment benefits. EDD and ID.me eventually identified the fraudulent activity and reported it to federal authorities. In May 2023, the individual was sentenced to 6 years and 9 months in prison for wire fraud and aggravated identify theft in relation to this and another fraud case.",
+            "incident_type": "compromise",
+            "labels": [
+                "aml.cs0017"
+            ],
+            "external_references": [
+                {
+                    "source_name": "California unemployment benefits and ID.me",
+                    "url": "https://help.id.me/hc/en-us/articles/4416268603415-California-unemployment-benefits-and-ID-me"
+                },
+                {
+                    "source_name": "California Employment Development Department and ID.me",
+                    "url": "https://help.id.me/hc/en-us/articles/10407349388951-California-Employment-Development-Department-and-ID-me"
+                }
+            ],
+            "x_opencti_id": "54ae5f1b-4ae6-4111-8480-3c6a3db6f3b8",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "created_by_ref": "identity--8f2a35ce-28b4-5264-b0e9-6e10e9c738a7",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--d1f4cffa-4497-572d-80d6-0a0e7214e5a3",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.635Z",
+            "modified": "2023-11-20T18:19:49.757Z",
+            "name": "Financial Harm",
+            "description": "Financial harm involves the loss of wealth, property, or other monetary assets due to theft, fraud or forgery, or pressure to provide financial resources to the adversary.",
+            "x_mitre_id": "AML.T0048.000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0048.000",
+                    "external_id": "AML.T0048.000"
+                }
+            ],
+            "x_opencti_id": "31ab6687-fe29-40c1-8fa1-8ac5ca07e819",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e4fbace6-e94f-58f4-aed8-a7ea2f19a213",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.628Z",
+            "modified": "2023-11-20T18:19:45.409Z",
+            "name": "Evade ML Model",
+            "description": "Adversaries can [Craft Adversarial Data](/techniques/AML.T0043) that prevent a machine learning model from correctly identifying the contents of the data.\nThis technique can be used to evade a downstream task where machine learning is utilized.\nThe adversary may evade machine learning based virus/malware detection, or network scanning towards the goal of a traditional cyber attack.",
+            "x_mitre_id": "AML.T0015",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "defense-evasion",
+                    "x_opencti_order": 8
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0015",
+                    "external_id": "AML.T0015"
+                }
+            ],
+            "x_opencti_id": "a1b49de3-3741-4137-a8b3-8c35c7713c28",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--6700ecda-f399-5ad2-8bd2-4e2f8f1cdd4c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.625Z",
+            "modified": "2023-11-20T18:19:42.005Z",
+            "name": "ML-Enabled Product or Service",
+            "description": "Adversaries may use a product or service that uses machine learning under the hood to gain access to the underlying machine learning model.\nThis type of indirect model access may reveal details of the ML model or its inferences in logs or metadata.",
+            "x_mitre_id": "AML.T0047",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "ml-model-access",
+                    "x_opencti_order": 4
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0047",
+                    "external_id": "AML.T0047"
+                }
+            ],
+            "x_opencti_id": "b3fdeaea-dcdc-436f-a187-047b9239bca7",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        }
+    ]
+}

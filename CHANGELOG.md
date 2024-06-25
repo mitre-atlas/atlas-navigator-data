@@ -1,5 +1,9 @@
 # ATLAS Navigator Data Changelog
 
+## [1.6.4]() (2024-06-25)
+
+- Added OpenCTI-compatible bundles for select case studies in `dist/opencti-bundles/`
+
 ## [1.6.3]() (2024-06-24)
 
 - ATLAS STIX updated with ATT&CK Enterprise v15.1

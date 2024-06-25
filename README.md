@@ -12,6 +12,8 @@ Located the `dist` directory:
 - `default-navigator-layers/`
     + Navigator layer files highlighting the ATLAS matrix and a case study frequency heatmap.
     + Viewable by default on the [ATLAS Navigator](https://mitre-atlas.github.io/atlas-navigator/).
+- `opencti-bundles/`
+    + Select case studies expressed as STIX 2.1 bundles for use with [OpenCTI](https://github.com/OpenCTI-Platform/opencti).
 - `stix-atlas.json`
     + ATLAS matrix expressed as a STIX 2.1 bundle following the [ATT&CK data model](https://github.com/mitre/cti/blob/master/USAGE.md#the-attck-data-model).
 - `stix-atlas-attack-enterprise.json`

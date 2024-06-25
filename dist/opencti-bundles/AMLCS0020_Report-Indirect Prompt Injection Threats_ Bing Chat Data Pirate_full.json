@@ -1,0 +1,414 @@
+{
+    "type": "bundle",
+    "id": "bundle--7f98bd8c-442d-432a-b67b-3afaa0d6ff40",
+    "objects": [
+        {
+            "id": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "spec_version": "2.1",
+            "identity_class": "organization",
+            "name": "Saarland University",
+            "created": "2023-12-06T21:03:26.595Z",
+            "modified": "2023-12-06T21:03:26.621Z",
+            "x_opencti_id": "85e47784-6dff-4474-915b-ec961dbfa5ca",
+            "x_opencti_type": "Organization",
+            "type": "identity"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:CLEAR",
+            "definition": {
+                "tlp": "clear"
+            }
+        },
+        {
+            "id": "report--34ca3a5c-2ea5-5cba-9603-537db3e911ed",
+            "spec_version": "2.1",
+            "revoked": false,
+            "x_opencti_reliability": "A - Completely reliable",
+            "confidence": 75,
+            "created": "2023-12-06T21:01:43.000Z",
+            "modified": "2024-05-16T14:29:18.191Z",
+            "name": "Indirect Prompt Injection Threats: Bing Chat Data Pirate",
+            "description": "Indirect Prompt Injection Threats: Bing Chat Data Pirate\n\nNote: This attack demonstration is part of a larger set of attack techniques presented in \"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection\".\n\nWhenever interacting with Microsoft's new Bing Chat LLM Chatbot, a user can allow Bing Chat permission to view and access currently open websites throughout the chat session. Researchers demonstrated the ability for an attacker to plant an injection in a website the user is visiting, which silently turns Bing Chat into a Social Engineer who seeks out and exfiltrates personal information. The user doesn't have to ask about the website or do anything except interact with Bing Chat while the website is opened in the browser in order for this attack to be executed.\n\nIn the provided demonstration, a user opened a prepared malicious website containing an indirect prompt injection attack (could also be on a social media site) in Edge. The website includes a prompt which is read by Bing and changes its behavior to access user information, which in turn can sent to an attacker.\n\nIndirect Prompt Injection Threats\nLarge Language Models (LLM) have made amazing progress in recent years. Most recently, they have demonstrated to answer natural language questions at a surprising performance level. In addition, by clever prompting, these models can change their behavior. In this way, these models blur the line between data and instruction. From \"traditional\" cybersecurity, we know that this is a problem. The importance of security boundaries between trusted and untrusted inputs for LLMs was underestimated. We show that Prompt Injection is a serious security threat that needs to be addressed as models are deployed to new use-cases and interface with more systems.\n\nIf allowed by the user, Bing Chat can see currently open websites. We show that an attacker can plant an injection in a website the user is visiting, which silently turns Bing Chat into a Social Engineer who seeks out and exfiltrates personal information. The user doesn't have to ask about the website or do anything except interact with Bing Chat while the website is opened in the browser.\n\nTurning Bing Chat into a scammer trying to get the user's payment details\nMicrosoft prevents content from GitHub pages domains from being ingested by Bing Chat at the present time.\nTurning Bing Chat into a Data Pirate\nThis demonstration on Bing Chat is only a small part of new attack techniques presented in our recent paper (linked below).\n\nA user opened a prepared website containing an injection (could also be on a social media site) in Edge. You can see the conversation the user had with Bing Chat while the tab was open. The website includes a prompt which is read by Bing and changes its behavior to access user information and send it to an attacker. This is an example of \"Indirect Prompt Injection\", a new attack described in our paper. The pirate accent is optional. The injection itself is simply a piece of regular text that has fontsize 0. You can find an image of the injected text below, too (otherwise Bing Chat could see it and could be injected). you can inspect the actual website that is opened here.\n\nGitHub\nPaper\n\n\nThe prompt hidden on the pirate website",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2023-12-06T21:01:43.000Z",
+            "labels": [
+                "aml.cs0020",
+                "mitre atlas source"
+            ],
+            "external_references": [
+                {
+                    "source_name": "AML.CS0020",
+                    "url": "https://atlas.mitre.org/studies/AML.CS0020/"
+                },
+                {
+                    "source_name": "greshake",
+                    "url": "https://greshake.github.io/"
+                }
+            ],
+            "x_opencti_id": "a4d7fddb-ac7d-404a-96a4-2f1efdbe1298",
+            "x_opencti_type": "Report",
+            "type": "report",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "object_refs": [
+                "relationship--fb13d293-1075-406a-9c10-60b53cec1c93",
+                "relationship--2fdda00e-4fe1-4f9f-b58e-13ca2e38bd85",
+                "infrastructure--e9d345e5-d539-5804-8c38-44310b71809f",
+                "relationship--79b3de4d-e76d-478b-9f12-598e7270f8fc",
+                "relationship--77943d69-dab9-4da9-93c9-bbab0fe44256",
+                "relationship--abe703eb-556d-4139-9c57-4db3baf951d9",
+                "relationship--d2c3a65b-3fd9-4822-93e7-c8b14907f370",
+                "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+                "attack-pattern--e4ea4abb-11ae-55b0-83a9-3ced07e2b79c",
+                "attack-pattern--b96aadb9-e610-5549-b83d-8e6d7923ad76",
+                "attack-pattern--a616f41c-b06a-5163-bf53-a0e8b5710e2d",
+                "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd"
+            ]
+        },
+        {
+            "id": "relationship--fb13d293-1075-406a-9c10-60b53cec1c93",
+            "spec_version": "2.1",
+            "relationship_type": "related-to",
+            "start_time": "2023-12-06T05:00:00.000Z",
+            "stop_time": "2023-12-06T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:28:57.115Z",
+            "modified": "2024-05-16T14:28:57.254Z",
+            "x_opencti_id": "846341a1-3ac9-4ee0-9faf-49745d2b1cc1",
+            "x_opencti_type": "related-to",
+            "type": "relationship",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "infrastructure--e9d345e5-d539-5804-8c38-44310b71809f",
+            "target_ref": "attack-pattern--b96aadb9-e610-5549-b83d-8e6d7923ad76"
+        },
+        {
+            "id": "relationship--2fdda00e-4fe1-4f9f-b58e-13ca2e38bd85",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "start_time": "2023-12-06T05:00:00.000Z",
+            "stop_time": "2023-12-06T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2024-05-16T14:28:18.456Z",
+            "modified": "2024-05-16T14:28:18.504Z",
+            "x_opencti_id": "9d737ff1-b424-4717-ad46-1e93e4431f03",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+            "target_ref": "infrastructure--e9d345e5-d539-5804-8c38-44310b71809f"
+        },
+        {
+            "id": "infrastructure--e9d345e5-d539-5804-8c38-44310b71809f",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2024-05-16T14:27:32.903Z",
+            "modified": "2024-05-16T14:27:33.037Z",
+            "name": "Bing Chat",
+            "infrastructure_types": [
+                "av - (SC) Software"
+            ],
+            "x_opencti_id": "4973463a-aa73-40f5-9032-54efd06299d0",
+            "x_opencti_type": "Infrastructure",
+            "type": "infrastructure",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "id": "relationship--79b3de4d-e76d-478b-9f12-598e7270f8fc",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 4\n\nWith this user information, the attacker could now use the user's PII it has received (the user's real name) for further identity-level attacks. (For example, identity theft or fraud).",
+            "start_time": "2023-12-06T05:00:00.000Z",
+            "stop_time": "2023-12-06T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T21:21:21.265Z",
+            "modified": "2024-05-16T13:46:50.048Z",
+            "x_opencti_id": "71d11a6a-3a4b-4210-9154-a685c863c2e6",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+            "target_ref": "attack-pattern--a616f41c-b06a-5163-bf53-a0e8b5710e2d"
+        },
+        {
+            "id": "relationship--77943d69-dab9-4da9-93c9-bbab0fe44256",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 3\n\nAfter ingesting the malicious system prompts embedded within the website, the LLM is directed to change its conversational behavior (to the style of a pirate in this case) with the goal being to subtly convince the user to 1) provide the LLM with the user's name, and 2) encourage the user to click on a URL that the LLM will insert the user's name into.",
+            "start_time": "2023-12-06T05:00:00.000Z",
+            "stop_time": "2023-12-06T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T21:20:16.548Z",
+            "modified": "2024-05-16T13:46:04.366Z",
+            "x_opencti_id": "f0e1195b-166a-4081-b26d-81a01406492e",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+            "target_ref": "attack-pattern--b96aadb9-e610-5549-b83d-8e6d7923ad76"
+        },
+        {
+            "id": "relationship--abe703eb-556d-4139-9c57-4db3baf951d9",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 2\n\nThe cross prompt injection embedded into this malicious website was simply a piece of regular text that has font size 0. With this font size design, the text will be obfuscated to human users who interact with the website, but will still be processed as plain text by the LLM during ingest. Therefore, it is difficult to detect with a human-in-the-loop.",
+            "start_time": "2023-12-06T05:00:00.000Z",
+            "stop_time": "2023-12-06T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T21:18:26.639Z",
+            "modified": "2024-05-16T13:47:28.122Z",
+            "x_opencti_id": "f02b4a8e-35ea-44a9-af54-ba94442008f6",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+            "target_ref": "attack-pattern--e4ea4abb-11ae-55b0-83a9-3ced07e2b79c"
+        },
+        {
+            "id": "relationship--d2c3a65b-3fd9-4822-93e7-c8b14907f370",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "description": "Step 1\n\nThe attacker created a website containing malicious system prompts for the LLM to ingest in order to influence the model's behavior. These prompts are ingested by the model when access to it is requested by the user.",
+            "start_time": "2023-12-06T05:00:00.000Z",
+            "stop_time": "2023-12-06T05:00:00.000Z",
+            "revoked": false,
+            "confidence": 75,
+            "lang": "en",
+            "created": "2023-12-06T21:17:54.523Z",
+            "modified": "2024-05-16T13:47:11.450Z",
+            "x_opencti_id": "cb25180d-1db8-47f2-baca-ad4b30aa4b83",
+            "x_opencti_type": "uses",
+            "type": "relationship",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "source_ref": "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+            "target_ref": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd"
+        },
+        {
+            "id": "incident--40fb6c35-68d1-584c-870a-1a71b54da78c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 75,
+            "created": "2023-12-06T21:15:54.952Z",
+            "modified": "2023-12-06T21:15:55.362Z",
+            "name": "2023 Indirect Prompt Injection Threats: Bing Chat Data Pirate",
+            "description": "Note: This attack demonstration is part of a larger set of attack techniques presented in \\\"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection\\\".\\n\\nWhenever interacting with Microsoft's new Bing Chat LLM Chatbot, a user can allow Bing Chat permission to view and access currently open websites throughout the chat session. Researchers demonstrated the ability for an attacker to plant an injection in a website the user is visiting, which silently turns Bing Chat into a Social Engineer who seeks out and exfiltrates personal information. The user doesn't have to ask about the website or do anything except interact with Bing Chat while the website is opened in the browser in order for this attack to be executed.\\n\\nIn the provided demonstration, a user opened a prepared malicious website containing an indirect prompt injection attack (could also be on a social media site) in Edge. The website includes a prompt which is read by Bing and changes its behavior to access user information, which in turn can sent to an attacker.",
+            "incident_type": "research-finding",
+            "labels": [
+                "mitre atlas source"
+            ],
+            "x_opencti_id": "d93e1920-8ee3-4128-9ac3-1a96c51f3d7d",
+            "x_opencti_type": "Incident",
+            "type": "incident",
+            "created_by_ref": "identity--3bddef1e-c7cb-5ab8-a8f2-a2e9e5d5b279",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101",
+            "created": "2017-06-01T00:00:00.000Z",
+            "definition_type": "statement",
+            "name": "Copyright 2015-2023, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.",
+            "definition": {
+                "statement": "copyright 2015-2023, the mitre corporation. mitre att&ck and att&ck are registered trademarks of the mitre corporation."
+            }
+        },
+        {
+            "id": "attack-pattern--e4ea4abb-11ae-55b0-83a9-3ced07e2b79c",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.637Z",
+            "modified": "2023-11-20T18:19:52.421Z",
+            "name": "Indirect",
+            "description": "An adversary may inject prompts indirectly via separate data channel ingested by the LLM such as include text or multimedia pulled from databases or websites.\nThese malicious prompts may be hidden or obfuscated from the user. This type of injection may be used by the adversary to gain a foothold in the system or to target an unwitting user of the system.",
+            "x_mitre_id": "AML.T0051.001",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "defense-evasion",
+                    "x_opencti_order": 8
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "persistence",
+                    "x_opencti_order": 6
+                },
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "privilege-escalation",
+                    "x_opencti_order": 7
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0051.001",
+                    "external_id": "AML.T0051.001"
+                }
+            ],
+            "x_opencti_id": "96308251-4532-412a-a5bc-a3d7f9e089d9",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--b96aadb9-e610-5549-b83d-8e6d7923ad76",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.638Z",
+            "modified": "2023-11-20T18:19:51.306Z",
+            "name": "Spearphishing via Social Engineering LLM",
+            "description": "Adversaries may turn LLMs into targeted social engineers.\nLLMs are capable of interacting with users via text conversations.\nThey can be instructed by an adversary to seek sensitive information from a user and act as effective social engineers.\nThey can be targeted towards particular personas defined by the adversary.\nThis allows adversaries to scale spearphishing efforts and target individuals to reveal private information such as credentials to privileged systems.",
+            "x_mitre_id": "AML.T0052.000",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "initial-access",
+                    "x_opencti_order": 3
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0052.000",
+                    "external_id": "AML.T0052.000"
+                }
+            ],
+            "x_opencti_id": "02b5dddd-a4a6-4479-a1a4-e93afa647ba4",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--a616f41c-b06a-5163-bf53-a0e8b5710e2d",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.636Z",
+            "modified": "2023-11-20T18:19:50.307Z",
+            "name": "User Harm",
+            "description": "User harms may encompass a variety of harm types including financial and reputational that are directed at or felt by individual victims of the attack rather than at the organization level.",
+            "x_mitre_id": "AML.T0048.003",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "impact",
+                    "x_opencti_order": 14
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0048.003",
+                    "external_id": "AML.T0048.003"
+                }
+            ],
+            "x_opencti_id": "f8e8790d-161e-4f98-a8da-99a85407277b",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        },
+        {
+            "id": "attack-pattern--8efdfe79-f360-5fb8-bbfc-7de4696ccffd",
+            "spec_version": "2.1",
+            "revoked": false,
+            "confidence": 0,
+            "created": "2023-10-31T13:48:07.621Z",
+            "modified": "2023-11-20T18:19:38.955Z",
+            "name": "Develop Capabilities",
+            "description": "Adversaries may develop their own capabilities to support operations. This process encompasses identifying requirements, building solutions, and deploying capabilities. Capabilities used to support attacks on ML systems are not necessarily ML-based themselves. Examples include setting up websites with adversarial information or creating Jupyter notebooks with obfuscated exfiltration code.",
+            "x_mitre_id": "AML.T0017",
+            "labels": [
+                "atlas"
+            ],
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-atlas",
+                    "phase_name": "resource-development",
+                    "x_opencti_order": 2
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-atlas",
+                    "url": "https://atlas.mitre.org/techniques/AML.T0017",
+                    "external_id": "AML.T0017"
+                }
+            ],
+            "x_opencti_id": "4510901c-b241-48f6-87d1-a4fedd632dca",
+            "x_opencti_type": "Attack-Pattern",
+            "type": "attack-pattern",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "marking-definition--c4099854-e00c-5dbc-b0fe-4c9909920101"
+            ]
+        }
+    ]
+}
