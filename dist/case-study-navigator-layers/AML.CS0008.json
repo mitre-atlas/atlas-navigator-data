@@ -11,12 +11,18 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.5.2"
+            "value": "4.7.0"
         }
     ],
     "name": "ProofPoint Evasion",
     "description": "Proof Pudding (CVE-2019-20634) is a code repository that describes how ML researchers evaded ProofPoint's email protection system by first building a copy-cat email protection ML model, and using the insights to bypass the live system. More specifically, the insights allowed researchers to craft malicious emails that received preferable scores, going undetected by the system. Each word in an email is scored numerically based on multiple variables and if the overall score of the email is too low, ProofPoint will output an error, labeling it as SPAM.",
     "techniques": [
+        {
+            "techniqueID": "AML.T0063",
+            "showSubtechniques": false,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
         {
             "techniqueID": "AML.T0047",
             "showSubtechniques": false,

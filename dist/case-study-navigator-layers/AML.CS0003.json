@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.5.2"
+            "value": "4.7.0"
         }
     ],
     "name": "Bypassing Cylance's AI Malware Detection",
@@ -27,6 +27,12 @@
             "techniqueID": "AML.T0047",
             "showSubtechniques": false,
             "tactic": "ml-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0063",
+            "showSubtechniques": false,
+            "tactic": "discovery",
             "color": "#C8E6C9"
         },
         {

@@ -7,11 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "4.5.1"
-        },
-        {
-            "name": "generated_on",
-            "value": "2024-03-11"
+            "value": "4.7.0"
         }
     ],
     "name": "ATLAS Matrix",
@@ -495,6 +491,54 @@
             "techniqueID": "AML.T0057",
             "showSubtechniques": true,
             "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0058",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0059",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0060",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0061",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0062",
+            "showSubtechniques": true,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0063",
+            "showSubtechniques": true,
+            "tactic": "discovery",
             "color": "#C8E6C9"
         }
     ],

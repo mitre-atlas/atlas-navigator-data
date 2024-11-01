@@ -11,10 +11,10 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.5.2"
+            "value": "4.7.0"
         }
     ],
-    "name": "Attack on Machine Translation Service - Google Translate, Bing Translator, and Systran Translate",
+    "name": "Attack on Machine Translation Services",
     "description": "Machine translation services (such as Google Translate, Bing Translator, and Systran Translate) provide public-facing UIs and APIs.\nA research group at UC Berkeley utilized these public endpoints to create a replicated model with near-production state-of-the-art translation quality.\nBeyond demonstrating that IP can be functionally stolen from a black-box system, they used the replicated model to successfully transfer adversarial examples to the real production services.\nThese adversarial inputs successfully cause targeted word flips, vulgar outputs, and dropped sentences on Google Translate and Systran Translate websites.",
     "techniques": [
         {

@@ -1,5 +1,9 @@
 # ATLAS Navigator Data Changelog
 
+## [1.7.0]() (2024-11-01)
+
+- STIX and layers updated to use ATLAS Data 4.7.0, generative AI updates
+
 ## [1.6.4]() (2024-06-25)
 
 - Added OpenCTI-compatible bundles for select case studies in `dist/opencti-bundles/`
@@ -21,7 +25,7 @@
 
 - ATLAS STIX now includes mitigations as STIX courses of action
 - Now generating ATLAS-only STIX as `stix-atlas.json`
-   + ATLAS + ATT&CK Enterprise has been renamed to `stix-atlas-attack-enterprise.json`
+  - ATLAS + ATT&CK Enterprise has been renamed to `stix-atlas-attack-enterprise.json`
 - Updated to use ATLAS Data 4.5.0
 
 ## [1.5.1]() (2023-07-18)
@@ -40,7 +44,7 @@ Upgrade PyYAML to 6.0.1 to resolve install error - see https://github.com/yaml/p
 ## [1.3.0]() (2023-01-20)
 
 - ATLAS STIX now also includes ATT&CK Enterprise v12 for comparison purposes
-  + Any ATLAS techniques adapted from ATT&CK are additionally denoted with "(ATLAS)" to distinguish the names
+  - Any ATLAS techniques adapted from ATT&CK are additionally denoted with "(ATLAS)" to distinguish the names
 - Updated to use ATLAS Data 4.2.0
 
 ## [1.2.0]() (2022-10-28)
@@ -52,7 +56,7 @@ Upgrade PyYAML to 6.0.1 to resolve install error - see https://github.com/yaml/p
 
 - Updated to use ATLAS Data 4.0.0, with support for outputting multiple `x-mitre-matrix` objects
 - Outputs STIX 2.1 objects for [ATT&CK Workbench](https://github.com/center-for-threat-informed-defense/attack-workbench-frontend) support
-  + Import the outputted STIX as a new collection in the Workbench
+  - Import the outputted STIX as a new collection in the Workbench
 - Supports ATT&CK Navigator 4.6.4
 
 ## [1.0.0]() (2022-03-23)
