@@ -7,7 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "4.7.0"
+            "value": "4.8.0"
         }
     ],
     "name": "ATLAS Matrix",
@@ -406,25 +406,7 @@
         {
             "techniqueID": "AML.T0051",
             "showSubtechniques": true,
-            "tactic": "initial-access",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0051",
-            "showSubtechniques": true,
-            "tactic": "persistence",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0051",
-            "showSubtechniques": true,
-            "tactic": "privilege-escalation",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0051",
-            "showSubtechniques": true,
-            "tactic": "defense-evasion",
+            "tactic": "execution",
             "color": "#C8E6C9"
         },
         {
@@ -473,12 +455,6 @@
             "techniqueID": "AML.T0055",
             "showSubtechniques": true,
             "tactic": "credential-access",
-            "color": "#C8E6C9"
-        },
-        {
-            "techniqueID": "AML.T0056",
-            "showSubtechniques": true,
-            "tactic": "discovery",
             "color": "#C8E6C9"
         },
         {
@@ -539,6 +515,74 @@
             "techniqueID": "AML.T0063",
             "showSubtechniques": true,
             "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0064",
+            "showSubtechniques": true,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0066",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0067",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0068",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069",
+            "showSubtechniques": true,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0070",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0071",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0067.000",
             "color": "#C8E6C9"
         }
     ],

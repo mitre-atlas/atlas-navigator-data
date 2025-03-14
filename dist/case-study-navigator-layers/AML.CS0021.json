@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.7.0"
+            "value": "4.8.0"
         }
     ],
     "name": "ChatGPT Plugin Privacy Leak",
@@ -30,7 +30,7 @@
         {
             "techniqueID": "AML.T0051",
             "showSubtechniques": true,
-            "tactic": "initial-access"
+            "tactic": "execution"
         },
         {
             "techniqueID": "AML.T0053",

@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.7.0"
+            "value": "4.8.0"
         }
     ],
     "name": "Achieving Code Execution in MathGPT via Prompt Injection",
@@ -36,7 +36,7 @@
         {
             "techniqueID": "AML.T0051",
             "showSubtechniques": true,
-            "tactic": "initial-access"
+            "tactic": "execution"
         },
         {
             "techniqueID": "AML.T0042",
