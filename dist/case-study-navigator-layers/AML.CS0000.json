@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.8.0"
+            "value": "4.9.0"
         }
     ],
     "name": "Evasion of Deep Learning Detector for Malware C&C Traffic",
@@ -38,7 +38,7 @@
         {
             "techniqueID": "AML.T0005",
             "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
+            "tactic": "ai-attack-staging",
             "color": "#C8E6C9"
         },
         {
@@ -48,12 +48,12 @@
         {
             "techniqueID": "AML.T0043",
             "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
+            "tactic": "ai-attack-staging"
         },
         {
             "techniqueID": "AML.T0042",
             "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
+            "tactic": "ai-attack-staging",
             "color": "#C8E6C9"
         },
         {

@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.8.0"
+            "value": "4.9.0"
         }
     ],
     "name": "ProofPoint Evasion",
@@ -26,7 +26,7 @@
         {
             "techniqueID": "AML.T0047",
             "showSubtechniques": false,
-            "tactic": "ml-model-access",
+            "tactic": "ai-model-access",
             "color": "#C8E6C9"
         },
         {
@@ -36,7 +36,7 @@
         {
             "techniqueID": "AML.T0005",
             "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
+            "tactic": "ai-attack-staging"
         },
         {
             "techniqueID": "AML.T0043.002",
@@ -45,7 +45,7 @@
         {
             "techniqueID": "AML.T0043",
             "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
+            "tactic": "ai-attack-staging"
         },
         {
             "techniqueID": "AML.T0015",

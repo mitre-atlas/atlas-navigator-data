@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.8.0"
+            "value": "4.9.0"
         }
     ],
     "name": "VirusTotal Poisoning",
@@ -29,7 +29,7 @@
         {
             "techniqueID": "AML.T0043",
             "showSubtechniques": false,
-            "tactic": "ml-attack-staging",
+            "tactic": "ai-attack-staging",
             "color": "#C8E6C9"
         },
         {

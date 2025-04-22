@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.8.0"
+            "value": "4.9.0"
         }
     ],
     "name": "ChatGPT Package Hallucination",
@@ -20,7 +20,7 @@
         {
             "techniqueID": "AML.T0040",
             "showSubtechniques": false,
-            "tactic": "ml-model-access",
+            "tactic": "ai-model-access",
             "color": "#C8E6C9"
         },
         {

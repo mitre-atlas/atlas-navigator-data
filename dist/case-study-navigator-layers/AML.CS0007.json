@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.8.0"
+            "value": "4.9.0"
         }
     ],
     "name": "GPT-2 Model Replication",
@@ -57,7 +57,7 @@
         {
             "techniqueID": "AML.T0005",
             "showSubtechniques": true,
-            "tactic": "ml-attack-staging"
+            "tactic": "ai-attack-staging"
         }
     ],
     "legendItems": [

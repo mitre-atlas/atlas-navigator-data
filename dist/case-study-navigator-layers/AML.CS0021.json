@@ -11,16 +11,28 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "4.8.0"
+            "value": "4.9.0"
         }
     ],
-    "name": "ChatGPT Plugin Privacy Leak",
-    "description": "Researchers uncovered an indirect prompt injection vulnerability within ChatGPT, where an attacker can feed malicious websites through ChatGPT plugins to take control of a chat session and exfiltrate the history of the conversation. As a result of this attack, users may be vulnerable to PII leakage from the extracted chat session.",
+    "name": "ChatGPT Conversation Exfiltration",
+    "description": "[Embrace the Red](https://embracethered.com/blog/) demonstrated that ChatGPT users' conversations can be exfiltrated via an indirect prompt injection. To execute the attack, a threat actor uploads a malicious prompt to a public website, where a ChatGPT user may interact with it. The prompt causes ChatGPT to respond with the markdown for an image, whose URL has the user's conversation secretly embedded. ChatGPT renders the image for the user, creating a automatic request to an adversary-controlled script and exfiltrating the user's conversation. Additionally, the researcher demonstrated how the prompt can execute other plugins, opening them up to additional harms.",
     "techniques": [
         {
-            "techniqueID": "AML.T0017",
+            "techniqueID": "AML.T0065",
             "showSubtechniques": false,
             "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0079",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0078",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
             "color": "#C8E6C9"
         },
         {
@@ -33,15 +45,15 @@
             "tactic": "execution"
         },
         {
-            "techniqueID": "AML.T0053",
+            "techniqueID": "AML.T0077",
             "showSubtechniques": false,
-            "tactic": "execution",
+            "tactic": "exfiltration",
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0057",
+            "techniqueID": "AML.T0053",
             "showSubtechniques": false,
-            "tactic": "exfiltration",
+            "tactic": "privilege-escalation",
             "color": "#C8E6C9"
         },
         {
