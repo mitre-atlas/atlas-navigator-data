@@ -1,5 +1,17 @@
 # ATLAS Navigator Data Changelog
 
+## [1.9.1]() (2025-08-13)
+
+- STIX and layers updated to use ATLAS Data 4.9.1
+
+## [1.9.0]() (2025-04-22)
+
+- STIX and layers updated to use ATLAS Data 4.9.0
+
+## [1.8.0]() (2025-03-14)
+
+- STIX and layers updated to use ATLAS Data 4.8.0
+
 ## [1.7.0]() (2024-11-01)
 
 - STIX and layers updated to use ATLAS Data 4.7.0, generative AI updates
