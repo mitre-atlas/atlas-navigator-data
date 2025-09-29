@@ -1,5 +1,9 @@
 # ATLAS Navigator Data Changelog
 
+## [1.10.0]() (2025-08-13)
+
+- STIX and layers updated to use ATLAS Data 5.0.0 and ATT&CK 17.1
+
 ## [1.9.1]() (2025-08-13)
 
 - STIX and layers updated to use ATLAS Data 4.9.1

@@ -7,7 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "4.9.1"
+            "value": "5.0.0"
         }
     ],
     "name": "ATLAS Matrix",
@@ -643,6 +643,80 @@
             "techniqueID": "AML.T0079",
             "showSubtechniques": true,
             "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0081",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0082",
+            "showSubtechniques": true,
+            "tactic": "credential-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0083",
+            "showSubtechniques": true,
+            "tactic": "credential-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084",
+            "showSubtechniques": true,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085",
+            "showSubtechniques": true,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0086",
+            "showSubtechniques": true,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.002",
             "color": "#C8E6C9"
         }
     ],
