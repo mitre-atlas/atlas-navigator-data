@@ -1,0 +1,87 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0034"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "ProKYC: Deepfake Tool for Account Fraud Attacks",
+    "description": "Cato CTRL security researchers have identified ProKYC, a deepfake tool being sold to cybercriminals as a method to bypass Know Your Customer (KYC) verification on financial service applications such as cryptocurrency exchanges. ProKYC can create fake identity documents and generate deepfake selfie videos, two key pieces of biometric data used during KYC verification. The tool helps cybercriminals defeat facial recognition and liveness checks to create fraudulent accounts.\n\nThe procedure below describes how a bad actor could use ProKYC\u2019s service to bypass KYC verification.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0087",
+            "showSubtechniques": false,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0088",
+            "showSubtechniques": false,
+            "tactic": "ai-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0088",
+            "showSubtechniques": false,
+            "tactic": "ai-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0021",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ai-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0073",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

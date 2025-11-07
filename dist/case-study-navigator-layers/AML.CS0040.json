@@ -1,0 +1,78 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0040"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "Hacking ChatGPT\u2019s Memories with Prompt Injection",
+    "description": "[Embrace the Red](https://embracethered.com/blog/) demonstrated that ChatGPT\u2019s memory feature is vulnerable to manipulation via prompt injections. To execute the attack, the researcher hid a prompt injection in a shared Google Doc. When a user references the document, its contents is placed into ChatGPT\u2019s context via the Connected App feature, and the prompt is executed, poisoning the memory with false facts. The researcher demonstrated that these injected memories persist across chat sessions. Additionally, since the prompt injection payload is introduced through shared resources, this leaves others vulnerable to the same attack and maintains persistence on the system.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0068",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0093",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0080.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080",
+            "showSubtechniques": true,
+            "tactic": "persistence"
+        },
+        {
+            "techniqueID": "AML.T0093",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0038"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "Planting Instructions for Delayed Automatic AI Agent Tool Invocation",
+    "description": "[Embrace the Red](https://embracethered.com/blog/) demonstrated that Google Gemini is susceptible to automated tool invocation by delaying the execution to the next conversation turn. This bypasses a security control that restricts Gemini from invoking tools that can access sensitive user information in the same conversation turn that untrusted data enters context.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0093",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0094",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0053",
+            "showSubtechniques": false,
+            "tactic": "privilege-escalation",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085",
+            "showSubtechniques": true,
+            "tactic": "collection"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0041"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "Rules File Backdoor: Supply Chain Attack on AI Coding Assistants",
+    "description": "Pillar Security researchers demonstrated how adversaries can compromise AI-generated code by injecting malicious instructions into rules files used to configure AI coding assistants like Cursor and GitHub Copilot. The attack uses invisible Unicode characters to hide malicious prompts that manipulate the AI to insert backdoors, vulnerabilities, or malicious scripts into generated code. These poisoned rules files are distributed through open-source repositories and developer communities, creating a scalable supply chain attack that could affect millions of developers and end users through compromised software.\n\nVendor Response to Responsible Disclosure:\n-\tCursor: Determined that this risk falls under the users\u2019 responsibility.\n-\tGitHub Copilot: Implemented a [new security feature](https://github.blog/changelog/2025-05-01-github-now-provides-a-warning-about-hidden-unicode-text/) that displays a warning when a file's contents include hidden Unicode text on github.com.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0079",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0068",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0081",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0054",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0067",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

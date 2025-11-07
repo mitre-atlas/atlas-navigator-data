@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.0.1"
+            "value": "5.1.0"
         }
     ],
     "name": "Google Bard Conversation Exfiltration",
@@ -36,7 +36,7 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0049",
+            "techniqueID": "AML.T0093",
             "showSubtechniques": false,
             "tactic": "initial-access",
             "color": "#C8E6C9"

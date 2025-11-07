@@ -1,0 +1,132 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0037"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "Data Exfiltration via Agent Tools in Copilot Studio",
+    "description": "Researchers from Zenity demonstrated how an organization\u2019s data can be exfiltrated via prompt injections that target an AI-powered customer service agent.\n\nThe target system is a customer service agent built by Zenity in Copilot Studio. It is modeled after an agent built by McKinsey to streamline its customer service needs. The AI agent listens to a customer service email inbox where customers send their engagement requests. Upon receiving a request, the agent looks at the customer\u2019s previous engagements, understands who the best consultant for the case is, and proceeds to send an email to the respective consultant regarding the request, including all of the relevant context the consultant will need to properly engage with the customer.\n\nThe Zenity researchers begin by performing targeting to identify an email inbox that is managed by an AI agent. Then they use prompt injections to discover details about the AI agent, such as its knowledge sources and tools. Once they understand the AI agent\u2019s capabilities, the researchers are able to craft a prompt that retrieves private customer data from the organization\u2019s RAG database and CRM, and exfiltrate it via the AI agent\u2019s email tool.\n\nVendor Response: Microsoft quickly acknowledged and fixed the issue. The prompts used by the Zenity researchers in this exercise no longer work, however other prompts may still be effective.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0006",
+            "showSubtechniques": false,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0093",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0084.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084",
+            "showSubtechniques": true,
+            "tactic": "discovery"
+        },
+        {
+            "techniqueID": "AML.T0084.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084",
+            "showSubtechniques": true,
+            "tactic": "discovery"
+        },
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ai-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": false,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084",
+            "showSubtechniques": true,
+            "tactic": "discovery"
+        },
+        {
+            "techniqueID": "AML.T0084.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084",
+            "showSubtechniques": true,
+            "tactic": "discovery"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085",
+            "showSubtechniques": true,
+            "tactic": "collection"
+        },
+        {
+            "techniqueID": "AML.T0085.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0085",
+            "showSubtechniques": true,
+            "tactic": "collection"
+        },
+        {
+            "techniqueID": "AML.T0086",
+            "showSubtechniques": false,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

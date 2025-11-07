@@ -1,0 +1,123 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0036"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "AIKatz: Attacking LLM Desktop Applications",
+    "description": "Researchers at Lumia have demonstrated that it is possible to extract authentication tokens from the memory of LLM Desktop Applications. An attacker could then use those tokens to impersonate as the victim to the LLM backed, thereby gaining access to the victim\u2019s conversations as well as the ability to interfere in future conversations. The attacker\u2019s access would allow them the ability to directly inject prompts to change the LLM\u2019s behavior, poison the LLM\u2019s context to have persistent effects, manipulate the user\u2019s conversation history to cover their tracks, and ultimately impact the confidentiality, integrity, and availability of the system. The researchers demonstrated this on Anthropic Claude, Microsoft M365 Copilot, and OpenAI ChatGPT.\n\nVendor Responses to Responsible Disclosure:\n- Anthropic (HackerOne) - Closed as informational since local attack.\n- Microsoft Security Response Center - Attack doesn\u2019t bypass security boundaries for CVE.\n- OpenAI (BugCrowd) - Closed as informational and noted that it\u2019s up to Microsoft to patch this behavior.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0012",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0089",
+            "showSubtechniques": false,
+            "tactic": "discovery",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0090",
+            "showSubtechniques": false,
+            "tactic": "credential-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0091.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0091",
+            "showSubtechniques": true,
+            "tactic": "lateral-movement"
+        },
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ai-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0080.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080",
+            "showSubtechniques": true,
+            "tactic": "persistence"
+        },
+        {
+            "techniqueID": "AML.T0080.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080",
+            "showSubtechniques": true,
+            "tactic": "persistence"
+        },
+        {
+            "techniqueID": "AML.T0092",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        },
+        {
+            "techniqueID": "AML.T0048.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        },
+        {
+            "techniqueID": "AML.T0029",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0029",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

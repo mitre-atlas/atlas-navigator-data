@@ -1,0 +1,96 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0033"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.1.0"
+        }
+    ],
+    "name": "Live Deepfake Image Injection to Evade Mobile KYC Verification",
+    "description": "Facial biometric authentication services are commonly used by mobile applications for user onboarding, authentication, and identity verification for KYC requirements. The iProov Red Team demonstrated a face-swapped imagery injection attack that can successfully evade live facial recognition authentication models along with both passive and active [liveness verification](https://en.wikipedia.org/wiki/Liveness_test) on mobile devices. By executing this kind of attack, adversaries could gain access to privileged systems of a victim or create fake personas to create fake accounts on banking or cryptocurrency apps.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0087",
+            "showSubtechniques": false,
+            "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0016.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0088",
+            "showSubtechniques": false,
+            "tactic": "ai-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0021",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0047",
+            "showSubtechniques": false,
+            "tactic": "ai-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0015",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0073",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}
