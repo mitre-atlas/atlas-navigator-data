@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.1.0"
+            "value": "5.1.1"
         }
     ],
     "name": "Data Exfiltration via Agent Tools in Copilot Studio",
@@ -36,7 +36,7 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0051.001",
+            "techniqueID": "AML.T0051.002",
             "color": "#C8E6C9"
         },
         {

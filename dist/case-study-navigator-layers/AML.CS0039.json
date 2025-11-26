@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.1.0"
+            "value": "5.1.1"
         }
     ],
     "name": "Living Off AI: Prompt Injection via Jira Service Management",
@@ -42,7 +42,7 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0051.000",
+            "techniqueID": "AML.T0051.001",
             "color": "#C8E6C9"
         },
         {

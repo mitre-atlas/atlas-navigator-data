@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.1.0"
+            "value": "5.1.1"
         }
     ],
     "name": "Achieving Code Execution in MathGPT via Prompt Injection",

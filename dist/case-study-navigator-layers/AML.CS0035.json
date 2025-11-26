@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.1.0"
+            "value": "5.1.1"
         }
     ],
     "name": "Data Exfiltration from Slack AI via Indirect Prompt Injection",

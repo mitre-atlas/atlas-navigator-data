@@ -7,7 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "5.1.0"
+            "value": "5.1.1"
         }
     ],
     "name": "ATLAS Case Study Frequency",
@@ -411,7 +411,7 @@
         },
         {
             "techniqueID": "AML.T0051.000",
-            "score": 6
+            "score": 4
         },
         {
             "techniqueID": "AML.T0051.001",
@@ -775,7 +775,7 @@
         },
         {
             "techniqueID": "AML.T0051.002",
-            "score": 0
+            "score": 2
         },
         {
             "techniqueID": "AML.T0095",
