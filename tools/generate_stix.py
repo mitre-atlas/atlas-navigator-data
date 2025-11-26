@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 import datetime
 import json
 from pathlib import Path
+import uuid
 
 import requests
 from stix2 import MemoryStore, properties
@@ -67,6 +68,7 @@ class ATLAS:
         Args:
             atlas_data (str): Dictionary of ATLAS.yaml data
         """
+        self.uuid_domain = uuid.UUID("atlas.mitre.org.".encode("utf-8").hex())
         self.source_name = source_name
         self.parse_data_files(atlas_data)
         # Track ATLAS tactics by short ID for matrix ordering lookup
@@ -173,7 +175,9 @@ class ATLAS:
 
             print(f'\tGenerated {len(tactic_refs)} tactic references for matrix with ID {matrix["id"]}')
 
+            matrix_uuid = uuid.uuid5(self.uuid_domain, "ATLAS-matrix")
             stix_matrix_obj = AttackMatrix(
+                id=f"x-mitre-matrix--{matrix_uuid}",
                 name=f'{matrix["name"]}',
                 description=f'{self.data_id} matrix for {matrix["name"]}',
                 external_references=external_references,
@@ -192,17 +196,20 @@ class ATLAS:
         # Store current datetime
         curr_datetime = datetime.datetime.utcnow()
         # Identity for this script's user and URL
-        identity = Identity(name=identity_name, description=atlas_url)
+        identity_uuid = uuid.uuid5(self.uuid_domain, "ATLAS-identity")
+        identity = Identity(id=f"identity--{identity_uuid}", name=identity_name, description=atlas_url)
 
 
         # Fill collection's default fields
         # https://github.com/center-for-threat-informed-defense/attack-workbench-frontend/blob/master/docs/collections.md#object-version-reference-properties
+        collection_uuid = uuid.uuid5(self.uuid_domain, "ATLAS-collection")
         stix_collection_obj = AttackCollection(
+            id=f"x-mitre-collection--{collection_uuid}",
             type='x-mitre-collection',
             name = f'{self.data_id}',
             description = f'{self.data_name}',
-            created = curr_datetime,
-            modified = curr_datetime,
+            #created = curr_datetime,
+            #modified = curr_datetime,
             spec_version = '2.1',
             x_mitre_version = '0.1',
             x_mitre_attack_spec_version = '2.1.0',
@@ -215,7 +222,9 @@ class ATLAS:
 
         # JSON
         print('Bundling and serializing ATLAS data to JSON file...')
+        bundle_uuid = uuid.uuid5(self.uuid_domain, "ATLAS-bundle")
         bundle = Bundle(
+            id=f"bundle--{bundle_uuid}",
             objects= stix_data_objects + [stix_collection_obj], # Collection is bundled along with data
             allow_custom=True # Needed as ATT&CK data has custom objects
         )
@@ -302,11 +311,15 @@ class ATLAS:
 
     def tactic_to_mitre_attack_tactic(self, t, atlas_url):
         """Returns a STIX x-mitre-tactic representing this tactic."""
+        tactic_uuid = uuid.uuid5(self.uuid_domain, t['id'])
         at = AttackTactic(
+            id=f"x-mitre-tactic--{tactic_uuid}",
             name=t['name'],
             description=t['description'],
             external_references=self.build_atlas_external_references(t, atlas_url, 'tactics'),
             x_mitre_shortname=t['name'].lower().replace(' ','-'),
+            created=t['created_date'],
+            modified=t['modified_date'],
         )
 
         # Track this tactic by short ID
@@ -316,14 +329,18 @@ class ATLAS:
 
     def technique_to_attack_pattern(self, t, atlas_url):
         """Returns a STIX AttackPattern representing this technique."""
+        technique_uuid = uuid.uuid5(self.uuid_domain, t['id'])
         return AttackPattern(
+            id=f"attack-pattern--{technique_uuid}",
             name=t['name'],
             description=t['description'],
             kill_chain_phases=self.referenced_tactics_to_kill_chain_phases(t['tactics']),
             external_references=self.build_atlas_external_references(t, atlas_url),
             # Needed by Navigator else TypeError technique.platforms is not iterable
             allow_custom=True,
-            x_mitre_platforms=['ATLAS']
+            x_mitre_platforms=['ATLAS'],
+            created=t['created_date'],
+            modified=t['modified_date'],
         )
 
     def subtechnique_to_attack_pattern(self, t, parent, atlas_url):
@@ -332,7 +349,9 @@ class ATLAS:
 
         https://github.com/mitre/cti/blob/master/USAGE.md#sub-techniques
         """
+        subtechnique_uuid = uuid.uuid5(self.uuid_domain, t['id'])
         subtechnique = AttackPattern(
+            id=f"attack-pattern--{subtechnique_uuid}",
             name=t['name'],
             description=t['description'],
             kill_chain_phases=parent.kill_chain_phases,
@@ -340,13 +359,19 @@ class ATLAS:
             # Needed by Navigator else TypeError technique.platforms is not iterable
             allow_custom=True,
             x_mitre_platforms=['ATLAS'],
-            x_mitre_is_subtechnique=True
+            x_mitre_is_subtechnique=True,
+            created=t['created_date'],
+            modified=t['modified_date'],
         )
 
+        relationship_uuid = uuid.uuid5(self.uuid_domain, f"{t['id']}-subtechnique-of-{parent.id}")
         relationship = Relationship(
+            id=f"relationship--{relationship_uuid}",
             source_ref=subtechnique.id,
             relationship_type='subtechnique-of',
-            target_ref=parent.id
+            target_ref=parent.id,
+            created=t['created_date'],
+            modified=t['modified_date'],
         )
 
         return subtechnique, relationship
@@ -357,10 +382,14 @@ class ATLAS:
 
         https://github.com/mitre/cti/blob/master/USAGE.md#mitigations
         """
+        mitigation_uuid = uuid.uuid5(self.uuid_domain, m['id'])
         mitigation = CourseOfAction(
+            id=f"course-of-action--{mitigation_uuid}",
             name=m['name'],
             description=m['description'],
-            external_references=self.build_atlas_external_references(m, atlas_url, route='mitigations')
+            external_references=self.build_atlas_external_references(m, atlas_url, route='mitigations'),
+            created=m['created_date'],
+            modified=m['modified_date'],
         )
 
         relationships = []
@@ -372,11 +401,15 @@ class ATLAS:
                 stix_technique = self.find_stix_technique_by_external_ref_id(stix_techniques, technique_use['id'])
 
                 if stix_technique:
+                    relationship_uuid = uuid.uuid5(self.uuid_domain, f"{m['id']}-mitigates-{technique_use['use']}")
                     relationship = Relationship(
+                        id=f"relationship--{relationship_uuid}",
                         source_ref=mitigation.id,
                         relationship_type='mitigates',
                         target_ref=stix_technique.id,
-                        description=technique_use['use']
+                        description=technique_use['use'],
+                        created=m['created_date'],
+                        modified=m['modified_date'],
                     )
 
                     relationships.append(relationship)
