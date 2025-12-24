@@ -1,0 +1,75 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0044"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.2.0"
+        }
+    ],
+    "name": "LAMEHUG: Malware Leveraging Dynamic AI-Generated Commands",
+    "description": "In July 2025, Ukrainian authorities reported the emergence of LAMEHUG, a new AI-powered malware attributed to the Russian state-backed threat actor [APT28](https://attack.mitre.org/groups/G0007/) (also tracked as Forest Blizzard or UAC-0001). LAMEHUG uses a large language model (LLM) to dynamically generate commands on the infected hosts.\n\nThe campaign began with a phishing attack leveraging a compromised government email account to deliver a malicious ZIP archive disguised as Appendix.pdf.zip. The archive contained the LAMEHUG malware, a Python-based executable, packed with PyInstaller. When executed, the malware, makes calls to an LLM endpoint to generate malicious from natural language prompts. Dynamically generated commands may make the malware harder to detect. LAMEHUG was configured to collect files from the local system and exfiltrate them.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0012",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0052",
+            "showSubtechniques": false,
+            "tactic": "lateral-movement",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0073",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0074",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011",
+            "showSubtechniques": false,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0102",
+            "showSubtechniques": false,
+            "tactic": "ai-attack-staging",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0037",
+            "showSubtechniques": false,
+            "tactic": "collection",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0025",
+            "showSubtechniques": false,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

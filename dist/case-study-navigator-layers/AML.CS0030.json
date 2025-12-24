@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.1.1"
+            "value": "5.2.0"
         }
     ],
     "name": "LLM Jacking",
@@ -32,7 +32,7 @@
         {
             "techniqueID": "AML.T0012",
             "showSubtechniques": false,
-            "tactic": "initial-access",
+            "tactic": "privilege-escalation",
             "color": "#C8E6C9"
         },
         {
