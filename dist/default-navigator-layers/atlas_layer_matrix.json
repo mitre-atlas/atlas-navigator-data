@@ -7,7 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "5.3.0"
+            "value": "5.4.0"
         }
     ],
     "name": "ATLAS Matrix",
@@ -678,6 +678,12 @@
             "color": "#C8E6C9"
         },
         {
+            "techniqueID": "AML.T0081",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
             "techniqueID": "AML.T0082",
             "showSubtechniques": true,
             "tactic": "credential-access",
@@ -841,6 +847,44 @@
             "techniqueID": "AML.T0103",
             "showSubtechniques": true,
             "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0104",
+            "showSubtechniques": true,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0105",
+            "showSubtechniques": true,
+            "tactic": "privilege-escalation",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0106",
+            "showSubtechniques": true,
+            "tactic": "credential-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0107",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0108",
+            "showSubtechniques": true,
+            "tactic": "command-and-control",
             "color": "#C8E6C9"
         }
     ],

@@ -1,0 +1,99 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0049"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.4.0"
+        }
+    ],
+    "name": "Supply Chain Compromise via Poisoned ClawdBot Skill",
+    "description": "A security researcher demonstrated a proof-of-concept supply chain attack using a poisoned ClawdBot Skill shared on ClawdHub, a Skill registry for agents. The poisoned Skill contained a prompt injection that caused ClawdBot to execute a shell command that reached the researcher\u2019s server. Although the researcher here used this access simply to warn users about the danger, they could have instead delivered a malicious payload and compromised the user\u2019s system. The security researcher recorded 16 different users who downloaded and executed the poisoned Skill in the first 8 hours of it being published on ClawdHub.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0104",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0011.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0074",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0053",
+            "showSubtechniques": false,
+            "tactic": "privilege-escalation",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

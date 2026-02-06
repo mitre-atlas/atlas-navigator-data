@@ -1,0 +1,138 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0051"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.4.0"
+        }
+    ],
+    "name": "OpenClaw Command & Control via Prompt Injection",
+    "description": "Researchers at HiddenLayer demonstrated how a webpage can embed an indirect prompt injection that causes OpenClaw to silently execute a malicious script. Once executed, the script plants persistent malicious instructions into future system prompts, allowing the attacker to issue new commands, turning OpenClaw into a command and control agent.\n\nWhat makes this attack unique is that, through a simple indirect prompt injection attack into an agentic lifecycle, untrusted content can be used to spoof the model\u2019s control scheme and induce unapproved tool invocation for execution. Through this single inject, an LLM can become a persistent, automated command & control implant.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0008",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069",
+            "showSubtechniques": true,
+            "tactic": "discovery"
+        },
+        {
+            "techniqueID": "AML.T0069.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0069",
+            "showSubtechniques": true,
+            "tactic": "discovery"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0079",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0074",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0078",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0054",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0053",
+            "showSubtechniques": false,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0081",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0080.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0080",
+            "showSubtechniques": true,
+            "tactic": "persistence"
+        },
+        {
+            "techniqueID": "AML.T0108",
+            "showSubtechniques": false,
+            "tactic": "command-and-control",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0031",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}
