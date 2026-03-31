@@ -1,0 +1,90 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0054"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.5.0"
+        }
+    ],
+    "name": "Data Exfiltration via Remote Poisoned MCP Tool",
+    "description": "Researchers at Invariant Labs demonstrated that AI agents configured with remote Model Context Protocol (MCP) Tools can be vulnerable to model poisoning attacks. They show that an MCP Tool can contain malicious prompts in its docstring description, which is ingested into the AI agent\u2019s context, modifying its behavior.\n\nThey demonstrate this attack with a proof-of-concept MCP Tool that instructs the agent to perform additional actions before using the tool. The agent is instructed to read files containing credentials from the victim\u2019s machine and store their contents in one of the input variables to the tool. When the tool runs, the victim\u2019s credentials are exfiltrated to the poisoned MCP server.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0104",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.005",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0051.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0053",
+            "showSubtechniques": false,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0055",
+            "showSubtechniques": false,
+            "tactic": "credential-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0098",
+            "showSubtechniques": false,
+            "tactic": "credential-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0086",
+            "showSubtechniques": false,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

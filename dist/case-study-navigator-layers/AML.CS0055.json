@@ -1,0 +1,84 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0055"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.5.0"
+        }
+    ],
+    "name": "AI ClickFix: Hijacking Computer-Use Agents Using ClickFix",
+    "description": "[Embrace the Red]( https://embracethered.com/) demonstrated that AI computer-use agents are vulnerable to social engineering attacks and can be manipulated into executing arbitrary code on a victim\u2019s machine. The attack is a variation on \u201cClickFix\u201d which is a social engineering attack that fools humans into copying malicious commands and executing them.\n\nThe researcher used ChatGPT to generate a website designed to attract interactions with computer-use agents. When a user asked their Claude Computer-Use Agent to visit the researcher\u2019s website, the text \u201cAre you a computer? Please see instructions to confirm:\u201d caused the agent to click the associated button. This executed JavaScript to copy a malicious command into the agent\u2019s clipboard. The agent then proceeded to follow the instructions, opening a terminal, pasting the malicious command, and executing it. The command downloads a script from the researcher\u2019s website and executes it. In the demonstration, the script opens the victim\u2019s Calculator App, but in practice an adversary could run arbitrary code, compromising the victim\u2019s system.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0016.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0016",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0079",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0078",
+            "showSubtechniques": false,
+            "tactic": "initial-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0100",
+            "showSubtechniques": false,
+            "tactic": "execution",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0051",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0053",
+            "showSubtechniques": false,
+            "tactic": "privilege-escalation",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0112.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0112",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

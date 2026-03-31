@@ -11,11 +11,11 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.4.0"
+            "value": "5.5.0"
         }
     ],
     "name": "Supply Chain Compromise via Poisoned ClawdBot Skill",
-    "description": "A security researcher demonstrated a proof-of-concept supply chain attack using a poisoned ClawdBot Skill shared on ClawdHub, a Skill registry for agents. The poisoned Skill contained a prompt injection that caused ClawdBot to execute a shell command that reached the researcher\u2019s server. Although the researcher here used this access simply to warn users about the danger, they could have instead delivered a malicious payload and compromised the user\u2019s system. The security researcher recorded 16 different users who downloaded and executed the poisoned Skill in the first 8 hours of it being published on ClawdHub.",
+    "description": "A security researcher demonstrated a proof-of-concept supply chain attack using a poisoned ClawdBot Skill shared on ClawdHub, a Skill registry for agents. The poisoned Skill contained a prompt injection that caused ClawdBot to execute a shell command that reached the researcher's server. Although the researcher here used this access simply to warn users about the danger, they could have instead delivered a malicious payload and compromised the user's system. The security researcher recorded 16 different users who downloaded and executed the poisoned Skill in the first 8 hours of it being published on ClawdHub.",
     "techniques": [
         {
             "techniqueID": "AML.T0017",
@@ -45,7 +45,13 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0010.001",
+            "techniqueID": "AML.T0111",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.005",
             "color": "#C8E6C9"
         },
         {

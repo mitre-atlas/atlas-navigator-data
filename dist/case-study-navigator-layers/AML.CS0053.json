@@ -1,0 +1,87 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0053"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.5.0"
+        }
+    ],
+    "name": "Poisoned Postmark MCP Server Email Exfiltration",
+    "description": "A bad actor successfully exfiltrated emails from users of the Postmark\u2019s MCP server via a supply chain attack. Postmark is an email delivery service that allows organizations to send marketing and transactional emails via API. The Postmark MCP server allows users to interact with Postmark via AI agents.\n\nThe bad actor impersonated Postmark, by registering the `postmark-mcp` package name on npm. They initially published the legitimate versions of the MCP server. After the package became popular and reached over 1,000 downloads per week, the bad actor performed a rugpull and uploaded a malicious version of the package. The malicious version added the bad actor\u2019s email address in the BCC line of all emails sent by the MCP tool. Users who upgraded to this version and continued to use the tool would have all emails exfiltrated to the bad actor.",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0073",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0017",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0104",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0109",
+            "showSubtechniques": false,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.005",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010",
+            "showSubtechniques": true,
+            "tactic": "initial-access"
+        },
+        {
+            "techniqueID": "AML.T0110",
+            "showSubtechniques": false,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0011",
+            "showSubtechniques": true,
+            "tactic": "execution"
+        },
+        {
+            "techniqueID": "AML.T0086",
+            "showSubtechniques": false,
+            "tactic": "exfiltration",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": false,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

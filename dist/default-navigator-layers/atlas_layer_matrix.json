@@ -7,7 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "5.4.0"
+            "value": "5.5.0"
         }
     ],
     "name": "ATLAS Matrix",
@@ -885,6 +885,62 @@
             "techniqueID": "AML.T0108",
             "showSubtechniques": true,
             "tactic": "command-and-control",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0109",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0110",
+            "showSubtechniques": true,
+            "tactic": "persistence",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0010.005",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0034.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0034.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0034.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0084.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0111",
+            "showSubtechniques": true,
+            "tactic": "defense-evasion",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0112",
+            "showSubtechniques": true,
+            "tactic": "impact",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008.005",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0112.000",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0112.001",
             "color": "#C8E6C9"
         }
     ],

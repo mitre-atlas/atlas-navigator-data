@@ -1,0 +1,84 @@
+{
+    "versions": {
+        "layer": "4.3",
+        "navigator": "4.6.4"
+    },
+    "domain": "atlas-atlas",
+    "metadata": [
+        {
+            "name": "url",
+            "value": "https://atlas.mitre.org/studies/AML.CS0056"
+        },
+        {
+            "name": "atlas_data_version",
+            "value": "5.5.0"
+        }
+    ],
+    "name": "Model Distillation Campaigns Targeting Anthropic Claude",
+    "description": "Anthropic uncovered campaigns to extract Claude\u2019s capabilities carried out by the three Chinese AI Labs: DeepSeek, Moonshot, and MiniMax. Collectively, these campaigns used approximately 24,000 accounts and 16 million queries. They used model distillation to train their own models on the outputs of Claude in an attempt to replicate Claude\u2019s capabilities such as agentic reasoning, code generation, tool use, and computer use.\n\nAs outlined in Anthropic's report, model distillation was leveraged as a means for these labs to undermine Anthropic's export controls.[<sup>\\[1\\]</sup>][1] Distilled models lack the safeguards that prevent bad actors from using frontier models for malicious purposes such as the bioweapon development, disinformation, offensive cyber operations, and mass surveillance.\n\n[1]: https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks \"Detecting and preventing distillation attacks\"",
+    "techniques": [
+        {
+            "techniqueID": "AML.T0008.005",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0008",
+            "showSubtechniques": true,
+            "tactic": "resource-development"
+        },
+        {
+            "techniqueID": "AML.T0065",
+            "showSubtechniques": false,
+            "tactic": "resource-development",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0040",
+            "showSubtechniques": false,
+            "tactic": "ai-model-access",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0024.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0024",
+            "showSubtechniques": true,
+            "tactic": "exfiltration"
+        },
+        {
+            "techniqueID": "AML.T0048.004",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        },
+        {
+            "techniqueID": "AML.T0048.002",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        },
+        {
+            "techniqueID": "AML.T0048.003",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0048",
+            "showSubtechniques": true,
+            "tactic": "impact"
+        }
+    ],
+    "legendItems": [
+        {
+            "label": "Used in case study",
+            "color": "#C8E6C9"
+        }
+    ]
+}

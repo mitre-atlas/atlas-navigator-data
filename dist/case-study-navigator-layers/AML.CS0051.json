@@ -11,7 +11,7 @@
         },
         {
             "name": "atlas_data_version",
-            "value": "5.4.0"
+            "value": "5.5.0"
         }
     ],
     "name": "OpenClaw Command & Control via Prompt Injection",
@@ -123,10 +123,13 @@
             "color": "#C8E6C9"
         },
         {
-            "techniqueID": "AML.T0031",
-            "showSubtechniques": false,
-            "tactic": "impact",
+            "techniqueID": "AML.T0112.000",
             "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0112",
+            "showSubtechniques": true,
+            "tactic": "impact"
         }
     ],
     "legendItems": [
