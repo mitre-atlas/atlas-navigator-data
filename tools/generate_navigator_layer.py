@@ -137,11 +137,13 @@ def generate_case_study_frequency_layer(matrix, output_dir, layer_data, navigato
             # Increment the score on the corresponding technique object
             techniques[key]['score'] += 1
 
+    techniques = sorted(techniques.values(), key=lambda x: x["techniqueID"])
+
     # Construct layer data
     case_study_layer_data = {
         'name': name,
         'description': description,
-        'techniques': list(techniques.values()), # List of techniques is inside dictionary
+        'techniques': list(techniques), # List of techniques is inside dictionary
         'gradient': {
             'colors': [
                 '#FFFFFF',
@@ -178,6 +180,8 @@ def generate_matrix_layer(output_dir, layer_data, navigator_technique_objs, matr
         technique.update({
             'color': color
         })
+
+    techniques = sorted(techniques, key=lambda x: x["techniqueID"])
 
     # Construct layer data
     matrix_layer_data = {
@@ -320,6 +324,7 @@ if __name__ == '__main__':
     }
 
     navigator_technique_objs = build_navigator_technique_objs(data)
+
 
     if args.layer is None or args.layer == 'matrix':
         # Generate highlight layer that for ATLAS techniques

@@ -86,7 +86,7 @@ class ATLAS:
         # Collect data objects across all matrices
         self.matrices = atlas_data['matrices']
         self.tactics = [obj for matrix in self.matrices if 'tactics' in matrix for obj in matrix['tactics']]
-        self.techniques = [obj for matrix in self.matrices if 'techniques' in matrix for obj in matrix['techniques']]
+        self.techniques = sorted([obj for matrix in self.matrices if 'techniques' in matrix for obj in matrix['techniques']], key=lambda x: x["id"])
         self.mitigations = [obj for matrix in self.matrices if 'mitigations' in matrix for obj in matrix['mitigations']]
         self.attack_derived_techniques = [obj for obj in self.techniques if 'ATT&CK-reference' in obj]
 
