@@ -7,7 +7,7 @@
     "metadata": [
         {
             "name": "atlas_data_version",
-            "value": "5.5.0"
+            "value": "5.6.0"
         }
     ],
     "name": "ATLAS Matrix",
@@ -49,6 +49,10 @@
         },
         {
             "techniqueID": "AML.T0002.001",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0002.002",
             "color": "#C8E6C9"
         },
         {
@@ -500,6 +504,10 @@
             "color": "#C8E6C9"
         },
         {
+            "techniqueID": "AML.T0052.001",
+            "color": "#C8E6C9"
+        },
+        {
             "techniqueID": "AML.T0053",
             "showSubtechniques": true,
             "tactic": "execution",
@@ -831,6 +839,10 @@
             "techniqueID": "AML.T0095",
             "showSubtechniques": true,
             "tactic": "reconnaissance",
+            "color": "#C8E6C9"
+        },
+        {
+            "techniqueID": "AML.T0095.000",
             "color": "#C8E6C9"
         },
         {
