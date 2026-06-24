@@ -1,3 +1,9 @@
+# Project Deprecated
+
+This project has been deprecated. The scripts for generating ATLAS STIX data and ATLAS Navigator layers have been migrated to the [ATLAS Data](https://github.com/mitre-atlas/atlas-data) repository. STIX data and Navigator layers are now published as release artifacts on ATLAS Data releases. Please see [releases](https://github.com/mitre-atlas/atlas-data/releases) for the latest versions.
+
+---
+
 # MITRE | ATLAS Navigator Data
 
 [ATLAS Data](https://github.com/mitre-atlas/atlas-data) in STIX and [ATT&CK Navigator layer](https://github.com/mitre-attack/attack-navigator/tree/master/layers) formats for use with the [ATLAS Navigator](https://mitre-atlas.github.io/atlas-navigator/).
